@@ -1,0 +1,105 @@
+﻿@model IEnumerable<FurnitureShop.Models.User>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<main class="app-main">
+    <div class="app-content-header">
+        <!--begin::Container-->
+        <div class="container-fluid">
+            <!--begin::Row-->
+            <div class="row">
+                <div class="col-sm">
+                    <h3 class="mb-0">Category <small>List</small></h3>
+                </div>
+                <!-- <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-end">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">
+                            Collapsed Sidebar
+                        </li>
+                    </ol>
+                </div> -->
+            </div> <!--end::Row-->
+        </div> <!--end::Container-->
+    </div> <!--end::App Content Header--> <!--begin::App Content-->
+    <div class="app-content">
+        <!--begin::Container-->
+        <div class="container-fluid">
+            <!--begin::Row-->
+            <div class="row">
+                <div class="col-12">
+                    <!-- Default box -->
+                    <div class="card card-success card-outline">
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="col-md">
+                                </div>
+                                <div class="col-md-auto">
+                                    <a id="btnAdd" role="button" asp-action="Create" class="btn btn-success"><i class="fa-light fa-add me-1"></i> Create New</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.Name)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.Email)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.Password)
+                                            </th>                                          
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.UpdatedDate)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.UpdatedBy)
+                                            </th>
+                                            <th style="width:20px"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Name)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Email)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Password)
+                                                </td>
+                                                
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.UpdatedDate)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.UpdatedBy)
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <a asp-action="Edit" asp-route-id="@item.Id" class="me-1 link-success"><i class="fa-regular fa-pen-to-square"></i></a> |
+                                                    <a asp-action="Details" asp-route-id="@item.Id" class="me-1 link-info"><i class="fa-regular fa-circle-info"></i></a> |
+                                                    <a asp-action="Delete" asp-route-id="@item.Id" class="link-danger"><i class="fa-regular fa-trash-xmark"></i></a>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+
