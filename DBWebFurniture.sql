@@ -1,4 +1,28 @@
-﻿CREATE TABLE Users (
+﻿create table Settings (
+   SET_ID               int                  identity,
+   Name                 nvarchar(255)        not null,
+   Value                nvarchar(4000)       not null,
+   CreatedDate          datetime             null,
+   CreatedBy            varchar(255)         null,
+   UpdatedDate          datetime             null,
+   UpdatedBy            varchar(255)         null,
+   constraint PK_SETTINGS primary key (SET_ID)
+)
+create table AdminUsers (
+   USE_ID               int                  identity,
+   Username             varchar(255)         not null,
+   Password             nvarchar(255)        not null,
+   DisplayName          nvarchar(255)        null,
+   Email                varchar(255)         null,
+   Phone                varchar(20)          null,
+   CreatedDate          datetime             null,
+   CreatedBy            varchar(255)         null,
+   UpdatedDate          datetime             null,
+   UpdatedBy            varchar(255)         null,
+   constraint PK_ADMINUSERS primary key (USE_ID)
+)
+
+CREATE TABLE Users (
     Id INT IDENTITY(1,1) PRIMARY KEY, 
     Name NVARCHAR(255) NOT NULL,
     Email NVARCHAR(255) NOT NULL UNIQUE,

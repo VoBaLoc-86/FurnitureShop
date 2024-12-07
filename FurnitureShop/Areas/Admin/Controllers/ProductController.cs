@@ -22,7 +22,7 @@ namespace FurnitureShop.Areas.Admin.Controllers
         // GET: Admin/Product
         public async Task<IActionResult> Index()
         {
-            var furnitureShopContext = _context.Products.Include(p => p.Category);
+            var furnitureShopContext = _context.Products!.Include(p => p.Category);
             return View(await furnitureShopContext.ToListAsync());
         }
 
@@ -34,7 +34,7 @@ namespace FurnitureShop.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var product = await _context.Products
+            var product = await _context.Products!
                 .Include(p => p.Category)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (product == null)
@@ -57,7 +57,7 @@ namespace FurnitureShop.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Description,Price,Stock,Image,Category_id,CreatedDate,CreatedBy,UpdatedDate,UpdatedBy")] Product product)
+        public async Task<IActionResult> Create([FromForm] Product product)
         {
             if (ModelState.IsValid)
             {
@@ -77,7 +77,7 @@ namespace FurnitureShop.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var product = await _context.Products.FindAsync(id);
+            var product = await _context.Products!.FindAsync(id);
             if (product == null)
             {
                 return NotFound();
@@ -91,7 +91,7 @@ namespace FurnitureShop.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,Price,Stock,Image,Category_id,CreatedDate,CreatedBy,UpdatedDate,UpdatedBy")] Product product)
+        public async Task<IActionResult> Edit(int id, [FromForm] Product product)
         {
             if (id != product.Id)
             {
@@ -130,7 +130,7 @@ namespace FurnitureShop.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var product = await _context.Products
+            var product = await _context.Products!
                 .Include(p => p.Category)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (product == null)
@@ -146,7 +146,7 @@ namespace FurnitureShop.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var product = await _context.Products.FindAsync(id);
+            var product = await _context.Products!.FindAsync(id);
             if (product != null)
             {
                 _context.Products.Remove(product);
@@ -158,7 +158,7 @@ namespace FurnitureShop.Areas.Admin.Controllers
 
         private bool ProductExists(int id)
         {
-            return _context.Products.Any(e => e.Id == id);
+            return _context.Products!.Any(e => e.Id == id);
         }
     }
 }

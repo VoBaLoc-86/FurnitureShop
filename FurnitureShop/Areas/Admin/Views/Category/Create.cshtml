@@ -4,7 +4,6 @@
     ViewData["Title"] = "Create";
 }
 
-<main class="app-main">
     <div class="app-content-header">
         <!--begin::Container-->
         <div class="container-fluid">
@@ -24,7 +23,7 @@
                         <div class="card-header">
                             <div class="row">
                                 <div class="col-md">
-                                    <h3>Category</h3>
+                                <h3>Category</h3><small>Create</small>
                                 </div>
                                 <div class="col-md-auto">
                                 </div>
@@ -48,7 +47,7 @@
                                     <div class="mb-3 row">
                                         <div class="col-sm-1"></div>
                                         <div class="col-sm-2">
-                                            <input type="submit" value="Create" class="btn btn-success" />
+                                            <input type="submit" value="Save" class="btn btn-success" />
                                             <a id="btnAdd" role="button" class="btn btn-secondary" asp-action="Index">Back to List</a>
                                         </div>
                                     </div>
@@ -60,7 +59,6 @@
             </div>
         </div>
     </div>
-</main>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
