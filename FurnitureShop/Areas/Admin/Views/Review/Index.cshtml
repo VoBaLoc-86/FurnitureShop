@@ -1,0 +1,85 @@
+﻿@model IEnumerable<FurnitureShop.Models.Review>
+
+@{
+    ViewData["Title"] = "ReviewList";
+}
+<div class="app-content-header">
+    <!--begin::Container-->
+    <div class="container-fluid">
+        <!--begin::Row-->
+        <div class="row">
+            <div class="col-sm">
+                <h3 class="mb-0">Review <small>List</small></h3>
+            </div>
+            
+        </div>
+    </div>
+</div>
+<div class="app-content">
+    <!--begin::Container-->
+    <div class="container-fluid">
+        <!--begin::Row-->
+        <div class="row">
+            <div class="col-12">
+                <!-- Default box -->
+                <div class="card card-success card-outline">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-md">
+                            </div>
+                            <div class="col-md-auto">
+                                <a id="btnAdd" role="button" asp-action="Create" class="btn btn-success"><i class="fa-light fa-add me-1"></i> Create New</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Rating)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Comment)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Product)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.User)
+                                        </th>
+                                        <th style="width:20px"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Rating)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Comment)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Product!.Id)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.User!.Id)
+                                            </td>
+                                            <td class="text-nowrap">
+                                                <a asp-action="Details" asp-route-id="@item.Id" class="me-1 link-info"><i class="fa-regular fa-circle-info"></i></a> |
+                                                <a asp-action="Delete" asp-route-id="@item.Id" class="link-danger"><i class="fa-regular fa-trash-xmark"></i></a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

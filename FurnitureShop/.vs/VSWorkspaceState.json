@@ -1,10 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Areas",
     "\\Areas\\Admin",
-    "\\Areas\\Admin\\Controllers",
-    "\\Models"
+    "\\Areas\\Admin\\Controllers"
   ],
   "SelectedNode": "\\FurnitureShop.sln",
   "PreviewInSolutionExplorer": false

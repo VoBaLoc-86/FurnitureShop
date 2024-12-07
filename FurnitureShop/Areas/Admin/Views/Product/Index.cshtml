@@ -40,32 +40,12 @@
                                             @Html.DisplayNameFor(model => model.Name)
                                         </th>
                                         <th>
-                                            @Html.DisplayNameFor(model => model.Description)
-                                        </th>
-                                        <th>
                                             @Html.DisplayNameFor(model => model.Price)
                                         </th>
                                         <th>
                                             @Html.DisplayNameFor(model => model.Stock)
                                         </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.Image)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.Category)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.CreatedDate)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.CreatedBy)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.UpdatedDate)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.UpdatedBy)
-                                        </th>
+                                        
                                         <th style="width:20px"></th>
                                     </tr>
                                 </thead>
@@ -76,33 +56,14 @@
                                             <td>
                                                 @Html.DisplayFor(modelItem => item.Name)
                                             </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.Description)
-                                            </td>
+                                            
                                             <td>
                                                 @Html.DisplayFor(modelItem => item.Price)
                                             </td>
                                             <td>
                                                 @Html.DisplayFor(modelItem => item.Stock)
                                             </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.Image)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.Category!.Id)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.CreatedDate)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.CreatedBy)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.UpdatedDate)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.UpdatedBy)
-                                            </td>
+                                            
                                             
                                             <td class="text-nowrap">
                                                 <a asp-action="Edit" asp-route-id="@item.Id" class="me-1 link-success"><i class="fa-regular fa-pen-to-square"></i></a> |

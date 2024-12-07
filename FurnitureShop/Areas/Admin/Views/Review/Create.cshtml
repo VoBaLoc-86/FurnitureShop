@@ -1,0 +1,97 @@
+﻿@model FurnitureShop.Models.Review
+
+@{
+    ViewData["Title"] = "Create";
+}
+<div class="app-content-header">
+    <!--begin::Container-->
+    <div class="container-fluid">
+        <!--begin::Row-->
+        <div class="row">
+        </div> <!--end::Row-->
+    </div> <!--end::Container-->
+</div> <!--end::App Content Header--> <!--begin::App Content-->
+<div class="app-content">
+    <!--begin::Container-->
+    <div class="container-fluid">
+        <!--begin::Row-->
+        <div class="row">
+            <div class="col-12">
+                <!-- Default box -->
+                <div class="card card-success card-outline">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-md">
+                                <h3>Review</h3><small>Create</small>
+                            </div>
+                            <div class="col-md-auto">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <form asp-action="Create">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="form-group">
+                                <div class="mb-3 row">
+                                    <label asp-for="Product_id" class="col-sm-1 col-form-label"></label>
+                                    <div class="col-sm-3">
+                                        <select asp-for="Product_id" class="form-control" asp-items="ViewBag.Product_id"></select>
+                                        <span asp-validation-for="Product_id" class="text-danger"></span>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="mb-3 row">
+                                    <label asp-for="User_id" class="col-sm-1 col-form-label"></label>
+                                    <div class="col-sm-3">
+                                        <select asp-for="User_id" class="form-control" asp-items="ViewBag.User_id"></select>
+                                        <span asp-validation-for="User_id" class="text-danger"></span>
+                                    </div>
+
+                                </div>
+                            </div>
+                           
+                            <div class="form-group">
+                                <div class="mb-3 row">
+                                    <label asp-for="Rating" class="col-sm-1 col-form-label"></label>
+                                    <div class="col-sm-3">
+                                        <input asp-for="Rating" class="form-control">
+                                        <span asp-validation-for="Rating" class="text-danger"></span>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="mb-3 row">
+                                    <label asp-for="Comment" class="col-sm-1 col-form-label"></label>
+                                    <div class="col-sm-3">
+                                        <input asp-for="Comment" class="form-control">
+                                        <span asp-validation-for="Comment" class="text-danger"></span>
+                                    </div>
+
+                                </div>
+                            </div>
+                            
+
+
+                            <div class="form-group">
+                                <div class="mb-3 row">
+                                    <div class="col-sm-1"></div>
+                                    <div class="col-sm-2">
+                                        <input type="submit" value="Save" class="btn btn-success" />
+                                        <a id="btnAdd" role="button" class="btn btn-secondary" asp-action="Index">Back to List</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

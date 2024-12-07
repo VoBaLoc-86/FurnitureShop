@@ -50,15 +50,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <div class="mb-3 row">
-                                    <label asp-for="Description" class="col-sm-2 col-form-label"></label>
-                                    <div class="col-sm-3">
-                                        <textarea asp-for="Description" class="form-control" id="Description"></textarea>
-                                        <span asp-validation-for="Description" class="text-danger"></span>
-                                    </div>
-                                </div>
-                            </div>
+                            
                             <div class="form-group">
                                 <div class="mb-3 row">
                                     <label asp-for="Price" class="col-sm-2 col-form-label"></label>
@@ -86,10 +78,18 @@
                                     </div>
                                 </div>
                             </div>
-                            
                             <div class="form-group">
                                 <div class="mb-3 row">
-                                    <div class="col-sm-1"></div>
+                                    <label asp-for="Description" class="col-sm-2 col-form-label"></label>
+                                    <div class="col-sm-3">
+                                        <textarea asp-for="Description" class="form-control" id="Description"></textarea>
+                                        <span asp-validation-for="Description" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="mb-3 row">
+                                    <div class="col-sm-2"></div>
                                     <div class="col-sm-2">
                                         <input type="submit" value="Save" class="btn btn-success" />
                                         <a id="btnAdd" role="button" class="btn btn-secondary" asp-action="Index">Back to List</a>
@@ -104,6 +104,46 @@
     </div>
 </div>
 
+
+@section Header{
+    <link rel="stylesheet" href="/admin/plugins/ckeditor5/ckeditor5.css">
+}
+
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+
+    <script type="importmap">
+        {
+            "imports": {
+                "ckeditor5": "/admin/plugins/ckeditor5/ckeditor5.js",
+                "ckeditor5/": "/admin/plugins/ckeditor5/"
+            }
+        }
+    </script>
+    <script type="module">
+        import {
+            ClassicEditor,
+            Essentials,
+            Paragraph,
+            Bold,
+            Italic,
+            Font
+        } from 'ckeditor5';
+
+        ClassicEditor
+            .create( document.querySelector( '#Description' ), {
+                plugins: [ Essentials, Paragraph, Bold, Italic, Font ],
+                toolbar: [
+                    'undo', 'redo', '|', 'bold', 'italic', '|',
+                    'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor'
+                ]
+            } )
+            .then( editor => {
+                window.editor = editor;
+            } )
+            .catch( error => {
+                console.error( error );
+            } );
+    </script>
 }
