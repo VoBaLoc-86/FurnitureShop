@@ -1,4 +1,13 @@
-﻿<!DOCTYPE html>
+﻿@using FurnitureShop.Utils;
+@{
+    var userInfo = Context.Session.Get<AdminUser>("userInfo"); // Lấy đối tượng AdminUser từ Session
+    if (userInfo == null)
+    {
+        Context.Response.Redirect("/Admin/Login/Index");
+    }
+}
+
+<!DOCTYPE html>
 <html lang="en">
 
 <head>

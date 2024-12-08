@@ -15,5 +15,6 @@ namespace FurnitureShop.Models
         public DbSet<Order_Detail>? OrderDetails { get; set; }
         public DbSet<Page>? Pages { get; set; }
         public DbSet<Review>? Reviews { get; set; }
+        public DbSet<AdminUser>? AdminUsers { get; set; }
     }
 }

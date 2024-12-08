@@ -1,0 +1,96 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<!--begin::Head-->
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>AdminLTE 4 | Login Page v2</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="title" content="AdminLTE 4 | Login Page v2">
+    <meta name="author" content="ColorlibHQ">
+    <meta name="description" content="AdminLTE is a Free Bootstrap 5 Admin Dashboard, 30 example pages using Vanilla JS.">
+    <meta name="keywords" content="bootstrap 5, bootstrap, bootstrap 5 admin dashboard, bootstrap 5 dashboard, bootstrap 5 charts, bootstrap 5 calendar, bootstrap 5 datepicker, bootstrap 5 tables, bootstrap 5 datatable, vanilla js datatable, colorlibhq, colorlibhq dashboard, colorlibhq admin dashboard">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@@fontsource/source-sans-3@5.0.12/index.css" />
+    <link rel="stylesheet" href="~/admin/plugins/overlayscrollbars/styles/overlayscrollbars.min.css" />
+    <link rel="stylesheet" href="~/admin/plugins/bootstrap-icons/font/bootstrap-icons.min.css" />
+    <link rel="stylesheet" href="~/admin/plugins/font-awesome/css/all.css" />
+    <link rel="stylesheet" href="~/admin/css/adminlte.css" />
+    <link rel="stylesheet" href="~/admin/css/custom.css" />
+</head>
+<body class="login-page bg-body-secondary">
+    <div class="login-box">
+        <div class="card card-outline card-success">
+            <div class="card-header">
+                <a href="index.html" class="link-dark text-center link-offset-2 link-opacity-100 link-opacity-50-hover">
+                    <h1 class="mb-0"> <b>Admin</b>LTE</h1>
+                </a>
+            </div>
+            <div class="card-body login-card-body rounded">
+                <p class="login-box-msg text-danger">@ViewData["Message"]</p>
+                <form asp-action="Login" asp-controller="Login" asp-area="Admin">
+                    <div class="input-group mb-2">
+                        <div class="form-floating"> <input id="username" name="Username" type="text" class="form-control" value="" placeholder=""> <label for="username">User Name:</label> </div>
+                        <div class="input-group-text"> <i class="fa-light fa-user"></i> </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="form-floating"> <input id="password" name="Password" type="Password" class="form-control" placeholder=""> <label for="password">Password</label> </div>
+                        <div class="input-group-text"> <i class="fa-light fa-lock"></i> </div>
+                    </div> <!--begin::Row-->
+                    <div class="row">
+                        <div class="col-8 d-inline-flex align-items-center">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="RememberMe" value="true" id="RememberMe"> 
+                                <label class="form-check-label" for="RememberMe">
+                                    Remember Me
+                                </label>
+                            </div>
+                        </div> <!-- /.col -->
+                        <div class="col-4">
+                            <div class="d-grid gap-2"> <button type="submit" class="btn btn-success">Sign In</button> </div>
+                        </div> <!-- /.col -->
+                    </div> <!--end::Row-->
+                </form>
+                <!-- <div class="social-auth-links text-center mb-3 d-grid gap-2">
+                    <p>- OR -</p> <a href="#" class="btn btn-primary"> <i class="bi bi-facebook me-2"></i> Sign in using Facebook
+                    </a> <a href="#" class="btn btn-danger"> <i class="bi bi-google me-2"></i> Sign in using Google+
+                    </a>
+                </div>
+                <p class="mb-0"> <a href="forgot-password.html">I forgot my password</a> </p> -->
+            </div> <!-- /.login-card-body -->
+        </div>
+    </div> <!-- /.login-box -->
+    <script src="~/admin/plugins/overlayscrollbars/browser/overlayscrollbars.browser.es6.min.js"></script>
+    <script src="~/admin/js/bootstrap.bundle.min.js"></script>
+    <script src="~/admin/js/adminlte.js"></script>
+    <script src="~/admin/plugins/jquery/jquery-3.7.1.min.js"></script>
+    <script>
+        //===================== begin::OverlayScrollbars Configure =====================
+        const SELECTOR_SIDEBAR_WRAPPER = ".sidebar-wrapper";
+        const Default = {
+            scrollbarTheme: "os-theme-dark",
+            scrollbarAutoHide: "leave",
+            scrollbarClickScroll: true,
+        };
+        document.addEventListener("DOMContentLoaded", function () {
+            const sidebarWrapper = document.querySelector(SELECTOR_SIDEBAR_WRAPPER);
+            if (
+                sidebarWrapper &&
+                typeof OverlayScrollbarsGlobal?.OverlayScrollbars !== "undefined"
+            ) {
+                OverlayScrollbarsGlobal.OverlayScrollbars(sidebarWrapper, {
+                    scrollbars: {
+                        theme: Default.scrollbarTheme,
+                        autoHide: Default.scrollbarAutoHide,
+                        clickScroll: Default.scrollbarClickScroll,
+                    },
+                });
+            }
+        });
+                //===================== end::OverlayScrollbars Configure =====================
+
+    </script>
+</body>
+</html>
