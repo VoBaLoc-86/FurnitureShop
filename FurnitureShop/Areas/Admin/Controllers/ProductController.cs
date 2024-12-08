@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FurnitureShop.Models;
+using FurnitureShop.Areas.Admin.DTOs.request;
 
 namespace FurnitureShop.Areas.Admin.Controllers
 {
@@ -13,10 +14,12 @@ namespace FurnitureShop.Areas.Admin.Controllers
     public class ProductController : Controller
     {
         private readonly FurnitureShopContext _context;
+        private readonly IWebHostEnvironment _hostEnv;
 
-        public ProductController(FurnitureShopContext context)
+        public ProductController(IWebHostEnvironment hostEnv,FurnitureShopContext context)
         {
             _context = context;
+            _hostEnv = hostEnv;
         }
 
         // GET: Admin/Product
@@ -57,10 +60,28 @@ namespace FurnitureShop.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([FromForm] Product product)
+        public async Task<IActionResult> Create([FromForm] ProductDTO request)
         {
+            var product = new Product()
+            {
+                Id = request.Id,
+                Name = request.Name,
+                Description = request.Description,
+                Price = request.Price,
+                Stock = request.Stock,
+                Category_id = request.Category_id,
+            };
             if (ModelState.IsValid)
             {
+                string? newImageFileName = null;
+                if (request.Image != null)
+                {
+                    var extension = Path.GetExtension(request.Image.FileName);
+                    newImageFileName = $"{Guid.NewGuid().ToString()} {extension}";
+                    var filePath = Path.Combine(_hostEnv.WebRootPath, "data", "products", newImageFileName);
+                    request.Image.CopyTo(new FileStream(filePath, FileMode.Create));
+                }
+                if (newImageFileName != null) { product.Image = newImageFileName; }
                 _context.Add(product);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
