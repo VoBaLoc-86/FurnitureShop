@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|d:\\gitproject\\furnitureshop\\furnitureshop\\wwwroot\\admin\\vendor\\chart.js\\chart.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|solutionrelative:wwwroot\\admin\\vendor\\chart.js\\chart.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|d:\\gitproject\\furnitureshop\\furnitureshop\\wwwroot\\admin\\js\\sb-admin-2.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
       "RelativeMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|solutionrelative:wwwroot\\admin\\js\\sb-admin-2.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
@@ -63,6 +67,19 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "Chart.js",
+              "DocumentMoniker": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\wwwroot\\admin\\vendor\\chart.js\\Chart.js",
+              "RelativeDocumentMoniker": "wwwroot\\admin\\vendor\\chart.js\\Chart.js",
+              "ToolTip": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\wwwroot\\admin\\vendor\\chart.js\\Chart.js",
+              "RelativeToolTip": "wwwroot\\admin\\vendor\\chart.js\\Chart.js",
+              "ViewState": "AgIAAEQeAAAAAAAAAAAhwE4eAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-12-09T03:05:28.43Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "sb-admin-2.js",
               "DocumentMoniker": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\wwwroot\\admin\\js\\sb-admin-2.js",
               "RelativeDocumentMoniker": "wwwroot\\admin\\js\\sb-admin-2.js",
@@ -70,12 +87,11 @@
               "RelativeToolTip": "wwwroot\\admin\\js\\sb-admin-2.js",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAAA0AAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2024-12-09T03:04:02.443Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-09T03:04:02.443Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "datatables-demo.js",
               "DocumentMoniker": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\wwwroot\\admin\\js\\demo\\datatables-demo.js",
               "RelativeDocumentMoniker": "wwwroot\\admin\\js\\demo\\datatables-demo.js",
@@ -83,12 +99,11 @@
               "RelativeToolTip": "wwwroot\\admin\\js\\demo\\datatables-demo.js",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2024-12-09T03:03:58.683Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-09T03:03:58.683Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "chart-pie-demo.js",
               "DocumentMoniker": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\wwwroot\\admin\\js\\demo\\chart-pie-demo.js",
               "RelativeDocumentMoniker": "wwwroot\\admin\\js\\demo\\chart-pie-demo.js",
@@ -96,12 +111,11 @@
               "RelativeToolTip": "wwwroot\\admin\\js\\demo\\chart-pie-demo.js",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2024-12-09T03:03:52.251Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-09T03:03:52.251Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "chart-bar-demo.js",
               "DocumentMoniker": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\wwwroot\\admin\\js\\demo\\chart-bar-demo.js",
               "RelativeDocumentMoniker": "wwwroot\\admin\\js\\demo\\chart-bar-demo.js",
@@ -109,12 +123,11 @@
               "RelativeToolTip": "wwwroot\\admin\\js\\demo\\chart-bar-demo.js",
               "ViewState": "AgIAAAkAAAAAAAAAAAAhwBgAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2024-12-09T03:03:09.938Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-09T03:03:09.938Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "chart-area-demo.js",
               "DocumentMoniker": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\wwwroot\\admin\\js\\demo\\chart-area-demo.js",
               "RelativeDocumentMoniker": "wwwroot\\admin\\js\\demo\\chart-area-demo.js",
@@ -122,12 +135,11 @@
               "RelativeToolTip": "wwwroot\\admin\\js\\demo\\chart-area-demo.js",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2024-12-09T03:02:36.804Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-09T03:02:36.804Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "appsettings.json",
               "DocumentMoniker": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\appsettings.json",
               "RelativeDocumentMoniker": "appsettings.json",
@@ -139,7 +151,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
@@ -151,7 +163,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Views\\Login\\Index.cshtml",
               "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Login\\Index.cshtml",
@@ -159,12 +171,11 @@
               "RelativeToolTip": "Areas\\Admin\\Views\\Login\\Index.cshtml",
               "ViewState": "AgIAADAAAAAAAAAAAAAAADgAAABDAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-12-08T06:53:40.509Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-08T06:53:40.509Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "LoginController.cs",
               "DocumentMoniker": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Controllers\\LoginController.cs",
               "RelativeDocumentMoniker": "Areas\\Admin\\Controllers\\LoginController.cs",
@@ -176,7 +187,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "ProductController.cs",
               "DocumentMoniker": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Controllers\\ProductController.cs",
               "RelativeDocumentMoniker": "Areas\\Admin\\Controllers\\ProductController.cs",
@@ -188,7 +199,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "_Layout.cshtml",
               "DocumentMoniker": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Views\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Shared\\_Layout.cshtml",
