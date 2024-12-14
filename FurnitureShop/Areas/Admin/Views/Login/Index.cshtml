@@ -29,7 +29,7 @@
                 </a>
             </div>
             <div class="card-body login-card-body rounded">
-                <p class="login-box-msg text-danger">@ViewData["Message"]</p>
+                <p class="login-box-msg text-danger">@TempData["Message"]</p>
                 <form asp-action="Login" asp-controller="Login" asp-area="Admin">
                     <div class="input-group mb-2">
                         <div class="form-floating"> <input id="username" name="Username" type="text" class="form-control" value="" placeholder=""> <label for="username">User Name:</label> </div>

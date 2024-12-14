@@ -1,3 +1,12 @@
+wwwroot\admin\css\adminlte.css
+wwwroot\admin\css\adminlte.css.map
+wwwroot\admin\css\adminlte.min.css
+wwwroot\admin\css\adminlte.min.css.map
+wwwroot\admin\css\adminlte.rtl.css
+wwwroot\admin\css\adminlte.rtl.css.map
+wwwroot\admin\css\adminlte.rtl.min.css
+wwwroot\admin\css\adminlte.rtl.min.css.map
+wwwroot\admin\css\custom.css
 wwwroot\admin\css\sb-admin-2.css
 wwwroot\admin\css\sb-admin-2.min.css
 wwwroot\admin\img\undraw_posting_photo.svg

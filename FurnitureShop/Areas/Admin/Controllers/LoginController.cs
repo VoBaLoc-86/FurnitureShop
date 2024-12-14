@@ -50,9 +50,11 @@ namespace FurnitureShop.Areas.Admin.Controllers
             }
             else
             {
-                ViewData["Message"] = "Wrong username or password";
+               
+                TempData["Message"] = "Wrong username or password";
+                return RedirectToAction("Index", "Login");
             }
-            return View();
+            
         }
     }
 }

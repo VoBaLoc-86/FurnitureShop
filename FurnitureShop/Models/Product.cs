@@ -17,6 +17,6 @@ namespace FurnitureShop.Models
 
         public virtual ICollection<Order_Detail>? Order_Details { get; set; }
         public virtual ICollection<Review>? Reviews { get; set; }
-        public virtual ICollection<Cart>? Carts { get; set; }
+     
     }
 }

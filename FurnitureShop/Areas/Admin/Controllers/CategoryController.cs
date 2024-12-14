@@ -22,6 +22,7 @@ namespace FurnitureShop.Areas.Admin.Controllers
         // GET: Admin/Category
         public async Task<IActionResult> Index()
         {
+
             return View(await _context.Categories.ToListAsync());
         }
 

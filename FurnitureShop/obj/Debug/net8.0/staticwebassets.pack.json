@@ -5,6 +5,42 @@
       "PackagePath": "staticwebassets\\FurnitureShop.z57pdo49l5.bundle.scp.css"
     },
     {
+      "Id": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\wwwroot\\admin\\css\\adminlte.css",
+      "PackagePath": "staticwebassets\\admin\\css\\adminlte.css"
+    },
+    {
+      "Id": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\wwwroot\\admin\\css\\adminlte.css.map",
+      "PackagePath": "staticwebassets\\admin\\css\\adminlte.css.map"
+    },
+    {
+      "Id": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\wwwroot\\admin\\css\\adminlte.min.css",
+      "PackagePath": "staticwebassets\\admin\\css\\adminlte.min.css"
+    },
+    {
+      "Id": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\wwwroot\\admin\\css\\adminlte.min.css.map",
+      "PackagePath": "staticwebassets\\admin\\css\\adminlte.min.css.map"
+    },
+    {
+      "Id": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\wwwroot\\admin\\css\\adminlte.rtl.css",
+      "PackagePath": "staticwebassets\\admin\\css\\adminlte.rtl.css"
+    },
+    {
+      "Id": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\wwwroot\\admin\\css\\adminlte.rtl.css.map",
+      "PackagePath": "staticwebassets\\admin\\css\\adminlte.rtl.css.map"
+    },
+    {
+      "Id": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\wwwroot\\admin\\css\\adminlte.rtl.min.css",
+      "PackagePath": "staticwebassets\\admin\\css\\adminlte.rtl.min.css"
+    },
+    {
+      "Id": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\wwwroot\\admin\\css\\adminlte.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\admin\\css\\adminlte.rtl.min.css.map"
+    },
+    {
+      "Id": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\wwwroot\\admin\\css\\custom.css",
+      "PackagePath": "staticwebassets\\admin\\css\\custom.css"
+    },
+    {
       "Id": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\wwwroot\\admin\\css\\sb-admin-2.css",
       "PackagePath": "staticwebassets\\admin\\css\\sb-admin-2.css"
     },
