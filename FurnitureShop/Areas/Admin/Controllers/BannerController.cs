@@ -6,6 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FurnitureShop.Models;
+using FurnitureShop.Utils;
+using FurnitureShop.Areas.Admin.DTOs.request;
+using System.Reflection;
 
 namespace FurnitureShop.Areas.Admin.Controllers
 {
@@ -13,10 +16,12 @@ namespace FurnitureShop.Areas.Admin.Controllers
     public class BannerController : Controller
     {
         private readonly FurnitureShopContext _context;
+        private readonly IWebHostEnvironment _hostEnv;
 
-        public BannerController(FurnitureShopContext context)
+        public BannerController(FurnitureShopContext context, IWebHostEnvironment hostEnv)
         {
             _context = context;
+            _hostEnv = hostEnv;
         }
 
         // GET: Admin/Banner
@@ -54,10 +59,31 @@ namespace FurnitureShop.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("BAN_ID,Title,Image,DisplayOrder,CreatedDate,CreatedBy,UpdatedDate,UpdatedBy")] Banner banner)
+        public async Task<IActionResult> Create([FromForm] BannerDTO request)
         {
+            var banner =new Banner() { 
+                Title = request.Title,
+                DisplayOrder = request.DisplayOrder,
+                CreatedDate = DateTime.Now,
+                UpdatedDate = DateTime.Now
+            };
+            var userInfo = HttpContext.Session.Get<AdminUser>("userInfo");
+            if (userInfo != null)
+            {
+                banner.CreatedBy = userInfo.Username;
+                banner.UpdatedBy = userInfo.Username;
+            }
             if (ModelState.IsValid)
             {
+                string? newImageFileName = null;
+                if (request.Image != null)
+                {
+                    var extension = Path.GetExtension(request.Image.FileName);
+                    newImageFileName = $"{Guid.NewGuid().ToString()} {extension}";
+                    var filePath = Path.Combine(_hostEnv.WebRootPath, "data", "banners", newImageFileName);
+                    request.Image.CopyTo(new FileStream(filePath, FileMode.Create));
+                }
+                if (newImageFileName != null) { banner.Image = newImageFileName; }
                 _context.Add(banner);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -86,9 +112,9 @@ namespace FurnitureShop.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("BAN_ID,Title,Image,DisplayOrder,CreatedDate,CreatedBy,UpdatedDate,UpdatedBy")] Banner banner)
+        public async Task<IActionResult> Edit(int id, [FromForm] BannerDTO request)
         {
-            if (id != banner.BAN_ID)
+            if (id != request.BAN_ID)
             {
                 return NotFound();
             }
@@ -97,12 +123,60 @@ namespace FurnitureShop.Areas.Admin.Controllers
             {
                 try
                 {
-                    _context.Update(banner);
+                    // Lấy bản ghi từ cơ sở dữ liệu
+                    var existingBanner = await _context.Banners.FindAsync(id);
+                    if (existingBanner == null)
+                    {
+                        return NotFound();
+                    }
+
+                    // Cập nhật các trường cần thiết
+                    existingBanner.Title = request.Title;
+                    existingBanner.DisplayOrder = request.DisplayOrder;
+
+                    // Ghi nhận người chỉnh sửa và thời gian chỉnh sửa
+                    var userInfo = HttpContext.Session.Get<AdminUser>("userInfo");
+                    if (userInfo != null)
+                    {
+                        existingBanner.UpdatedBy = userInfo.Username;
+                    }
+                    existingBanner.UpdatedDate = DateTime.Now; // Cập nhật thời gian sửa đổi
+
+                    // Xử lý upload ảnh (nếu có)
+                    if (request.Image != null)
+                    {
+                        string? newImageFileName = null;
+                        var extension = Path.GetExtension(request.Image.FileName);
+                        newImageFileName = $"{Guid.NewGuid()}{extension}";
+                        var filePath = Path.Combine(_hostEnv.WebRootPath, "data", "banners", newImageFileName);
+
+                        // Lưu file mới
+                        using (var stream = new FileStream(filePath, FileMode.Create))
+                        {
+                            await request.Image.CopyToAsync(stream);
+                        }
+
+                        // Xóa ảnh cũ (nếu cần thiết)
+                        if (!string.IsNullOrEmpty(existingBanner.Image))
+                        {
+                            var oldFilePath = Path.Combine(_hostEnv.WebRootPath, "data", "banners", existingBanner.Image);
+                            if (System.IO.File.Exists(oldFilePath))
+                            {
+                                System.IO.File.Delete(oldFilePath);
+                            }
+                        }
+
+                        // Gán tên file mới cho banner
+                        existingBanner.Image = newImageFileName;
+                    }
+
+                    // Lưu thay đổi vào cơ sở dữ liệu
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!BannerExists(banner.BAN_ID))
+                    // Kiểm tra xem bản ghi có tồn tại không
+                    if (!BannerExists(request.BAN_ID))
                     {
                         return NotFound();
                     }
@@ -113,7 +187,8 @@ namespace FurnitureShop.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(banner);
+
+            return View(request);
         }
 
         // GET: Admin/Banner/Delete/5

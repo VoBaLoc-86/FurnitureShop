@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FurnitureShop.Models;
+using FurnitureShop.Utils;
 
 namespace FurnitureShop.Areas.Admin.Controllers
 {
@@ -59,6 +60,11 @@ namespace FurnitureShop.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                var userInfo = HttpContext.Session.Get<AdminUser>("userInfo");
+                if (userInfo != null)
+                {
+                    category.CreatedBy = category.UpdatedBy = userInfo.Username;
+                }
                 _context.Add(category);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -98,22 +104,47 @@ namespace FurnitureShop.Areas.Admin.Controllers
             {
                 try
                 {
-                    _context.Update(category);
+                    // Lấy bản ghi từ cơ sở dữ liệu
+                    var existingCategory = await _context.Categories.FindAsync(id);
+                    if (existingCategory == null)
+                    {
+                        return NotFound();
+                    }
+
+                    // Cập nhật các trường cần thiết
+                    existingCategory.Name = category.Name;
+
+                    // Ghi nhận người chỉnh sửa và thời gian chỉnh sửa
+                    var userInfo = HttpContext.Session.Get<AdminUser>("userInfo");
+                    if (userInfo != null)
+                    {
+                        existingCategory.UpdatedBy = userInfo.Username;
+                    }
+                    existingCategory.UpdatedDate = DateTime.Now;
+
+                    // Lưu thay đổi
+                    _context.Update(existingCategory);
                     await _context.SaveChangesAsync();
+
+                    // Chuyển hướng về trang Index sau khi lưu thành công
+                    return RedirectToAction(nameof(Index));
                 }
                 catch (DbUpdateConcurrencyException)
                 {
+                    // Kiểm tra xem bản ghi có tồn tại không
                     if (!CategoryExists(category.Id))
                     {
                         return NotFound();
                     }
                     else
                     {
+                        // Ném ngoại lệ nếu xảy ra vấn đề đồng bộ mà không thể xử lý
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
             }
+
+            // Nếu ModelState không hợp lệ, trả về lại view với thông tin hiện tại
             return View(category);
         }
 
@@ -125,7 +156,7 @@ namespace FurnitureShop.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var category = await _context.Categories
+            var category = await _context.Categories.AsNoTracking()
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (category == null)
             {

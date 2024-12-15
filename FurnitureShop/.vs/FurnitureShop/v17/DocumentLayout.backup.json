@@ -1,7 +1,16 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\",
-  "Documents": [],
+  "WorkspaceRootPath": "E:\\HocKyVBT2024\\Back-end-2024\\Git-Project\\FurnitureShop\\FurnitureShop\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|e:\\hockyvbt2024\\back-end-2024\\git-project\\furnitureshop\\furnitureshop\\areas\\admin\\views\\banner\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|solutionrelative:areas\\admin\\views\\banner\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|e:\\hockyvbt2024\\back-end-2024\\git-project\\furnitureshop\\furnitureshop\\areas\\admin\\views\\category\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|solutionrelative:areas\\admin\\views\\category\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,11 +18,37 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Delete.cshtml",
+              "DocumentMoniker": "E:\\HocKyVBT2024\\Back-end-2024\\Git-Project\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Views\\Category\\Delete.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Category\\Delete.cshtml",
+              "ToolTip": "E:\\HocKyVBT2024\\Back-end-2024\\Git-Project\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Views\\Category\\Delete.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\Category\\Delete.cshtml",
+              "ViewState": "AgIAAEUAAAAAAAAAAAAAAFEAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-15T10:32:42.89Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Delete.cshtml",
+              "DocumentMoniker": "E:\\HocKyVBT2024\\Back-end-2024\\Git-Project\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Views\\Banner\\Delete.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Banner\\Delete.cshtml",
+              "ToolTip": "E:\\HocKyVBT2024\\Back-end-2024\\Git-Project\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Views\\Banner\\Delete.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\Banner\\Delete.cshtml",
+              "ViewState": "AgIAAEsAAAAAAAAAAAAYwFQAAABEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-15T10:32:40.83Z",
+              "EditorCaption": ""
             }
           ]
         }

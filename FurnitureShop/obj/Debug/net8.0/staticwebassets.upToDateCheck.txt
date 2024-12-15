@@ -4213,6 +4213,7 @@ wwwroot\admin\vendor\jquery-easing\jquery.easing.min.js
 wwwroot\css\bootstrap.min.css
 wwwroot\css\style.css
 wwwroot\css\tiny-slider.css
+wwwroot\data\banners\8d4bfb6c-7590-4f64-bda2-59f352462528 .jpg
 wwwroot\data\products\12c73a22-b660-4a20-b031-d1dc59c2be3d .jpg
 wwwroot\data\products\a60a84eb-9733-4349-bf09-2af74000a603 .jpg
 wwwroot\favicon.ico

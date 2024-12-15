@@ -39,7 +39,7 @@ CREATE TABLE [AdminUsers] (
     [USE_ID] INT IDENTITY(1,1) PRIMARY KEY,
     [Username] NVARCHAR(MAX) NOT NULL,
     [Password] NVARCHAR(MAX) NOT NULL,
-    [DisplayOrder] INT NOT NULL,
+    [DisplayName] nvarchar(255) NOT NULL,
     [Email] NVARCHAR(MAX) NOT NULL,
     [Phone] NVARCHAR(MAX) NOT NULL,
     [CreatedDate] DATETIME NOT NULL DEFAULT GETDATE(),
