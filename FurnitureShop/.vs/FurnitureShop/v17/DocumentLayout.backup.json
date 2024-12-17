@@ -1,14 +1,10 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "E:\\HocKyVBT2024\\Back-end-2024\\Git-Project\\FurnitureShop\\FurnitureShop\\",
+  "WorkspaceRootPath": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|e:\\hockyvbt2024\\back-end-2024\\git-project\\furnitureshop\\furnitureshop\\areas\\admin\\views\\banner\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|solutionrelative:areas\\admin\\views\\banner\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|e:\\hockyvbt2024\\back-end-2024\\git-project\\furnitureshop\\furnitureshop\\areas\\admin\\views\\category\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|solutionrelative:areas\\admin\\views\\category\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|d:\\gitproject\\furnitureshop\\furnitureshop\\areas\\admin\\views\\feature\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|solutionrelative:areas\\admin\\views\\feature\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,7 +14,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -26,28 +22,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Delete.cshtml",
-              "DocumentMoniker": "E:\\HocKyVBT2024\\Back-end-2024\\Git-Project\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Views\\Category\\Delete.cshtml",
-              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Category\\Delete.cshtml",
-              "ToolTip": "E:\\HocKyVBT2024\\Back-end-2024\\Git-Project\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Views\\Category\\Delete.cshtml",
-              "RelativeToolTip": "Areas\\Admin\\Views\\Category\\Delete.cshtml",
-              "ViewState": "AgIAAEUAAAAAAAAAAAAAAFEAAAAGAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-12-15T10:32:42.89Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Delete.cshtml",
-              "DocumentMoniker": "E:\\HocKyVBT2024\\Back-end-2024\\Git-Project\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Views\\Banner\\Delete.cshtml",
-              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Banner\\Delete.cshtml",
-              "ToolTip": "E:\\HocKyVBT2024\\Back-end-2024\\Git-Project\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Views\\Banner\\Delete.cshtml",
-              "RelativeToolTip": "Areas\\Admin\\Views\\Banner\\Delete.cshtml",
-              "ViewState": "AgIAAEsAAAAAAAAAAAAYwFQAAABEAAAAAAAAAA==",
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Views\\Feature\\Create.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Feature\\Create.cshtml",
+              "ToolTip": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Views\\Feature\\Create.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\Feature\\Create.cshtml",
+              "ViewState": "AgIAABoAAAAAAAAAAAAwwCkAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-12-15T10:32:40.83Z",
+              "WhenOpened": "2024-12-17T09:49:10.319Z",
               "EditorCaption": ""
             }
           ]
