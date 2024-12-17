@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FurnitureShop.Models
 {
@@ -10,6 +11,7 @@ namespace FurnitureShop.Models
         public decimal Price { get; set; }
         public int Stock { get; set; }
         public string? Image {  get; set; }
+        [DisplayName("Category Name")]
         public int Category_id { get; set; }
 
         [ForeignKey("Category_id")]

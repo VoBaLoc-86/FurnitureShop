@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FurnitureShop.Models;
+using FurnitureShop.Utils;
 
 namespace FurnitureShop.Areas.Admin.Controllers
 {
@@ -54,10 +55,15 @@ namespace FurnitureShop.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("SET_ID,Name,Value,CreatedDate,CreatedBy,UpdatedDate,UpdatedBy")] Setting setting)
+        public async Task<IActionResult> Create([FromForm] Setting setting)
         {
             if (ModelState.IsValid)
             {
+                var userInfo = HttpContext.Session.Get<AdminUser>("userInfo");
+                if (userInfo != null)
+                {
+                    setting.CreatedBy = setting.UpdatedBy = userInfo.Username;
+                }
                 _context.Add(setting);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -86,7 +92,7 @@ namespace FurnitureShop.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("SET_ID,Name,Value,CreatedDate,CreatedBy,UpdatedDate,UpdatedBy")] Setting setting)
+        public async Task<IActionResult> Edit(int id, [FromForm] Setting setting)
         {
             if (id != setting.SET_ID)
             {
@@ -97,24 +103,51 @@ namespace FurnitureShop.Areas.Admin.Controllers
             {
                 try
                 {
-                    _context.Update(setting);
+                    // Lấy bản ghi từ cơ sở dữ liệu
+                    var existingSetting = await _context.Settings.FindAsync(id);
+                    if (existingSetting == null)
+                    {
+                        return NotFound();
+                    }
+
+                    // Cập nhật các trường cần thiết
+                    existingSetting.Name = setting.Name; // Giả sử `Setting` có trường `Value`
+                    existingSetting.Value = setting.Value; // Thêm các trường khác nếu cần
+
+                    // Ghi nhận người chỉnh sửa và thời gian chỉnh sửa
+                    var userInfo = HttpContext.Session.Get<AdminUser>("userInfo");
+                    if (userInfo != null)
+                    {
+                        existingSetting.UpdatedBy = userInfo.Username;
+                    }
+                    existingSetting.UpdatedDate = DateTime.Now;
+
+                    // Lưu thay đổi vào cơ sở dữ liệu
+                    _context.Update(existingSetting);
                     await _context.SaveChangesAsync();
+
+                    // Chuyển hướng về trang Index sau khi lưu thành công
+                    return RedirectToAction(nameof(Index));
                 }
                 catch (DbUpdateConcurrencyException)
                 {
+                    // Kiểm tra xem bản ghi có tồn tại không
                     if (!SettingExists(setting.SET_ID))
                     {
                         return NotFound();
                     }
                     else
                     {
+                        // Ném ngoại lệ nếu xảy ra vấn đề đồng bộ
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
             }
+
+            // Nếu ModelState không hợp lệ, trả về lại view với thông tin hiện tại
             return View(setting);
         }
+
 
         // GET: Admin/Setting/Delete/5
         public async Task<IActionResult> Delete(int? id)

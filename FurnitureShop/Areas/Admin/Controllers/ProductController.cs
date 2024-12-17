@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FurnitureShop.Models;
 using FurnitureShop.Areas.Admin.DTOs.request;
+using FurnitureShop.Utils;
 
 namespace FurnitureShop.Areas.Admin.Controllers
 {
@@ -51,7 +52,7 @@ namespace FurnitureShop.Areas.Admin.Controllers
         // GET: Admin/Product/Create
         public IActionResult Create()
         {
-            ViewData["Category_id"] = new SelectList(_context.Categories, "Id", "Id");
+            ViewData["Category_id"] = new SelectList(_context.Categories, "Id", "Name");
             return View();
         }
 
@@ -71,24 +72,51 @@ namespace FurnitureShop.Areas.Admin.Controllers
                 Stock = request.Stock,
                 Category_id = request.Category_id,
             };
+
             if (ModelState.IsValid)
             {
+                // Ghi nhận thông tin người tạo từ session
+                var userInfo = HttpContext.Session.Get<AdminUser>("userInfo");
+                if (userInfo != null)
+                {
+                    product.CreatedBy = product.UpdatedBy = userInfo.Username;
+                }
+
+                // Ghi nhận thời gian tạo và cập nhật
+                product.CreatedDate = product.UpdatedDate = DateTime.Now;
+
+                // Xử lý ảnh tải lên
                 string? newImageFileName = null;
                 if (request.Image != null)
                 {
                     var extension = Path.GetExtension(request.Image.FileName);
-                    newImageFileName = $"{Guid.NewGuid().ToString()} {extension}";
+                    newImageFileName = $"{Guid.NewGuid().ToString()}{extension}";
                     var filePath = Path.Combine(_hostEnv.WebRootPath, "data", "products", newImageFileName);
-                    request.Image.CopyTo(new FileStream(filePath, FileMode.Create));
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await request.Image.CopyToAsync(stream);
+                    }
                 }
-                if (newImageFileName != null) { product.Image = newImageFileName; }
+
+                // Gán tên file ảnh vào sản phẩm nếu có
+                if (newImageFileName != null)
+                {
+                    product.Image = newImageFileName;
+                }
+
+                // Thêm sản phẩm vào cơ sở dữ liệu
                 _context.Add(product);
                 await _context.SaveChangesAsync();
+
+                // Chuyển hướng về trang Index
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Category_id"] = new SelectList(_context.Categories, "Id", "Id", product.Category_id);
+
+            // Trả về View với danh sách danh mục nếu ModelState không hợp lệ
+            ViewData["Category_id"] = new SelectList(_context.Categories, "Id", "Name", product.Category_id);
             return View(product);
         }
+
 
         // GET: Admin/Product/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -112,23 +140,68 @@ namespace FurnitureShop.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [FromForm] Product product)
+        public async Task<IActionResult> Edit(int id, [FromForm] ProductDTO update)
         {
-            if (id != product.Id)
+            if (id != update.Id)
             {
                 return NotFound();
             }
-
+            string Username = "";
             if (ModelState.IsValid)
             {
+                var userInfo = HttpContext.Session.Get<AdminUser>("userInfo");
+                if (userInfo != null)
+                {
+                    Username = userInfo.Username;
+                }
                 try
                 {
-                    _context.Update(product);
+                    var existingProduct = await _context.Products.FindAsync(id);
+                    if (existingProduct == null)
+                    {
+                        return NotFound();
+                    }
+                    if (update.Image != null)
+                    {
+                        string? newImageFileName = null;
+                        var extension = Path.GetExtension(update.Image.FileName);
+                        newImageFileName = $"{Guid.NewGuid()}{extension}";
+                        var filePath = Path.Combine(_hostEnv.WebRootPath, "data", "products", newImageFileName);
+
+                        // Lưu file mới
+                        using (var stream = new FileStream(filePath, FileMode.Create))
+                        {
+                            await update.Image.CopyToAsync(stream);
+                        }
+
+                        // Xóa ảnh cũ (nếu cần thiết)
+                        if (!string.IsNullOrEmpty(existingProduct.Image))
+                        {
+                            var oldFilePath = Path.Combine(_hostEnv.WebRootPath, "data", "products", existingProduct.Image);
+                            if (System.IO.File.Exists(oldFilePath))
+                            {
+                                System.IO.File.Delete(oldFilePath);
+                            }
+                        }
+
+                        // Gán tên file mới cho sản phẩm
+                        existingProduct.Image = newImageFileName;
+                    }
+                    existingProduct.Name = update.Name;
+                    existingProduct.Description = update.Description;
+                    existingProduct.Price = update.Price;
+                    existingProduct.Stock = update.Stock;
+                    existingProduct.Category_id = update.Category_id;
+                    existingProduct.UpdatedBy = Username;
+                    existingProduct.UpdatedDate = DateTime.Now;
+
+
+                    _context.Update(existingProduct);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ProductExists(product.Id))
+                    if (!ProductExists(update.Id))
                     {
                         return NotFound();
                     }
@@ -139,8 +212,8 @@ namespace FurnitureShop.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Category_id"] = new SelectList(_context.Categories, "Id", "Id", product.Category_id);
-            return View(product);
+            ViewData["Category_id"] = new SelectList(_context.Categories, "Id", "Id", update.Category_id);
+            return View(update);
         }
 
         // GET: Admin/Product/Delete/5

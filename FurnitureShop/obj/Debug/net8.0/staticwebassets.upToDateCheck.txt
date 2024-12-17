@@ -4216,7 +4216,12 @@ wwwroot\css\tiny-slider.css
 wwwroot\data\banners\8d4bfb6c-7590-4f64-bda2-59f352462528 .jpg
 wwwroot\data\banners\f19b847f-7efd-4929-a04a-0a32e5b4b400 .jpg
 wwwroot\data\features\57544bbc-285a-4399-bb68-64ddcfcdcf14 .jpg
+wwwroot\data\features\6ce3ccc2-8827-48ae-9bba-ad507e49d911.jpg
+wwwroot\data\products\0da3a1c2-6e37-4a36-8f05-cd778b20e907 .jpg
 wwwroot\data\products\12c73a22-b660-4a20-b031-d1dc59c2be3d .jpg
+wwwroot\data\products\1c5de291-a181-4d87-876c-d6397510b1e0.jpg
+wwwroot\data\products\6b064496-0aad-4251-b569-095c38dc9c18.jpg
+wwwroot\data\products\70468bb9-afe1-4417-b5cd-eef44599baaf.jpg
 wwwroot\data\products\a60a84eb-9733-4349-bf09-2af74000a603 .jpg
 wwwroot\favicon.ico
 wwwroot\images\bag.svg
