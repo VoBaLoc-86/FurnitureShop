@@ -30,38 +30,35 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <form asp-action="Create">
-                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                            <div class="form-group">
-                                <div class="mb-3 row">
-                                    <label asp-for="Name" class="control-label"></label>
-                                    <div class="col-sm-3">
-                                        <input asp-for="Name" class="form-control" />
-                                        <span asp-validation-for="Name" class="text-danger"></span>
-                                    </div>
+                        <form asp-action="Create" class="container p-4 bg-light rounded shadow">
+                            <!-- Validation Summary -->
+                            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                            <!-- Name Field -->
+                            <div class="mb-3 row align-items-center">
+                                <label asp-for="Name" class="col-sm-2 col-form-label fw-bold">Name</label>
+                                <div class="col-sm-6">
+                                    <input asp-for="Name" class="form-control" placeholder="Enter name" />
+                                    <span asp-validation-for="Name" class="text-danger"></span>
                                 </div>
                             </div>
 
-                            <div class="form-group">
-                                <div class="mb-3 row">
-                                    <label asp-for="Value" class="control-label"></label>
-                                    <div class="col-sm-3">
-                                        <input asp-for="Value" class="form-control" />
-                                        <span asp-validation-for="Value" class="text-danger"></span>
-                                    </div>
+                            <!-- Value Field -->
+                            <div class="mb-3 row align-items-center">
+                                <label asp-for="Value" class="col-sm-2 col-form-label fw-bold">Value</label>
+                                <div class="col-sm-6">
+                                    <input asp-for="Value" class="form-control" placeholder="Enter value" />
+                                    <span asp-validation-for="Value" class="text-danger"></span>
                                 </div>
                             </div>
 
-                            <div class="form-group">
-                                <div class="mb-3 row">
-                                    <div class="col-sm-1"></div>
-                                    <div class="col-sm-2">
-                                        <input type="submit" value="Save" class="btn btn-success" />
-                                        <a id="btnAdd" role="button" class="btn btn-secondary" asp-action="Index">Back to List</a>
-                                    </div>
-                                </div>
+                            <!-- Action Buttons -->
+                            <div class="d-flex justify-content-end gap-3">
+                                <input type="submit" value="Save" class="btn btn-success px-4" />
+                                <a id="btnAdd" role="button" class="btn btn-secondary px-4" asp-action="Index">Back to List</a>
                             </div>
                         </form>
+
                     </div>
                 </div>
             </div>

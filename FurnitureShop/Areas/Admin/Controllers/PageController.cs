@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FurnitureShop.Models;
+using FurnitureShop.Utils;
 
 namespace FurnitureShop.Areas.Admin.Controllers
 {
@@ -54,10 +55,15 @@ namespace FurnitureShop.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,Content,CreatedDate,CreatedBy,UpdatedDate,UpdatedBy")] Page page)
+        public async Task<IActionResult> Create([FromForm] Page page)
         {
             if (ModelState.IsValid)
             {
+                var userInfo = HttpContext.Session.Get<AdminUser>("userInfo");
+                if (userInfo != null)
+                {
+                    page.CreatedBy = page.UpdatedBy = userInfo.Username;
+                }
                 _context.Add(page);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -86,7 +92,7 @@ namespace FurnitureShop.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Content,CreatedDate,CreatedBy,UpdatedDate,UpdatedBy")] Page page)
+        public async Task<IActionResult> Edit(int id, [FromForm] Page page)
         {
             if (id != page.Id)
             {
@@ -95,9 +101,26 @@ namespace FurnitureShop.Areas.Admin.Controllers
 
             if (ModelState.IsValid)
             {
+                string? Username = null;
                 try
                 {
-                    _context.Update(page);
+                    var existingPage= await _context.Pages.FindAsync(id);
+                    if (existingPage == null)
+                    {
+                        return NotFound();
+                    }
+                    existingPage.Title = page.Title;
+                    existingPage.Content = page.Content;
+                    existingPage.UpdatedDate = DateTime.Now;
+
+                    // Ghi nhận người chỉnh sửa và thời gian chỉnh sửa
+                    var userInfo = HttpContext.Session.Get<AdminUser>("userInfo");
+                    if (userInfo != null)
+                    {
+                        existingPage.UpdatedBy = userInfo.Username;
+                    }
+
+                    _context.Update(existingPage);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)

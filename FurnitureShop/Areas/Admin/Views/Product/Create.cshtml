@@ -29,74 +29,70 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <form asp-action="Create" enctype="multipart/form-data">
-                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                            <div class="form-group">
-                                <div class="mb-3 row">
-                                    <label asp-for="Category_id" class="col-sm-2 col-form-label"></label>
-                                    <div class="col-sm-3">
-                                        <select asp-for="Category_id" class="form-control" asp-items="ViewBag.Category_id"></select>
-                                        <span asp-validation-for="Category_id" class="text-danger"></span>
-                                    </div>
+                        <form asp-action="Create" enctype="multipart/form-data" class="container p-4 bg-light rounded shadow">
+                            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                            <div class="mb-3 row">
+                                <label asp-for="Category_id" class="col-sm-3 col-form-label fw-bold">Category</label>
+                                <div class="col-sm-9">
+                                    <select asp-for="Category_id" class="form-control" asp-items="ViewBag.Category_id"></select>
+                                    <span asp-validation-for="Category_id" class="text-danger"></span>
                                 </div>
                             </div>
 
-                            <div class="form-group">
-                                <div class="mb-3 row">
-                                    <label asp-for="Name" class="col-sm-2 col-form-label"></label>
-                                    <div class="col-sm-3">
-                                        <input asp-for="Name" class="form-control">
-                                        <span asp-validation-for="Name" class="text-danger"></span>
-                                    </div>
+                            <div class="mb-3 row">
+                                <label asp-for="Name" class="col-sm-3 col-form-label fw-bold">Product Name</label>
+                                <div class="col-sm-9">
+                                    <input asp-for="Name" class="form-control" placeholder="Enter product name">
+                                    <span asp-validation-for="Name" class="text-danger"></span>
                                 </div>
                             </div>
-                            
-                            <div class="form-group">
-                                <div class="mb-3 row">
-                                    <label asp-for="Price" class="col-sm-2 col-form-label"></label>
-                                    <div class="col-sm-3">
-                                        <input asp-for="Price" class="form-control">
-                                        <span asp-validation-for="Price" class="text-danger"></span>
-                                    </div>
+
+                            <div class="mb-3 row">
+                                <label asp-for="Price" class="col-sm-3 col-form-label fw-bold">Price</label>
+                                <div class="col-sm-9">
+                                    <input asp-for="Price" class="form-control" placeholder="Enter price">
+                                    <span asp-validation-for="Price" class="text-danger"></span>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <div class="mb-3 row">
-                                    <label asp-for="Stock" class="col-sm-2 col-form-label"></label>
-                                    <div class="col-sm-3">
-                                        <input asp-for="Stock" class="form-control">
-                                        <span asp-validation-for="Stock" class="text-danger"></span>
-                                    </div>
+
+                            <div class="mb-3 row">
+                                <label asp-for="Stock" class="col-sm-3 col-form-label fw-bold">Stock</label>
+                                <div class="col-sm-9">
+                                    <input asp-for="Stock" class="form-control" placeholder="Enter stock quantity">
+                                    <span asp-validation-for="Stock" class="text-danger"></span>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <div class="mb-3 row">
-                                    <label asp-for="Image" class="col-sm-2 col-form-label"></label>
-                                    <div class="col-sm-3">
-                                        <input asp-for="Image" class="form-control" type="file" accept="image/*">
-                                        <span asp-validation-for="Image" class="text-danger"></span>
-                                    </div>
+
+                            <div class="mb-3 row">
+                                <label asp-for="Image" class="col-sm-3 col-form-label fw-bold">Product Image</label>
+                                <div class="col-sm-9">
+                                    <input asp-for="Image" class="form-control" type="file" accept="image/*" id="Image">
+                                    <span asp-validation-for="Image" class="text-danger"></span>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <div class="mb-3 row">
-                                    <label asp-for="Description" class="col-sm-2 col-form-label"></label>
-                                    <div class="col-sm-3">
-                                        <textarea asp-for="Description" class="form-control" id="Description"></textarea>
-                                        <span asp-validation-for="Description" class="text-danger"></span>
-                                    </div>
+
+                            <div class="mb-3 text-center">
+                                <div class="mx-auto"
+                                     style="width: 300px; height: 200px; overflow: hidden; border-radius: 10px; background-color: #f9f9f9; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                                    <img class="img-fluid" alt="Preview Image" id="imgPreview" style="width: 100%; height: auto; object-fit: cover;">
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <div class="mb-3 row">
-                                    <div class="col-sm-2"></div>
-                                    <div class="col-sm-2">
-                                        <input type="submit" value="Save" class="btn btn-success" />
-                                        <a id="btnAdd" role="button" class="btn btn-secondary" asp-action="Index">Back to List</a>
-                                    </div>
+
+                            <div class="mb-3 row">
+                                <label asp-for="Description" class="col-sm-3 col-form-label fw-bold">Description</label>
+                                <div class="col-sm-9">
+                                    <textarea asp-for="Description" class="form-control" rows="4" placeholder="Enter product description"></textarea>
+                                    <span asp-validation-for="Description" class="text-danger"></span>
                                 </div>
-                            </div> 
+                            </div>
+
+                            <div class="d-flex justify-content-end gap-3">
+                                <input type="submit" value="Save" class="btn btn-success px-4">
+                                <a id="btnAdd" role="button" class="btn btn-secondary px-4" asp-action="Index">Back to List</a>
+                            </div>
                         </form>
+
                     </div>
                 </div>
             </div>
@@ -145,5 +141,24 @@
             .catch( error => {
                 console.error( error );
             } );
+    </script>
+    <script>
+        window.onload = () => {
+            document.getElementById("Image").onchange = (e) => {
+                var preview = document.getElementById('imgPreview');
+                var file = e.target.files[0];
+                var reader  = new FileReader();
+
+                reader.onloadend = function () {
+                  preview.src = reader.result;
+                }
+
+                if (file) {
+                  reader.readAsDataURL(file);
+                } else {
+                  preview.src = '';
+                }
+            };
+        }
     </script>
 }

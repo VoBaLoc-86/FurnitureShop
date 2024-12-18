@@ -30,49 +30,47 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <form asp-action="Edit">
-                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <form asp-action="Edit" class="container p-4 bg-light rounded shadow">
+                            <!-- Validation Summary -->
+                            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                            <!-- Hidden Input for BAN_ID -->
                             <input type="hidden" asp-for="BAN_ID" />
-                            <div class="form-group">
-                                <div class="mb-3 row align-items-center">
-                                    <label asp-for="Title" class="form-label col-sm-2 text-end">Title:</label>
-                                    <div class="col-sm-4">
-                                        <input asp-for="Title" class="form-control" />
-                                        <span asp-validation-for="Title" class="text-danger"></span>
-                                    </div>
+
+                            <!-- Title Field -->
+                            <div class="mb-3 row align-items-center">
+                                <label asp-for="Title" class="col-sm-2 col-form-label fw-bold">Title:</label>
+                                <div class="col-sm-6">
+                                    <input asp-for="Title" class="form-control" placeholder="Enter title" />
+                                    <span asp-validation-for="Title" class="text-danger"></span>
                                 </div>
                             </div>
 
-                            <div class="form-group">
-                                <div class="mb-3 row align-items-center">
-                                    <label asp-for="Image" class="form-label col-sm-2 text-end">Image:</label>
-                                    <div class="col-sm-4">
-                                        <input asp-for="Image" class="form-control" type="file" accept="image/*" />
-                                        <span asp-validation-for="Image" class="text-danger"></span>
-                                    </div>
+                            <!-- Image Field -->
+                            <div class="mb-3 row align-items-center">
+                                <label asp-for="Image" class="col-sm-2 col-form-label fw-bold">Image:</label>
+                                <div class="col-sm-6">
+                                    <input asp-for="Image" class="form-control" type="file" accept="image/*" />
+                                    <span asp-validation-for="Image" class="text-danger"></span>
                                 </div>
                             </div>
 
-                            <div class="form-group">
-                                <div class="mb-3 row align-items-center">
-                                    <label asp-for="DisplayOrder" class="form-label col-sm-2 text-end">Display Order:</label>
-                                    <div class="col-sm-4">
-                                        <input asp-for="DisplayOrder" class="form-control" />
-                                        <span asp-validation-for="DisplayOrder" class="text-danger"></span>
-                                    </div>
+                            <!-- Display Order Field -->
+                            <div class="mb-3 row align-items-center">
+                                <label asp-for="DisplayOrder" class="col-sm-2 col-form-label fw-bold">Display Order:</label>
+                                <div class="col-sm-6">
+                                    <input asp-for="DisplayOrder" class="form-control" placeholder="Enter display order" />
+                                    <span asp-validation-for="DisplayOrder" class="text-danger"></span>
                                 </div>
                             </div>
 
-
-                            <div class="form-group">
-                                <div class="mb-3 row">
-                                    <div class="col-sm-2">
-                                        <input type="submit" value="Save" class="btn btn-success" />
-                                        <a id="btnAdd" role="button" class="btn btn-secondary" asp-action="Index">Back to List</a>
-                                    </div>
-                                </div>
+                            <!-- Action Buttons -->
+                            <div class="d-flex justify-content-end gap-3 mt-4">
+                                <input type="submit" value="Save" class="btn btn-success px-4" />
+                                <a id="btnAdd" role="button" class="btn btn-secondary px-4" asp-action="Index">Back to List</a>
                             </div>
                         </form>
+
                     </div>
                 </div>
             </div>

@@ -29,62 +29,53 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <form asp-action="Create">
-                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                            <div class="form-group">
-                                <div class="mb-3 row">
-                                    <label asp-for="Product_id" class="col-sm-1 col-form-label"></label>
-                                    <div class="col-sm-3">
-                                        <select asp-for="Product_id" class="form-control" asp-items="ViewBag.Product_id"></select>
-                                        <span asp-validation-for="Product_id" class="text-danger"></span>
-                                    </div>
+                        <form asp-action="Create" class="container p-4 bg-light rounded shadow">
+                            <!-- Validation Summary -->
+                            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
 
+                            <!-- Product Selection -->
+                            <div class="mb-3 row align-items-center">
+                                <label asp-for="Product_id" class="col-sm-2 col-form-label fw-bold">Product</label>
+                                <div class="col-sm-6">
+                                    <select asp-for="Product_id" class="form-control" asp-items="ViewBag.Product_id"></select>
+                                    <span asp-validation-for="Product_id" class="text-danger"></span>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <div class="mb-3 row">
-                                    <label asp-for="User_id" class="col-sm-1 col-form-label"></label>
-                                    <div class="col-sm-3">
-                                        <select asp-for="User_id" class="form-control" asp-items="ViewBag.User_id"></select>
-                                        <span asp-validation-for="User_id" class="text-danger"></span>
-                                    </div>
 
+                            <!-- User Selection -->
+                            <div class="mb-3 row align-items-center">
+                                <label asp-for="User_id" class="col-sm-2 col-form-label fw-bold">User</label>
+                                <div class="col-sm-6">
+                                    <select asp-for="User_id" class="form-control" asp-items="ViewBag.User_id"></select>
+                                    <span asp-validation-for="User_id" class="text-danger"></span>
                                 </div>
                             </div>
-                           
-                            <div class="form-group">
-                                <div class="mb-3 row">
-                                    <label asp-for="Rating" class="col-sm-1 col-form-label"></label>
-                                    <div class="col-sm-3">
-                                        <input asp-for="Rating" class="form-control">
-                                        <span asp-validation-for="Rating" class="text-danger"></span>
-                                    </div>
 
+                            <!-- Rating -->
+                            <div class="mb-3 row align-items-center">
+                                <label asp-for="Rating" class="col-sm-2 col-form-label fw-bold">Rating</label>
+                                <div class="col-sm-6">
+                                    <input asp-for="Rating" class="form-control" placeholder="Enter rating">
+                                    <span asp-validation-for="Rating" class="text-danger"></span>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <div class="mb-3 row">
-                                    <label asp-for="Comment" class="col-sm-1 col-form-label"></label>
-                                    <div class="col-sm-3">
-                                        <input asp-for="Comment" class="form-control">
-                                        <span asp-validation-for="Comment" class="text-danger"></span>
-                                    </div>
 
+                            <!-- Comment -->
+                            <div class="mb-3 row align-items-center">
+                                <label asp-for="Comment" class="col-sm-2 col-form-label fw-bold">Comment</label>
+                                <div class="col-sm-6">
+                                    <input asp-for="Comment" class="form-control" placeholder="Enter comment">
+                                    <span asp-validation-for="Comment" class="text-danger"></span>
                                 </div>
                             </div>
-                            
 
-
-                            <div class="form-group">
-                                <div class="mb-3 row">
-                                    <div class="col-sm-1"></div>
-                                    <div class="col-sm-2">
-                                        <input type="submit" value="Save" class="btn btn-success" />
-                                        <a id="btnAdd" role="button" class="btn btn-secondary" asp-action="Index">Back to List</a>
-                                    </div>
-                                </div>
+                            <!-- Buttons -->
+                            <div class="d-flex justify-content-end gap-3">
+                                <input type="submit" value="Save" class="btn btn-success px-4">
+                                <a id="btnAdd" role="button" class="btn btn-secondary px-4" asp-action="Index">Back to List</a>
                             </div>
                         </form>
+
                     </div>
                 </div>
             </div>
