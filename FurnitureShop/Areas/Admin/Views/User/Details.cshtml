@@ -31,58 +31,76 @@
                     </div>
                     <div class="card-body">
                         <div>
-                            <h4>User</h4>
-                            <hr />
-                            <dl class="row">
-                                <dt class="col-sm-2">
-                                    @Html.DisplayNameFor(model => model.Name)
-                                </dt>
-                                <dd class="col-sm-10">
-                                    @Html.DisplayFor(model => model.Name)
-                                </dd>
-                                <dt class="col-sm-2">
-                                    @Html.DisplayNameFor(model => model.Email)
-                                </dt>
-                                <dd class="col-sm-10">
-                                    @Html.DisplayFor(model => model.Email)
-                                </dd>
-                                <dt class="col-sm-2">
-                                    @Html.DisplayNameFor(model => model.Password)
-                                </dt>
-                                <dd class="col-sm-10">
-                                    @Html.DisplayFor(model => model.Password)
-                                </dd>
-                                <dt class="col-sm-2">
-                                    @Html.DisplayNameFor(model => model.CreatedDate)
-                                </dt>
-                                <dd class="col-sm-10">
-                                    @Html.DisplayFor(model => model.CreatedDate)
-                                </dd>
-                                <dt class="col-sm-2">
-                                    @Html.DisplayNameFor(model => model.CreatedBy)
-                                </dt>
-                                <dd class="col-sm-10">
-                                    @Html.DisplayFor(model => model.CreatedBy)
-                                </dd>
-                                <dt class="col-sm-2">
-                                    @Html.DisplayNameFor(model => model.UpdatedDate)
-                                </dt>
-                                <dd class="col-sm-10">
-                                    @Html.DisplayFor(model => model.UpdatedDate)
-                                </dd>
-                                <dt class="col-sm-2">
-                                    @Html.DisplayNameFor(model => model.UpdatedBy)
-                                </dt>
-                                <dd class="col-sm-10">
-                                    @Html.DisplayFor(model => model.UpdatedBy)
-                                </dd>
-                            </dl>
+                            <div class="container mt-4">
+                                <h1 class="text-primary">User Details</h1>
+
+                                <div class="card shadow-sm mt-3">
+                                    <div class="card-body">
+                                        <h4 class="text-secondary">User Information</h4>
+                                        <hr />
+                                        <dl class="row">
+                                            <dt class="col-sm-3 fw-bold text-secondary">
+                                                @Html.DisplayNameFor(model => model.Name)
+                                            </dt>
+                                            <dd class="col-sm-9">
+                                                @Html.DisplayFor(model => model.Name)
+                                            </dd>
+
+                                            <dt class="col-sm-3 fw-bold text-secondary">
+                                                @Html.DisplayNameFor(model => model.Email)
+                                            </dt>
+                                            <dd class="col-sm-9">
+                                                @Html.DisplayFor(model => model.Email)
+                                            </dd>
+
+                                            <dt class="col-sm-3 fw-bold text-secondary">
+                                                @Html.DisplayNameFor(model => model.Password)
+                                            </dt>
+                                            <dd class="col-sm-9">
+                                                @Html.DisplayFor(model => model.Password)
+                                            </dd>
+
+                                            <dt class="col-sm-3 fw-bold text-secondary">
+                                                @Html.DisplayNameFor(model => model.CreatedDate)
+                                            </dt>
+                                            <dd class="col-sm-9">
+                                                @Html.DisplayFor(model => model.CreatedDate)
+                                            </dd>
+
+                                            <dt class="col-sm-3 fw-bold text-secondary">
+                                                @Html.DisplayNameFor(model => model.CreatedBy)
+                                            </dt>
+                                            <dd class="col-sm-9">
+                                                @Html.DisplayFor(model => model.CreatedBy)
+                                            </dd>
+
+                                            <dt class="col-sm-3 fw-bold text-secondary">
+                                                @Html.DisplayNameFor(model => model.UpdatedDate)
+                                            </dt>
+                                            <dd class="col-sm-9">
+                                                @Html.DisplayFor(model => model.UpdatedDate)
+                                            </dd>
+
+                                            <dt class="col-sm-3 fw-bold text-secondary">
+                                                @Html.DisplayNameFor(model => model.UpdatedBy)
+                                            </dt>
+                                            <dd class="col-sm-9">
+                                                @Html.DisplayFor(model => model.UpdatedBy)
+                                            </dd>
+                                        </dl>
+                                    </div>
+                                </div>
+
+                                <div class="mt-4">
+                                    <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary">
+                                        <i class="bi bi-pencil"></i> Edit
+                                    </a> 
+                                    <a asp-action="Index" class="btn btn-secondary ms-2">
+                                        <i class="bi bi-arrow-left"></i> Back to List
+                                    </a>
+                                </div>
+                            </div>
                         </div>
-                        <div>
-                            <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-                            <a asp-action="Index">Back to List</a>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>

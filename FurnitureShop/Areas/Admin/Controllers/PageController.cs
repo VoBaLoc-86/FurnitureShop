@@ -101,7 +101,7 @@ namespace FurnitureShop.Areas.Admin.Controllers
 
             if (ModelState.IsValid)
             {
-                string? Username = null;
+                
                 try
                 {
                     var existingPage= await _context.Pages.FindAsync(id);

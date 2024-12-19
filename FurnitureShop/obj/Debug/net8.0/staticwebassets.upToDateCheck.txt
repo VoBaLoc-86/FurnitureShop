@@ -4221,6 +4221,7 @@ wwwroot\data\features\7e93671f-3cfe-4d92-8e5f-33b3a0f1ddfd .jpg
 wwwroot\data\products\0da3a1c2-6e37-4a36-8f05-cd778b20e907 .jpg
 wwwroot\data\products\12c73a22-b660-4a20-b031-d1dc59c2be3d .jpg
 wwwroot\data\products\1c5de291-a181-4d87-876c-d6397510b1e0.jpg
+wwwroot\data\products\26df7a0b-b1d8-4f5f-af73-475db0ba8bf7.jpg
 wwwroot\data\products\6b064496-0aad-4251-b569-095c38dc9c18.jpg
 wwwroot\data\products\70468bb9-afe1-4417-b5cd-eef44599baaf.jpg
 wwwroot\data\products\795c9a71-c338-4bea-96bf-b68659241a63.jpg
