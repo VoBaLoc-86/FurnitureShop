@@ -3,24 +3,36 @@
   "WorkspaceRootPath": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|d:\\gitproject\\furnitureshop\\furnitureshop\\areas\\admin\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|solutionrelative:areas\\admin\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|d:\\gitproject\\furnitureshop\\furnitureshop\\areas\\admin\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|solutionrelative:areas\\admin\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|d:\\gitproject\\furnitureshop\\furnitureshop\\areas\\admin\\views\\setting\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|solutionrelative:areas\\admin\\views\\setting\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|d:\\gitproject\\furnitureshop\\furnitureshop\\areas\\admin\\views\\adminuser\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|solutionrelative:areas\\admin\\views\\adminuser\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|d:\\gitproject\\furnitureshop\\furnitureshop\\areas\\admin\\views\\page\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|solutionrelative:areas\\admin\\views\\page\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|d:\\gitproject\\furnitureshop\\furnitureshop\\areas\\admin\\views\\category\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|solutionrelative:areas\\admin\\views\\category\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|d:\\gitproject\\furnitureshop\\furnitureshop\\areas\\admin\\views\\user\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|solutionrelative:areas\\admin\\views\\user\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|d:\\gitproject\\furnitureshop\\furnitureshop\\areas\\admin\\views\\adminuser\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|solutionrelative:areas\\admin\\views\\adminuser\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|d:\\gitproject\\furnitureshop\\furnitureshop\\areas\\admin\\views\\review\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|solutionrelative:areas\\admin\\views\\review\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|d:\\gitproject\\furnitureshop\\furnitureshop\\areas\\admin\\views\\adminuser\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|solutionrelative:areas\\admin\\views\\adminuser\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|d:\\gitproject\\furnitureshop\\furnitureshop\\areas\\admin\\controllers\\adminusercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|solutionrelative:areas\\admin\\controllers\\adminusercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|d:\\gitproject\\furnitureshop\\furnitureshop\\models\\adminuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|solutionrelative:models\\adminuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|d:\\gitproject\\furnitureshop\\furnitureshop\\areas\\admin\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|solutionrelative:areas\\admin\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -39,66 +51,105 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Views\\Home\\Index.cshtml",
-              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Home\\Index.cshtml",
-              "ToolTip": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Views\\Home\\Index.cshtml",
-              "RelativeToolTip": "Areas\\Admin\\Views\\Home\\Index.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAGEAAAAAAAAAAAAkwHIAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-12-19T05:17:06.316Z",
+              "WhenOpened": "2024-12-20T11:18:54.485Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "Delete.cshtml",
-              "DocumentMoniker": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Views\\Setting\\Delete.cshtml",
-              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Setting\\Delete.cshtml",
-              "ToolTip": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Views\\Setting\\Delete.cshtml",
-              "RelativeToolTip": "Areas\\Admin\\Views\\Setting\\Delete.cshtml",
-              "ViewState": "AgIAAFcAAAAAAAAAAAAkwGEAAAAAAAAAAAAAAA==",
+              "DocumentMoniker": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Views\\AdminUser\\Delete.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\AdminUser\\Delete.cshtml",
+              "ToolTip": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Views\\AdminUser\\Delete.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\AdminUser\\Delete.cshtml",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAABsAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-12-19T05:13:31.241Z",
+              "WhenOpened": "2024-12-20T11:16:25.311Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
               "Title": "Delete.cshtml",
-              "DocumentMoniker": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Views\\Page\\Delete.cshtml",
-              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Page\\Delete.cshtml",
-              "ToolTip": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Views\\Page\\Delete.cshtml",
-              "RelativeToolTip": "Areas\\Admin\\Views\\Page\\Delete.cshtml",
-              "ViewState": "AgIAAFAAAAAAAAAAAAAkwFsAAAAtAAAAAAAAAA==",
+              "DocumentMoniker": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Views\\Category\\Delete.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Category\\Delete.cshtml",
+              "ToolTip": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Views\\Category\\Delete.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\Category\\Delete.cshtml",
+              "ViewState": "AgIAAEkAAAAAAAAAAAAAAFgAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-12-19T05:12:59.084Z",
+              "WhenOpened": "2024-12-20T11:16:14.788Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "Delete.cshtml",
-              "DocumentMoniker": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Views\\User\\Delete.cshtml",
-              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\User\\Delete.cshtml",
-              "ToolTip": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Views\\User\\Delete.cshtml",
-              "RelativeToolTip": "Areas\\Admin\\Views\\User\\Delete.cshtml",
-              "ViewState": "AgIAAFsAAAAAAAAAAAAkwGsAAAAeAAAAAAAAAA==",
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Views\\AdminUser\\Details.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\AdminUser\\Details.cshtml",
+              "ToolTip": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Views\\AdminUser\\Details.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\AdminUser\\Details.cshtml",
+              "ViewState": "AgIAAG8AAAAAAAAAAAAAAHkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-12-19T05:11:19.853Z",
+              "WhenOpened": "2024-12-20T11:15:52.623Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "Delete.cshtml",
-              "DocumentMoniker": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Views\\Review\\Delete.cshtml",
-              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Review\\Delete.cshtml",
-              "ToolTip": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Views\\Review\\Delete.cshtml",
-              "RelativeToolTip": "Areas\\Admin\\Views\\Review\\Delete.cshtml",
-              "ViewState": "AgIAAGQAAAAAAAAAAAAkwGwAAAAoAAAAAAAAAA==",
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Views\\AdminUser\\Edit.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\AdminUser\\Edit.cshtml",
+              "ToolTip": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Views\\AdminUser\\Edit.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\AdminUser\\Edit.cshtml",
+              "ViewState": "AgIAAFQAAAAAAAAAAAAAAGMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-12-19T05:09:24.493Z",
+              "WhenOpened": "2024-12-20T11:14:55.478Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "AdminUser.cs",
+              "DocumentMoniker": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Models\\AdminUser.cs",
+              "RelativeDocumentMoniker": "Models\\AdminUser.cs",
+              "ToolTip": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Models\\AdminUser.cs",
+              "RelativeToolTip": "Models\\AdminUser.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAsAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-20T11:11:43.733Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "CategoryController.cs",
+              "DocumentMoniker": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Controllers\\CategoryController.cs",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Controllers\\CategoryController.cs",
+              "ToolTip": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Controllers\\CategoryController.cs",
+              "RelativeToolTip": "Areas\\Admin\\Controllers\\CategoryController.cs",
+              "ViewState": "AgIAAHAAAAAAAAAAAAAwwH4AAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-20T11:10:14.473Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "AdminUserController.cs",
+              "DocumentMoniker": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Controllers\\AdminUserController.cs",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Controllers\\AdminUserController.cs",
+              "ToolTip": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Controllers\\AdminUserController.cs",
+              "RelativeToolTip": "Areas\\Admin\\Controllers\\AdminUserController.cs",
+              "ViewState": "AgIAAHcAAAAAAAAAAAAwwH8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-20T11:10:08.173Z",
               "EditorCaption": ""
             }
           ]
