@@ -183,5 +183,48 @@ namespace FurnitureShop.Areas.Admin.Controllers
         {
             return _context.AdminUsers.Any(e => e.USE_ID == id);
         }
+
+        public async Task<IActionResult> Profile()
+        {
+            // Lấy thông tin user từ session
+            var userInfo = HttpContext.Session.Get<AdminUser>("userInfo");
+            if (userInfo == null)
+            {
+                return RedirectToAction("Login", "Auth"); // Redirect đến trang đăng nhập nếu user chưa đăng nhập
+            }
+
+            // Lấy thông tin chi tiết của user từ database (nếu cần)
+            var adminUser = await _context.AdminUsers.FirstOrDefaultAsync(u => u.USE_ID == userInfo.USE_ID);
+            if (adminUser == null)
+            {
+                return NotFound();
+            }
+
+            return View(adminUser);
+        }
+
+        public IActionResult Logout()
+        {
+            // Xóa session
+            HttpContext.Session.Clear();
+
+            // Xóa cookie chứa session ID
+            if (Request.Cookies.ContainsKey(".AspNetCore.Session"))
+            {
+                Response.Cookies.Delete(".AspNetCore.Session");
+            }
+
+            // Xóa cookie chứa thông tin đăng nhập "UserCrential"
+            if (Request.Cookies.ContainsKey("UserCrential"))
+            {
+                Response.Cookies.Delete("UserCrential");
+            }
+
+            // Điều hướng về trang Login
+            return RedirectToAction("Index", "Login");
+        }
+
+
+
     }
 }

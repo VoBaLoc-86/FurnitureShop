@@ -1,0 +1,27 @@
+﻿@model FurnitureShop.Models.AdminUser
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">User Profile</h1>
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">@Model.DisplayName</h4>
+                <p class="card-text"><strong>Username:</strong> @Model.Username</p>
+                <p class="card-text"><strong>Email:</strong> @Model.Email</p>
+                <p class="card-text"><strong>Phone:</strong> @Model.Phone</p>
+                <p class="card-text"><strong>Created By:</strong> @Model.CreatedBy</p>
+                <p class="card-text"><strong>Created Date:</strong> @Model.CreatedDate.ToString("yyyy-MM-dd HH:mm:ss")</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
