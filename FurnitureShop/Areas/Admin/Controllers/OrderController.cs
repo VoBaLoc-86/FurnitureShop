@@ -29,6 +29,7 @@ namespace FurnitureShop.Areas.Admin.Controllers
         // GET: Admin/Order/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+           
             if (id == null)
             {
                 return NotFound();
@@ -36,6 +37,7 @@ namespace FurnitureShop.Areas.Admin.Controllers
 
             var order = await _context.Orders
                 .Include(o => o.User)
+                .Include(o => o.Order_Details)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (order == null)
             {
