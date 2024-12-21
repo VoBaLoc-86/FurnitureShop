@@ -63,13 +63,12 @@
                                                 @Html.DisplayFor(modelItem => item.Comment)
                                             </td>
                                             <td>
-                                                @Html.DisplayFor(modelItem => item.Product!.Id)
+                                                @Html.DisplayFor(modelItem => item.Product!.Name)
                                             </td>
                                             <td>
-                                                @Html.DisplayFor(modelItem => item.User!.Id)
+                                                @Html.DisplayFor(modelItem => item.User!.Name)
                                             </td>
                                             <td class="text-nowrap">
-                                                <a asp-action="Details" asp-route-id="@item.Id" class="me-1 link-info"><i class="fa-regular fa-circle-info"></i></a> |
                                                 <a asp-action="Delete" asp-route-id="@item.Id" class="link-danger"><i class="fa-regular fa-trash-xmark"></i></a>
                                             </td>
                                         </tr>

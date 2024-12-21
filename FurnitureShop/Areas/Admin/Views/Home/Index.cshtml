@@ -18,8 +18,11 @@
                             <i class="bi bi-box"></i>
                         </div>
                         <div>
-                            <h5 class="card-title mb-1">Total Products</h5>
-                            <h3>250</h3>
+                            <h5 class="card-title mb-1">
+                                <a asp-action="Index" asp-controller="Product" asp-area="Admin">Total Products</a>
+                             </h5>
+                            <h3>@((ViewData["Products"] as IEnumerable<dynamic> ?? Enumerable.Empty<dynamic>()).Count())</h3>
+
                             <p class="card-text text-muted">Products available</p>
                         </div>
                     </div>
@@ -32,8 +35,10 @@
                             <i class="bi bi-cart"></i>
                         </div>
                         <div>
-                            <h5 class="card-title mb-1">Total Orders</h5>
-                            <h3>120</h3>
+                            <h5 class="card-title mb-1">
+                                <a asp-action="Index" asp-controller="Order" asp-area="Admin">Total Orders</a>
+                                </h5>
+                            <h3>@((ViewData["Orders"] as IEnumerable<dynamic> ?? Enumerable.Empty<dynamic>()).Count())</h3>
                             <p class="card-text text-muted">Orders this month</p>
                         </div>
                     </div>
@@ -46,8 +51,10 @@
                             <i class="bi bi-people"></i>
                         </div>
                         <div>
-                            <h5 class="card-title mb-1">Total Customers</h5>
-                            <h3>80</h3>
+                            <h5 class="card-title mb-1">
+                                <a asp-action="Index" asp-controller="User" asp-area="Admin">Total Users</a>
+                                </h5>
+                            <h3>@((ViewData["Users"] as IEnumerable<dynamic> ?? Enumerable.Empty<dynamic>()).Count())</h3>
                             <p class="card-text text-muted">New customers</p>
                         </div>
                     </div>
@@ -64,8 +71,10 @@
                             <i class="bi bi-image"></i>
                         </div>
                         <div>
-                            <h5 class="card-title mb-1">Total Banners</h5>
-                            <h3>15</h3>
+                            <h5 class="card-title mb-1">
+                                <a asp-action="Index" asp-controller="Banner" asp-area="Admin">Total Banners</a>
+                                </h5>
+                            <h3>@((ViewData["Banners"] as IEnumerable<dynamic> ?? Enumerable.Empty<dynamic>()).Count())</h3>
                             <p class="card-text text-muted">Active banners</p>
                         </div>
                     </div>
@@ -78,8 +87,10 @@
                             <i class="bi bi-tags"></i>
                         </div>
                         <div>
-                            <h5 class="card-title mb-1">Total Categories</h5>
-                            <h3>25</h3>
+                            <h5 class="card-title mb-1">
+                                <a asp-action="Index" asp-controller="Category" asp-area="Admin">Total Categories</a>
+                                </h5>
+                            <h3>@((ViewData["Categories"] as IEnumerable<dynamic> ?? Enumerable.Empty<dynamic>()).Count())</h3>
                             <p class="card-text text-muted">Available categories</p>
                         </div>
                     </div>
@@ -92,8 +103,10 @@
                             <i class="bi bi-gear"></i>
                         </div>
                         <div>
-                            <h5 class="card-title mb-1">Settings</h5>
-                            <h3>5</h3>
+                            <h5 class="card-title mb-1">
+                                <a asp-action="Index" asp-controller="Setting" asp-area="Admin">Settings</a>
+                                </h5>
+                            <h3>@((ViewData["Settings"] as IEnumerable<dynamic> ?? Enumerable.Empty<dynamic>()).Count())</h3>
                             <p class="card-text text-muted">Configuration options</p>
                         </div>
                     </div>
@@ -108,8 +121,10 @@
                             <i class="bi bi-person-badge"></i>
                         </div>
                         <div>
-                            <h5 class="card-title mb-1">Admin Users</h5>
-                            <h3>10</h3>
+                            <h5 class="card-title mb-1">
+                                <a asp-action="Index" asp-controller="AdminUser" asp-area="Admin">Admin Users</a>
+                                </h5>
+                            <h3>@((ViewData["AdminUsers"] as IEnumerable<dynamic> ?? Enumerable.Empty<dynamic>()).Count())</h3>
                             <p class="card-text text-muted">Admins managing site</p>
                         </div>
                     </div>
@@ -122,8 +137,10 @@
                             <i class="bi bi-chat-left-text"></i>
                         </div>
                         <div>
-                            <h5 class="card-title mb-1">Total Reviews</h5>
-                            <h3>500</h3>
+                            <h5 class="card-title mb-1">
+                                <a asp-action="Index" asp-controller="Review" asp-area="Admin">Total Reviews</a>
+                                </h5>
+                            <h3>@((ViewData["Reviews"] as IEnumerable<dynamic> ?? Enumerable.Empty<dynamic>()).Count())</h3>
                             <p class="card-text text-muted">Reviews received</p>
                         </div>
                     </div>
@@ -136,8 +153,10 @@
                             <i class="bi bi-stars"></i>
                         </div>
                         <div>
-                            <h5 class="card-title mb-1">Total Features</h5>
-                            <h3>40</h3>
+                            <h5 class="card-title mb-1">
+                                <a asp-action="Index" asp-controller="Feature" asp-area="Admin">Total Features</a>
+                                </h5>
+                            <h3>@((ViewData["Features"] as IEnumerable<dynamic> ?? Enumerable.Empty<dynamic>()).Count())</h3>
                             <p class="card-text text-muted">Features in use</p>
                         </div>
                     </div>
@@ -152,8 +171,10 @@
                         <i class="bi bi-files"></i>
                     </div>
                     <div>
-                        <h5 class="card-title mb-1">Total Pages</h5>
-                        <h3>10</h3>
+                        <h5 class="card-title mb-1">
+                                <a asp-action="Index" asp-controller="Page" asp-area="Admin">Total Pages</a>
+                            </h5>
+                            <h3>@((ViewData["Pages"] as IEnumerable<dynamic> ?? Enumerable.Empty<dynamic>()).Count())</h3>
                         <p class="card-text text-muted">Static pages</p>
                     </div>
                 </div>

@@ -48,7 +48,12 @@
                                     <span asp-validation-for="Image" class="text-danger"></span>
                                 </div>
                             </div>
-
+                            <div class="mb-3 text-center">
+                                <div class="mx-auto"
+                                     style="width: 300px; height: 200px; overflow: hidden; border-radius: 10px; background-color: #f9f9f9; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                                    <img class="img-fluid" alt="Preview Image" id="imgPreview" style="width: 100%; height: auto; object-fit: cover;">
+                                </div>
+                            </div>
                             <div class="mb-3 row">
                                 <label asp-for="DisplayOrder" class="col-sm-3 col-form-label fw-bold">Display Order</label>
                                 <div class="col-sm-9">
@@ -71,6 +76,25 @@
 </div>
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        window.onload = () => {
+            document.getElementById("Image").onchange = (e) => {
+                var preview = document.getElementById('imgPreview');
+                var file = e.target.files[0];
+                var reader  = new FileReader();
+
+                reader.onloadend = function () {
+                  preview.src = reader.result;
+                }
+
+                if (file) {
+                  reader.readAsDataURL(file);
+                } else {
+                  preview.src = '';
+                }
+            };
+        }
+    </script>
 }
 
 

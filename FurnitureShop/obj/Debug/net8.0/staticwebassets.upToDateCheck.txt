@@ -4214,6 +4214,7 @@ wwwroot\css\bootstrap.min.css
 wwwroot\css\style.css
 wwwroot\css\tiny-slider.css
 wwwroot\data\banners\8d4bfb6c-7590-4f64-bda2-59f352462528 .jpg
+wwwroot\data\banners\98b4b7e4-736b-4b08-95af-d403c45090b0 .jpg
 wwwroot\data\banners\f19b847f-7efd-4929-a04a-0a32e5b4b400 .jpg
 wwwroot\data\features\57544bbc-285a-4399-bb68-64ddcfcdcf14 .jpg
 wwwroot\data\features\6ce3ccc2-8827-48ae-9bba-ad507e49d911.jpg
@@ -4225,6 +4226,7 @@ wwwroot\data\products\26df7a0b-b1d8-4f5f-af73-475db0ba8bf7.jpg
 wwwroot\data\products\6b064496-0aad-4251-b569-095c38dc9c18.jpg
 wwwroot\data\products\70468bb9-afe1-4417-b5cd-eef44599baaf.jpg
 wwwroot\data\products\795c9a71-c338-4bea-96bf-b68659241a63.jpg
+wwwroot\data\products\7e406217-4ccf-4b62-bb1d-cce24aab4da7.jpg
 wwwroot\data\products\a0ed269f-5173-4936-b8b0-e65239e2ef18.jpg
 wwwroot\data\products\a60a84eb-9733-4349-bf09-2af74000a603 .jpg
 wwwroot\favicon.ico

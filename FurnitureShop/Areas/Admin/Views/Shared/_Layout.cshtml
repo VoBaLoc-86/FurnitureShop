@@ -92,7 +92,7 @@
                 
             </li>
             <li class="nav-item">
-                <a class="nav-link" asp-action="Index" asp-controller="Product">
+                <a class="nav-link" asp-action="Index" asp-controller="Product" asp-area="Admin">
                     <i class="fa-brands fa-product-hunt"></i>
                     <span>Products</span>
                 </a>
@@ -173,17 +173,38 @@
                     </button>
 
                     <!-- Topbar Search -->
-                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search"
+                          asp-area="Admin" asp-controller="Home" asp-action="Search" method="GET">
                         <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                   aria-label="Search" aria-describedby="basic-addon2">
+                            <input type="text" name="query" class="form-control bg-light border-0 small"
+                                   placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" required>
+
+                            <select name="category" class="form-control">
+                                
+                                <option value="Select a option">--Select--</option>
+                                <option value="Products">Products</option>
+                                <option value="Categories">Categories</option>
+                                <option value="Reviews">Reviews</option>
+                                <option value="Users">Users</option>
+                                <option value="Banners">Banners</option>
+                                <option value="AdminUsers">AdminUsers</option>
+                                <option value="Orders">Orders</option>
+                                <option value="Settings">Settings</option>
+                                <option value="Pages">Pages</option>
+
+                                <!-- Các danh mục khác -->
+                            </select>
+
                             <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
+                                <button class="btn btn-primary" type="submit">
                                     <i class="fas fa-search fa-sm"></i>
                                 </button>
                             </div>
                         </div>
                     </form>
+
+
+
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">

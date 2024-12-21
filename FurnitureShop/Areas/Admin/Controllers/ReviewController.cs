@@ -26,6 +26,19 @@ namespace FurnitureShop.Areas.Admin.Controllers
             return View(await furnitureShopContext.ToListAsync());
         }
 
+        public IActionResult Search(string query)
+        {
+            if (string.IsNullOrEmpty(query))
+            {
+                return View(); // Nếu không có query, chỉ hiển thị danh sách sản phẩm mặc định
+            }
+
+            var review = _context.Reviews
+                                    .Where(p => p.User!.Name.Contains(query))
+                                    .ToList();
+
+            return View("Index", review); // Trả về view Index với danh sách sản phẩm
+        }
         // GET: Admin/Review/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -49,8 +62,8 @@ namespace FurnitureShop.Areas.Admin.Controllers
         // GET: Admin/Review/Create
         public IActionResult Create()
         {
-            ViewData["Product_id"] = new SelectList(_context.Products, "Id", "Id");
-            ViewData["User_id"] = new SelectList(_context.Users, "Id", "Id");
+            ViewData["Product_id"] = new SelectList(_context.Products, "Id", "Name");
+            ViewData["User_id"] = new SelectList(_context.Users, "Id", "Name");
             return View();
         }
 
@@ -67,8 +80,8 @@ namespace FurnitureShop.Areas.Admin.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Product_id"] = new SelectList(_context.Products, "Id", "Id", review.Product_id);
-            ViewData["User_id"] = new SelectList(_context.Users, "Id", "Id", review.User_id);
+            ViewData["Product_id"] = new SelectList(_context.Products, "Id", "Name", review.Product_id);
+            ViewData["User_id"] = new SelectList(_context.Users, "Id", "Name", review.User_id);
             return View(review);
         }
 
@@ -85,8 +98,8 @@ namespace FurnitureShop.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            ViewData["Product_id"] = new SelectList(_context.Products, "Id", "Id", review.Product_id);
-            ViewData["User_id"] = new SelectList(_context.Users, "Id", "Id", review.User_id);
+            ViewData["Product_id"] = new SelectList(_context.Products, "Id", "Name", review.Product_id);
+            ViewData["User_id"] = new SelectList(_context.Users, "Id", "Name", review.User_id);
             return View(review);
         }
 
@@ -122,8 +135,8 @@ namespace FurnitureShop.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Product_id"] = new SelectList(_context.Products, "Id", "Id", review.Product_id);
-            ViewData["User_id"] = new SelectList(_context.Users, "Id", "Id", review.User_id);
+            ViewData["Product_id"] = new SelectList(_context.Products, "Id", "Name", review.Product_id);
+            ViewData["User_id"] = new SelectList(_context.Users, "Id", "Name", review.User_id);
             return View(review);
         }
 

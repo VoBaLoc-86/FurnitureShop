@@ -26,9 +26,29 @@ namespace FurnitureShop.Areas.Admin.Controllers
         // GET: Admin/Product
         public async Task<IActionResult> Index()
         {
-            var furnitureShopContext = _context.Products!.Include(p => p.Category);
+            // Lấy tất cả sản phẩm và bao gồm thông tin Category
+            var furnitureShopContext = _context.Products.Include(p => p.Category);
             return View(await furnitureShopContext.ToListAsync());
         }
+
+        public IActionResult Search(string query)
+        {
+            if (string.IsNullOrEmpty(query))
+            {
+                return RedirectToAction("Index", "Product");  // Chuyển về Index của ProductController
+            }
+
+            var products = _context.Products
+                                    .Where(p => p.Name.Contains(query))
+                                    .Include(p => p.Category)
+                                    .ToList();
+
+            return View("Index", products);  // Trả về view Index với các sản phẩm tìm được
+        }
+
+
+
+
 
         // GET: Admin/Product/Details/5
         public async Task<IActionResult> Details(int? id)

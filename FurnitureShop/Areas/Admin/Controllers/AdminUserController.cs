@@ -27,6 +27,19 @@ namespace FurnitureShop.Areas.Admin.Controllers
             return View(await _context.AdminUsers.ToListAsync());
         }
 
+        public IActionResult Search(string query)
+        {
+            if (string.IsNullOrEmpty(query))
+            {
+                return View(); // Nếu không có query, chỉ hiển thị danh sách sản phẩm mặc định
+            }
+
+            var adminuser = _context.AdminUsers
+                                    .Where(p => p.Username.Contains(query))
+                                    .ToList();
+
+            return View("Index", adminuser); // Trả về view Index với danh sách sản phẩm
+        }
         // GET: Admin/AdminUser/Details/5
         public async Task<IActionResult> Details(int? id)
         {
