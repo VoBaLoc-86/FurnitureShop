@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FurnitureShop.Models;
+using FurnitureShop.Utils;
 
 namespace FurnitureShop.Areas.Admin.Controllers
 {
@@ -76,6 +77,11 @@ namespace FurnitureShop.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                var userInfo = HttpContext.Session.Get<AdminUser>("userInfo");
+                if (userInfo != null)
+                {
+                    review.CreatedBy = review.UpdatedBy = userInfo.Username;
+                }
                 _context.Add(review);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -119,6 +125,34 @@ namespace FurnitureShop.Areas.Admin.Controllers
             {
                 try
                 {
+                    var existingReview = await _context.Reviews.FindAsync(id);
+                    if (existingReview == null)
+                    {
+                        return NotFound();
+                    }
+
+                    // Cập nhật các trường cần thiết
+                    existingReview.Product_id = review.Product_id;
+                    existingReview.User_id = review.User_id;
+                    existingReview.Rating = review.Rating;
+                    existingReview.Comment = review.Comment;
+
+
+
+                    // Ghi nhận người chỉnh sửa và thời gian chỉnh sửa
+                    var userInfo = HttpContext.Session.Get<AdminUser>("userInfo");
+                    if (userInfo != null)
+                    {
+                        existingReview.UpdatedBy = userInfo.Username;
+                    }
+                    existingReview.UpdatedDate = DateTime.Now;
+
+                    // Lưu thay đổi
+                    _context.Update(existingReview);
+                    await _context.SaveChangesAsync();
+
+
+
                     _context.Update(review);
                     await _context.SaveChangesAsync();
                 }

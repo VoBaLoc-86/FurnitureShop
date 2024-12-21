@@ -60,7 +60,7 @@
                                                 @Html.DisplayFor(modelItem => item.Rating)
                                             </td>
                                             <td>
-                                                @Html.DisplayFor(modelItem => item.Comment)
+                                                @Html.Raw(item.Comment)
                                             </td>
                                             <td>
                                                 @Html.DisplayFor(modelItem => item.Product!.Name)

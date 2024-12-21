@@ -3,52 +3,84 @@
   "WorkspaceRootPath": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|d:\\gitproject\\furnitureshop\\furnitureshop\\areas\\admin\\controllers\\featurecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|solutionrelative:areas\\admin\\controllers\\featurecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|d:\\gitproject\\furnitureshop\\furnitureshop\\areas\\admin\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|solutionrelative:areas\\admin\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|d:\\gitproject\\furnitureshop\\furnitureshop\\areas\\admin\\controllers\\reviewcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|solutionrelative:areas\\admin\\controllers\\reviewcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|d:\\gitproject\\furnitureshop\\furnitureshop\\areas\\admin\\dtos\\request\\featuredto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|solutionrelative:areas\\admin\\dtos\\request\\featuredto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|d:\\gitproject\\furnitureshop\\furnitureshop\\areas\\admin\\controllers\\bannercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|solutionrelative:areas\\admin\\controllers\\bannercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|d:\\gitproject\\furnitureshop\\furnitureshop\\areas\\admin\\views\\feature\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|solutionrelative:areas\\admin\\views\\feature\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|d:\\gitproject\\furnitureshop\\furnitureshop\\areas\\admin\\controllers\\adminusercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|solutionrelative:areas\\admin\\controllers\\adminusercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|d:\\gitproject\\furnitureshop\\furnitureshop\\models\\feature.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|solutionrelative:models\\feature.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|d:\\gitproject\\furnitureshop\\furnitureshop\\areas\\admin\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|solutionrelative:areas\\admin\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|d:\\gitproject\\furnitureshop\\furnitureshop\\wwwroot\\data\\features\\53cc40d8-abe7-4311-a505-159d6dc98a2b.png||{177559E0-D141-11D0-92DF-00A0C9138C45}",
+      "RelativeMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|solutionrelative:wwwroot\\data\\features\\53cc40d8-abe7-4311-a505-159d6dc98a2b.png||{177559E0-D141-11D0-92DF-00A0C9138C45}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|d:\\gitproject\\furnitureshop\\furnitureshop\\areas\\admin\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|solutionrelative:areas\\admin\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|d:\\gitproject\\furnitureshop\\furnitureshop\\wwwroot\\data\\features\\316adf5e-a4d2-47ce-968c-9c9d3acbb482 .png||{177559E0-D141-11D0-92DF-00A0C9138C45}",
+      "RelativeMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|solutionrelative:wwwroot\\data\\features\\316adf5e-a4d2-47ce-968c-9c9d3acbb482 .png||{177559E0-D141-11D0-92DF-00A0C9138C45}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|d:\\gitproject\\furnitureshop\\furnitureshop\\areas\\admin\\views\\review\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|solutionrelative:areas\\admin\\views\\review\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|d:\\gitproject\\furnitureshop\\furnitureshop\\areas\\admin\\views\\feature\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|solutionrelative:areas\\admin\\views\\feature\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|d:\\gitproject\\furnitureshop\\furnitureshop\\areas\\admin\\views\\review\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|solutionrelative:areas\\admin\\views\\review\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|d:\\gitproject\\furnitureshop\\furnitureshop\\areas\\admin\\views\\product\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|solutionrelative:areas\\admin\\views\\product\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|d:\\gitproject\\furnitureshop\\furnitureshop\\areas\\admin\\views\\review\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|solutionrelative:areas\\admin\\views\\review\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|d:\\gitproject\\furnitureshop\\furnitureshop\\areas\\admin\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|solutionrelative:areas\\admin\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|d:\\gitproject\\furnitureshop\\furnitureshop\\areas\\admin\\views\\review\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|solutionrelative:areas\\admin\\views\\review\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|d:\\gitproject\\furnitureshop\\furnitureshop\\areas\\admin\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|solutionrelative:areas\\admin\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|d:\\gitproject\\furnitureshop\\furnitureshop\\areas\\admin\\views\\review\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|solutionrelative:areas\\admin\\views\\review\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|d:\\gitproject\\furnitureshop\\furnitureshop\\areas\\admin\\controllers\\settingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|solutionrelative:areas\\admin\\controllers\\settingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|d:\\gitproject\\furnitureshop\\furnitureshop\\areas\\admin\\controllers\\reviewcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|solutionrelative:areas\\admin\\controllers\\reviewcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|d:\\gitproject\\furnitureshop\\furnitureshop\\areas\\admin\\controllers\\pagecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|solutionrelative:areas\\admin\\controllers\\pagecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|d:\\gitproject\\furnitureshop\\furnitureshop\\models\\review.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|solutionrelative:models\\review.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|d:\\gitproject\\furnitureshop\\furnitureshop\\areas\\admin\\views\\review\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|solutionrelative:areas\\admin\\views\\review\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|d:\\gitproject\\furnitureshop\\furnitureshop\\areas\\admin\\views\\product\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|solutionrelative:areas\\admin\\views\\product\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|d:\\gitproject\\furnitureshop\\furnitureshop\\views\\shop\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|solutionrelative:views\\shop\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|d:\\gitproject\\furnitureshop\\furnitureshop\\views\\shop\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|solutionrelative:views\\shop\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|d:\\gitproject\\furnitureshop\\furnitureshop\\controllers\\shopcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F5A70375-2C2F-470E-947D-0399FE27E56B}|FurnitureShop.csproj|solutionrelative:controllers\\shopcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -58,7 +90,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -66,158 +98,259 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "BannerController.cs",
-              "DocumentMoniker": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Controllers\\BannerController.cs",
-              "RelativeDocumentMoniker": "Areas\\Admin\\Controllers\\BannerController.cs",
-              "ToolTip": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Controllers\\BannerController.cs",
-              "RelativeToolTip": "Areas\\Admin\\Controllers\\BannerController.cs",
-              "ViewState": "AgIAABEAAAAAAAAAAAAAwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-21T04:20:42.886Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "HomeController.cs",
-              "DocumentMoniker": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Controllers\\HomeController.cs",
-              "RelativeDocumentMoniker": "Areas\\Admin\\Controllers\\HomeController.cs",
-              "ToolTip": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Controllers\\HomeController.cs",
-              "RelativeToolTip": "Areas\\Admin\\Controllers\\HomeController.cs",
-              "ViewState": "AgIAAB8AAAAAAAAAAAAQwCkAAAAgAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-21T04:15:17.509Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Views\\Review\\Index.cshtml",
-              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Review\\Index.cshtml",
-              "ToolTip": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Views\\Review\\Index.cshtml",
-              "RelativeToolTip": "Areas\\Admin\\Views\\Review\\Index.cshtml",
-              "ViewState": "AgIAADkAAAAAAAAAAAAAAEcAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-12-21T04:10:55.555Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Details.cshtml",
-              "DocumentMoniker": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Views\\Review\\Details.cshtml",
-              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Review\\Details.cshtml",
-              "ToolTip": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Views\\Review\\Details.cshtml",
-              "RelativeToolTip": "Areas\\Admin\\Views\\Review\\Details.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-12-21T04:10:54.495Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "_Layout.cshtml",
-              "DocumentMoniker": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Views\\Shared\\_Layout.cshtml",
-              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Shared\\_Layout.cshtml",
-              "ToolTip": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Views\\Shared\\_Layout.cshtml",
-              "RelativeToolTip": "Areas\\Admin\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AgIAAFQAAAAAAAAAAAArwF8AAAA9AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-12-21T04:05:43.791Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "ProductController.cs",
               "DocumentMoniker": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Controllers\\ProductController.cs",
               "RelativeDocumentMoniker": "Areas\\Admin\\Controllers\\ProductController.cs",
               "ToolTip": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Controllers\\ProductController.cs",
               "RelativeToolTip": "Areas\\Admin\\Controllers\\ProductController.cs",
-              "ViewState": "AgIAAB8AAAAAAAAAAAAtwCwAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAG4AAAAAAAAAAAAswHwAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-21T04:03:53.93Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ReviewController.cs",
-              "DocumentMoniker": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Controllers\\ReviewController.cs",
-              "RelativeDocumentMoniker": "Areas\\Admin\\Controllers\\ReviewController.cs",
-              "ToolTip": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Controllers\\ReviewController.cs",
-              "RelativeToolTip": "Areas\\Admin\\Controllers\\ReviewController.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAYwCYAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-21T04:04:02.993Z",
+              "WhenOpened": "2024-12-21T13:22:16.894Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "AdminUserController.cs",
-              "DocumentMoniker": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Controllers\\AdminUserController.cs",
-              "RelativeDocumentMoniker": "Areas\\Admin\\Controllers\\AdminUserController.cs",
-              "ToolTip": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Controllers\\AdminUserController.cs",
-              "RelativeToolTip": "Areas\\Admin\\Controllers\\AdminUserController.cs",
-              "ViewState": "AgIAABMAAAAAAAAAAAAQwB8AAAAsAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-21T04:03:25.026Z",
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Views\\Feature\\Create.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Feature\\Create.cshtml",
+              "ToolTip": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Views\\Feature\\Create.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\Feature\\Create.cshtml",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAAACkAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-21T13:19:16.29Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "LoginController.cs",
-              "DocumentMoniker": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Controllers\\LoginController.cs",
-              "RelativeDocumentMoniker": "Areas\\Admin\\Controllers\\LoginController.cs",
-              "ToolTip": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Controllers\\LoginController.cs",
-              "RelativeToolTip": "Areas\\Admin\\Controllers\\LoginController.cs",
-              "ViewState": "AgIAAC8AAAAAAAAAAAAgwAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "FeatureDTO.cs",
+              "DocumentMoniker": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\DTOs\\request\\FeatureDTO.cs",
+              "RelativeDocumentMoniker": "Areas\\Admin\\DTOs\\request\\FeatureDTO.cs",
+              "ToolTip": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\DTOs\\request\\FeatureDTO.cs",
+              "RelativeToolTip": "Areas\\Admin\\DTOs\\request\\FeatureDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-21T04:05:26.482Z",
+              "WhenOpened": "2024-12-21T13:14:18.423Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Feature.cs",
+              "DocumentMoniker": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Models\\Feature.cs",
+              "RelativeDocumentMoniker": "Models\\Feature.cs",
+              "ToolTip": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Models\\Feature.cs",
+              "RelativeToolTip": "Models\\Feature.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-21T13:13:54.36Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "FeatureController.cs",
+              "DocumentMoniker": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Controllers\\FeatureController.cs",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Controllers\\FeatureController.cs",
+              "ToolTip": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Controllers\\FeatureController.cs",
+              "RelativeToolTip": "Areas\\Admin\\Controllers\\FeatureController.cs",
+              "ViewState": "AgIAAJAAAAAAAAAAAAAQwJQAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-21T13:03:08.803Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "53cc40d8-abe7-4311-a505-159d6dc98a2b.png - PNG [64x64, 32 bit, PNG]",
+              "DocumentMoniker": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\wwwroot\\data\\features\\53cc40d8-abe7-4311-a505-159d6dc98a2b.png",
+              "RelativeDocumentMoniker": "wwwroot\\data\\features\\53cc40d8-abe7-4311-a505-159d6dc98a2b.png",
+              "ToolTip": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\wwwroot\\data\\features\\53cc40d8-abe7-4311-a505-159d6dc98a2b.png - PNG [64x64, 32 bit, PNG]",
+              "RelativeToolTip": "wwwroot\\data\\features\\53cc40d8-abe7-4311-a505-159d6dc98a2b.png - PNG [64x64, 32 bit, PNG]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001533|",
+              "WhenOpened": "2024-12-21T13:12:37.774Z",
+              "EditorCaption": " - PNG [64x64, 32 bit, PNG]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "316adf5e-a4d2-47ce-968c-9c9d3acbb482 .png - PNG [64x64, 32 bit, PNG]",
+              "DocumentMoniker": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\wwwroot\\data\\features\\316adf5e-a4d2-47ce-968c-9c9d3acbb482 .png",
+              "RelativeDocumentMoniker": "wwwroot\\data\\features\\316adf5e-a4d2-47ce-968c-9c9d3acbb482 .png",
+              "ToolTip": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\wwwroot\\data\\features\\316adf5e-a4d2-47ce-968c-9c9d3acbb482 .png - PNG [64x64, 32 bit, PNG]",
+              "RelativeToolTip": "wwwroot\\data\\features\\316adf5e-a4d2-47ce-968c-9c9d3acbb482 .png - PNG [64x64, 32 bit, PNG]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001533|",
+              "WhenOpened": "2024-12-21T13:12:24.137Z",
+              "EditorCaption": " - PNG [64x64, 32 bit, PNG]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Views\\Feature\\Edit.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Feature\\Edit.cshtml",
+              "ToolTip": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Views\\Feature\\Edit.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\Feature\\Edit.cshtml",
+              "ViewState": "AgIAAFoAAAAAAAAAAAAAADEAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-21T13:00:33.582Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 9,
-              "Title": "UserController.cs",
-              "DocumentMoniker": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Controllers\\UserController.cs",
-              "RelativeDocumentMoniker": "Areas\\Admin\\Controllers\\UserController.cs",
-              "ToolTip": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Controllers\\UserController.cs",
-              "RelativeToolTip": "Areas\\Admin\\Controllers\\UserController.cs",
-              "ViewState": "AgIAABcAAAAAAAAAAAA5wCUAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-21T04:04:53.257Z",
+              "Title": "Delete.cshtml",
+              "DocumentMoniker": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Views\\Product\\Delete.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Product\\Delete.cshtml",
+              "ToolTip": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Views\\Product\\Delete.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\Product\\Delete.cshtml",
+              "ViewState": "AgIAACQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-21T12:29:39.642Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Delete.cshtml",
+              "DocumentMoniker": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Views\\Review\\Delete.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Review\\Delete.cshtml",
+              "ToolTip": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Views\\Review\\Delete.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\Review\\Delete.cshtml",
+              "ViewState": "AgIAACoAAAAAAAAAAADwvzQAAABEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-21T12:27:30.529Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 10,
-              "Title": "SettingController.cs",
-              "DocumentMoniker": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Controllers\\SettingController.cs",
-              "RelativeDocumentMoniker": "Areas\\Admin\\Controllers\\SettingController.cs",
-              "ToolTip": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Controllers\\SettingController.cs",
-              "RelativeToolTip": "Areas\\Admin\\Controllers\\SettingController.cs",
-              "ViewState": "AgIAABcAAAAAAAAAAAA5wCUAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-21T04:04:30.193Z",
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Views\\Review\\Details.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Review\\Details.cshtml",
+              "ToolTip": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Views\\Review\\Details.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\Review\\Details.cshtml",
+              "ViewState": "AgIAACoAAAAAAAAAAAAAADEAAAA9AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-21T12:26:39.962Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Views\\Review\\Edit.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Review\\Edit.cshtml",
+              "ToolTip": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Views\\Review\\Edit.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\Review\\Edit.cshtml",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-21T12:26:32.468Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 11,
-              "Title": "PageController.cs",
-              "DocumentMoniker": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Controllers\\PageController.cs",
-              "RelativeDocumentMoniker": "Areas\\Admin\\Controllers\\PageController.cs",
-              "ToolTip": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Controllers\\PageController.cs",
-              "RelativeToolTip": "Areas\\Admin\\Controllers\\PageController.cs",
-              "ViewState": "AgIAABcAAAAAAAAAAAA5wCUAAAAAAAAAAAAAAA==",
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Views\\Review\\Index.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Review\\Index.cshtml",
+              "ToolTip": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Views\\Review\\Index.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\Review\\Index.cshtml",
+              "ViewState": "AgIAADcAAAAAAAAAAAAAAD4AAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-21T12:24:52.458Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Review.cs",
+              "DocumentMoniker": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Models\\Review.cs",
+              "RelativeDocumentMoniker": "Models\\Review.cs",
+              "ToolTip": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Models\\Review.cs",
+              "RelativeToolTip": "Models\\Review.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAAwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-21T04:03:23.087Z",
+              "WhenOpened": "2024-12-21T12:22:06.3Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "ReviewController.cs",
+              "DocumentMoniker": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Controllers\\ReviewController.cs",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Controllers\\ReviewController.cs",
+              "ToolTip": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Controllers\\ReviewController.cs",
+              "RelativeToolTip": "Areas\\Admin\\Controllers\\ReviewController.cs",
+              "ViewState": "AgIAAI4AAAAAAAAAAAAkwJoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-21T12:18:15.21Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Views\\Product\\Create.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Product\\Create.cshtml",
+              "ToolTip": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Views\\Product\\Create.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\Product\\Create.cshtml",
+              "ViewState": "AgIAAGMAAAAAAAAAAAAAAGcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-21T12:14:29.504Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Views\\Review\\Create.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Review\\Create.cshtml",
+              "ToolTip": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Areas\\Admin\\Views\\Review\\Create.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\Review\\Create.cshtml",
+              "ViewState": "AgIAAFMAAAAAAAAAAAAkwFoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-21T12:13:57.644Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Views\\Shop\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\Shop\\Index.cshtml",
+              "ToolTip": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Views\\Shop\\Index.cshtml",
+              "RelativeToolTip": "Views\\Shop\\Index.cshtml",
+              "ViewState": "AgIAABsAAAAAAAAAAAAAACIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-21T11:14:30.151Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "ShopController.cs",
+              "DocumentMoniker": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Controllers\\ShopController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ShopController.cs",
+              "ToolTip": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Controllers\\ShopController.cs",
+              "RelativeToolTip": "Controllers\\ShopController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-21T10:15:54.032Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Views\\Shop\\Details.cshtml",
+              "RelativeDocumentMoniker": "Views\\Shop\\Details.cshtml",
+              "ToolTip": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\Views\\Shop\\Details.cshtml",
+              "RelativeToolTip": "Views\\Shop\\Details.cshtml",
+              "ViewState": "AgIAADYAAAAAAAAAAAAAAEMAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-21T10:14:58.221Z",
               "EditorCaption": ""
             }
           ]

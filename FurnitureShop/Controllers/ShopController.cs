@@ -8,6 +8,9 @@ namespace FurnitureShop.Controllers
         {
             return View();
         }
-
+        public IActionResult Details()
+        {
+            return View();
+        }
     }
 }

@@ -74,9 +74,9 @@ namespace FurnitureShop.Areas.Admin.Controllers
         {
             var feature = new Feature()
             {
-                Icon = "",
                 Title = request.Title,
                 Subtitle = request.Subtitle,
+                DisplayOrder = request.DisplayOrder
 
             };
 
@@ -94,7 +94,10 @@ namespace FurnitureShop.Areas.Admin.Controllers
                     var extension = Path.GetExtension(request.Icon.FileName);
                     newImageFileName = $"{Guid.NewGuid().ToString()} {extension}";
                     var filePath = Path.Combine(_hostEnv.WebRootPath, "data", "features", newImageFileName);
-                    request.Icon.CopyTo(new FileStream(filePath, FileMode.Create));
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await request.Icon.CopyToAsync(stream);
+                    }
                 }
                 if (newImageFileName != null) { feature.Icon = newImageFileName; }
                 _context.Add(feature);
