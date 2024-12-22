@@ -4220,8 +4220,13 @@ wwwroot\data\banners\568ef5f6-4099-420f-adb1-71e4499b34fa .png
 wwwroot\data\banners\81c051f2-2bfb-4355-8c05-c1bd857d8477 .png
 wwwroot\data\banners\a6776636-dd98-4989-8c6d-4c07daf84967 .png
 wwwroot\data\features\17beb2d2-57a2-49e8-8265-ed3f151ccfda .png
+wwwroot\data\features\269dca60-5344-4a9c-9a77-30294536745d .svg
 wwwroot\data\features\316adf5e-a4d2-47ce-968c-9c9d3acbb482 .png
 wwwroot\data\features\53cc40d8-abe7-4311-a505-159d6dc98a2b.png
+wwwroot\data\features\8335f130-0e85-4ffd-be6c-477e3b4880bf .svg
+wwwroot\data\features\9baca233-8050-415e-98c3-5bfff2a18f49 .svg
+wwwroot\data\features\cea8bec3-9ee4-4a0d-80ad-9fd08282d41f .svg
+wwwroot\data\features\f13849a2-d873-407a-8d34-540ca3bcb773 .png
 wwwroot\data\products\0f80ccb6-4708-4a0e-ac74-dafb1780055d.jpg
 wwwroot\data\products\11f4186d-2fb7-433e-88c6-31b896147cf6.jpg
 wwwroot\data\products\16911b0e-819f-448c-a45d-9b2ae6513732.jpg
