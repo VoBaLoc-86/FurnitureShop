@@ -1,5 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Contact Page";
+    var pageContact = ViewData["PageContact"] as FurnitureShop.Models.Page;
+    var bannerContact = ViewData["BannerContact"] as FurnitureShop.Models.Banner;
 }
 <!-- Start Hero Section -->
 <div class="hero">
@@ -7,20 +9,18 @@
         <div class="row justify-content-between">
             <div class="col-lg-5">
                 <div class="intro-excerpt">
-                    <h1>Contact <span class="d-block">Design Studio</span></h1>
+                    <h1>@pageContact?.Title</h1>
                     <p class="mb-4">
-                        Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit.
-                        Aliquam vulputate velit imperdiet dolor tempor tristique.
+                        @pageContact?.Content
                     </p>
                     <p>
                         <a asp-action="Index" asp-controller="Shop" class="btn btn-secondary me-2">Shop Now</a>
-                        <a href="#" class="btn btn-white-outline">Explore</a>
                     </p>
                 </div>
             </div>
             <div class="col-lg-7">
                 <div class="hero-img-wrap">
-                    <img src="~/images/couch.png" class="img-fluid">
+                    <img src="~/data/banners/@bannerContact.Image" class="img-fluid">
                 </div>
             </div>
         </div>

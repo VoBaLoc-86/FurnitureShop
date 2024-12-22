@@ -17053,6 +17053,10 @@
       "PackagePath": "staticwebassets\\images\\person_4.jpg"
     },
     {
+      "Id": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\wwwroot\\images\\personteam.jpg",
+      "PackagePath": "staticwebassets\\images\\personteam.jpg"
+    },
+    {
       "Id": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\wwwroot\\images\\post-1.jpg",
       "PackagePath": "staticwebassets\\images\\post-1.jpg"
     },

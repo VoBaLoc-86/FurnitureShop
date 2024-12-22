@@ -1,8 +1,11 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-	ViewData["Title"] = "Service Page";
+﻿@{
+	ViewData["Title"] = "Home Page";
+	var pageService = ViewData["PageService"] as FurnitureShop.Models.Page;
+	var serviceReview = ViewData["ServiceReviews"] as FurnitureShop.Models.Page;
+	var pageAboutUs = ViewData["PageAboutUs"] as FurnitureShop.Models.Page;
+	var hotProduct = ViewData["HotProducts"] as FurnitureShop.Models.Page;
+	var allService = ViewData["AllServices"] as FurnitureShop.Models.Page;
+	var bannerService = ViewData["BannerService"] as FurnitureShop.Models.Banner;
 }
 <!-- Start Hero Section -->
 <div class="hero">
@@ -10,14 +13,14 @@
 		<div class="row justify-content-between">
 			<div class="col-lg-5">
 				<div class="intro-excerpt">
-					<h1>Services</h1>
-					<p class="mb-4">Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique.</p>
-					<p><a href="" class="btn btn-secondary me-2">Shop Now</a><a href="#" class="btn btn-white-outline">Explore</a></p>
+					<h1>@pageService?.Title</h1>
+					<p class="mb-4">@pageService?.Content</p>
+					<p><a asp-action="Index" asp-controller="Shop" class="btn btn-secondary me-2">Shop Now</a></p>
 				</div>
 			</div>
 			<div class="col-lg-7">
 				<div class="hero-img-wrap">
-					<img src="images/couch.png" class="img-fluid">
+					<img src="~/data/banners/@bannerService.Image" class="img-fluid" >
 				</div>
 			</div>
 		</div>
@@ -27,88 +30,21 @@
 <!-- Start Why Choose Us Section -->
 <div class="why-choose-section">
 	<div class="container">
-
-
 		<div class="row my-5">
-			<div class="col-6 col-md-6 col-lg-3 mb-4">
-				<div class="feature">
-					<div class="icon">
-						<img src="~/images/truck.svg" alt="Image" class="imf-fluid">
+			@foreach(var item in ViewData["AllServices"] as List<Feature> ?? []){
+				<div class="col-6 col-md-6 col-lg-3 mb-4">
+					<div class="feature">
+						<div class="icon">
+							<img src="~/data/features/@item.Icon" alt="Image" class="imf-fluid" style="width:46px;height:46px">
+						</div>
+						<h3>@item.Title</h3>
+						<p>@item.Subtitle</p>
 					</div>
-					<h3>Fast &amp; Free Shipping</h3>
-					<p>Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate.</p>
 				</div>
-			</div>
+			}
+			
 
-			<div class="col-6 col-md-6 col-lg-3 mb-4">
-				<div class="feature">
-					<div class="icon">
-						<img src="~/images/bag.svg" alt="Image" class="imf-fluid">
-					</div>
-					<h3>Easy to Shop</h3>
-					<p>Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate.</p>
-				</div>
-			</div>
-
-			<div class="col-6 col-md-6 col-lg-3 mb-4">
-				<div class="feature">
-					<div class="icon">
-						<img src="~/images/support.svg" alt="Image" class="imf-fluid">
-					</div>
-					<h3>24/7 Support</h3>
-					<p>Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate.</p>
-				</div>
-			</div>
-
-			<div class="col-6 col-md-6 col-lg-3 mb-4">
-				<div class="feature">
-					<div class="icon">
-						<img src="~/images/return.svg" alt="Image" class="imf-fluid">
-					</div>
-					<h3>Hassle Free Returns</h3>
-					<p>Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate.</p>
-				</div>
-			</div>
-
-			<div class="col-6 col-md-6 col-lg-3 mb-4">
-				<div class="feature">
-					<div class="icon">
-						<img src="~/images/truck.svg" alt="Image" class="imf-fluid">
-					</div>
-					<h3>Fast &amp; Free Shipping</h3>
-					<p>Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate.</p>
-				</div>
-			</div>
-
-			<div class="col-6 col-md-6 col-lg-3 mb-4">
-				<div class="feature">
-					<div class="icon">
-						<img src="~/images/bag.svg" alt="Image" class="imf-fluid">
-					</div>
-					<h3>Easy to Shop</h3>
-					<p>Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate.</p>
-				</div>
-			</div>
-
-			<div class="col-6 col-md-6 col-lg-3 mb-4">
-				<div class="feature">
-					<div class="icon">
-						<img src="~/images/support.svg" alt="Image" class="imf-fluid">
-					</div>
-					<h3>24/7 Support</h3>
-					<p>Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate.</p>
-				</div>
-			</div>
-
-			<div class="col-6 col-md-6 col-lg-3 mb-4">
-				<div class="feature">
-					<div class="icon">
-						<img src="~/images/return.svg" alt="Image" class="imf-fluid">
-					</div>
-					<h3>Hassle Free Returns</h3>
-					<p>Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate.</p>
-				</div>
-			</div>
+			
 
 		</div>
 
@@ -122,50 +58,27 @@
 
 			<!-- Start Column 1 -->
 			<div class="col-md-12 col-lg-3 mb-5 mb-lg-0">
-				<h2 class="mb-4 section-title">Crafted with excellent material.</h2>
-				<p class="mb-4">Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique. </p>
-				<p><a href="#" class="btn">Explore</a></p>
+				<h2 class="mb-4 section-title">Được chế tác từ chất liệu tuyệt hảo.</h2>
+				<p class="mb-4">Sống với đam mê, từng bước tiến lên. Hãy chọn những giá trị bền vững để tạo nên sự khác biệt.</p>
+				<p><a asp-action="Index" asp-controller="Shop" class="btn">Explore</a></p>
 			</div>
 			<!-- End Column 1 -->
 			<!-- Start Column 2 -->
-			<div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
-				<a class="product-item" href="#">
-					<img src="~/images/product-1.png" class="img-fluid product-thumbnail">
-					<h3 class="product-title">Nordic Chair</h3>
-					<strong class="product-price">$50.00</strong>
+			@foreach(var item in ViewData["HotProducts"] as List<Product> ?? []){
+				<div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
+					<a class="product-item" href="#">
+						<img src="~/data/products/@item.Image" class="img-fluid product-thumbnail" style="width:306px;height:306px">
+						<h3 class="product-title">@item.Name</h3>
+						<strong class="product-price">$@item.Price</strong>
 
-					<span class="icon-cross">
-						<img src="~/images/cross.svg" class="img-fluid">
-					</span>
-				</a>
-			</div>
+						<span class="icon-cross">
+							<img src="~/images/cross.svg" class="img-fluid">
+						</span>
+					</a>
+				</div>
+				}
+			
 			<!-- End Column 2 -->
-			<!-- Start Column 3 -->
-			<div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
-				<a class="product-item" href="#">
-					<img src="~/images/product-2.png" class="img-fluid product-thumbnail">
-					<h3 class="product-title">Kruzo Aero Chair</h3>
-					<strong class="product-price">$78.00</strong>
-
-					<span class="icon-cross">
-						<img src="images/cross.svg" class="img-fluid">
-					</span>
-				</a>
-			</div>
-			<!-- End Column 3 -->
-			<!-- Start Column 4 -->
-			<div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
-				<a class="product-item" href="#">
-					<img src="~/images/product-3.png" class="img-fluid product-thumbnail">
-					<h3 class="product-title">Ergonomic Chair</h3>
-					<strong class="product-price">$43.00</strong>
-
-					<span class="icon-cross">
-						<img src="images/cross.svg" class="img-fluid">
-					</span>
-				</a>
-			</div>
-			<!-- End Column 4 -->
 
 		</div>
 	</div>
@@ -176,7 +89,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-7 mx-auto text-center">
-				<h2 class="section-title">Testimonials</h2>
+				<h2 class="section-title">Đánh Giá</h2>
 			</div>
 		</div>
 
@@ -190,76 +103,30 @@
 					</div>
 
 					<div class="testimonial-slider">
+						@foreach (var item in ViewData["ServiceReviews"] as List<Review> ?? [])
+						{
+							<div class="item">
+								<div class="row justify-content-center">
+									<div class="col-lg-8 mx-auto">
 
-						<div class="item">
-							<div class="row justify-content-center">
-								<div class="col-lg-8 mx-auto">
+										<div class="testimonial-block text-center">
+											<blockquote class="mb-5">
+												<p>@Html.Raw(item.Comment)</p>
+											</blockquote>
 
-									<div class="testimonial-block text-center">
-										<blockquote class="mb-5">
-											<p>&ldquo;Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer convallis volutpat dui quis scelerisque.&rdquo;</p>
-										</blockquote>
-
-										<div class="author-info">
-											<div class="author-pic">
-												<img src="~/images/person-1.png" alt="Maria Jones" class="img-fluid">
+											<div class="author-info">
+												<div class="author-pic">
+													<img src="~/admin/img/undraw_profile.svg" alt="Person" class="img-fluid">
+												</div>
+												<h3 class="font-weight-bold">@item.User.Name</h3>
+												<span class="position d-block mb-3">CEO, Co-Founder, XYZ Inc.</span>
 											</div>
-											<h3 class="font-weight-bold">Maria Jones</h3>
-											<span class="position d-block mb-3">CEO, Co-Founder, XYZ Inc.</span>
 										</div>
-									</div>
 
+									</div>
 								</div>
 							</div>
-						</div>
-						<!-- END item -->
-
-						<div class="item">
-							<div class="row justify-content-center">
-								<div class="col-lg-8 mx-auto">
-
-									<div class="testimonial-block text-center">
-										<blockquote class="mb-5">
-											<p>&ldquo;Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer convallis volutpat dui quis scelerisque.&rdquo;</p>
-										</blockquote>
-
-										<div class="author-info">
-											<div class="author-pic">
-												<img src="~/images/person-1.png" alt="Maria Jones" class="img-fluid">
-											</div>
-											<h3 class="font-weight-bold">Maria Jones</h3>
-											<span class="position d-block mb-3">CEO, Co-Founder, XYZ Inc.</span>
-										</div>
-									</div>
-
-								</div>
-							</div>
-						</div>
-						<!-- END item -->
-
-						<div class="item">
-							<div class="row justify-content-center">
-								<div class="col-lg-8 mx-auto">
-
-									<div class="testimonial-block text-center">
-										<blockquote class="mb-5">
-											<p>&ldquo;Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer convallis volutpat dui quis scelerisque.&rdquo;</p>
-										</blockquote>
-
-										<div class="author-info">
-											<div class="author-pic">
-												<img src="~/images/person-1.png" alt="Maria Jones" class="img-fluid">
-											</div>
-											<h3 class="font-weight-bold">Maria Jones</h3>
-											<span class="position d-block mb-3">CEO, Co-Founder, XYZ Inc.</span>
-										</div>
-									</div>
-
-								</div>
-							</div>
-						</div>
-						<!-- END item -->
-
+						}
 					</div>
 
 				</div>

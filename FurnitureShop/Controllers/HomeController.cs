@@ -47,15 +47,54 @@ namespace FurnitureShop.Controllers
 
         public IActionResult Contact()
         {
+            ViewData["PageContact"] = _context.Pages.AsNoTracking()
+                             .Where(x => x.Title == "Contact Us")
+                             .FirstOrDefault();
+
+            ViewData["BannerContact"] = _context.Banners.AsNoTracking()
+                                        .Where(x => x.Title == "BannerContact")
+                                        .FirstOrDefault();
             return View();
         }
 
         public IActionResult Services()
         {
+            ViewData["PageService"] = _context.Pages.AsNoTracking()
+                             .Where(x => x.Title == "Service")
+                             .FirstOrDefault();
+
+            ViewData["BannerService"] = _context.Banners.AsNoTracking()
+                                        .Where(x => x.Title == "BannerService")
+                                        .FirstOrDefault();
+            ViewData["HotProducts"] = _context.Products.AsNoTracking()
+                                        .Take(3)
+                                        .ToList();
+
+            ViewData["AllServices"] = _context.Features.AsNoTracking()
+                                        .ToList();
+            ViewData["ServiceReviews"] = _context.Reviews.AsNoTracking()
+                                        .Take(3)
+                                        .Include(x => x.User)
+                                        .ToList();
             return View();
         }
         public IActionResult About()
         {
+            ViewData["PageAboutUs"] = _context.Pages.AsNoTracking()
+                                         .Where(x => x.Title == "About Us")
+                                         .FirstOrDefault();
+            
+            ViewData["BannerAboutUs"] = _context.Banners.AsNoTracking()
+                                        .Where(x => x.Title == "BannerAboutUs")
+                                        .FirstOrDefault();
+
+            ViewData["AboutServices"] = _context.Features.AsNoTracking()
+                                        .Take(4)
+                                        .ToList();
+            ViewData["AboutReviews"] = _context.Reviews.AsNoTracking()
+                                        .Take(3)
+                                        .Include(x => x.User)
+                                        .ToList();
             return View();
         }
 

@@ -4260,6 +4260,7 @@ wwwroot\images\person_3.jpg
 wwwroot\images\person_4.jpg
 wwwroot\images\person-1.jpg
 wwwroot\images\person-1.png
+wwwroot\images\personteam.jpg
 wwwroot\images\post-1.jpg
 wwwroot\images\post-2.jpg
 wwwroot\images\post-3.jpg

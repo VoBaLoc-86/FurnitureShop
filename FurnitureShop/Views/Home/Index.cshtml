@@ -1,9 +1,9 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+	ViewData["Title"] = "Home Page";
 	var pageHome = ViewData["PageHome"] as FurnitureShop.Models.Page;
 	var pageShop = ViewData["PageShop"] as FurnitureShop.Models.Page;
 	var pageAboutUs = ViewData["PageAboutUs"] as FurnitureShop.Models.Page;
-
+	var review = ViewData["HotReviews"] as FurnitureShop.Models.Page;
 	var pageService = ViewData["PageService"] as FurnitureShop.Models.Page;
 
 	var bannerHome = ViewData["BannerHome"] as FurnitureShop.Models.Banner;
@@ -152,8 +152,7 @@
 </div>
 
 <!-- End Popular Product -->
-<!-- Start Testimonial Slider -->
-<div class="testimonial-section">
+<div class="testimonial-section before-footer-section">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-7 mx-auto text-center">
@@ -171,7 +170,8 @@
 					</div>
 
 					<div class="testimonial-slider">
-						@foreach(var item in ViewData["HotReviews"] as List<Review> ?? []){
+						@foreach (var item in ViewData["HotReviews"] as List<Review> ?? [])
+						{
 							<div class="item">
 								<div class="row justify-content-center">
 									<div class="col-lg-8 mx-auto">
@@ -193,7 +193,7 @@
 									</div>
 								</div>
 							</div>
-							}
+						}
 					</div>
 
 				</div>
