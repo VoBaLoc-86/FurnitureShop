@@ -11,8 +11,8 @@ namespace FurnitureShop
 
             // Add services to the container.
 
-            builder.Services.AddDbContext<FurnitureShopContext>(opt =>
-    opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+            builder.Services.AddDbContext<FurnitureShopContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
             builder.Services.AddControllersWithViews();
 
             builder.Services.AddDistributedMemoryCache();

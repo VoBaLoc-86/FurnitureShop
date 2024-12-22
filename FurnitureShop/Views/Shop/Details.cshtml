@@ -1,6 +1,7 @@
-﻿
+﻿@model FurnitureShop.Models.Product;
 @{
     ViewData["Title"] = "Product Detail";
+
 }
 <div class="untree_co-section product-detail-section">
     <div class="container">
@@ -8,7 +9,7 @@
             <!-- Product Image -->
             <div class="col-md-6">
                 <div class="product-image">
-                    <img src="~/images/product-1.png"
+                    <img src="~/data/products/@Model.Image"
                          alt="Product Image"
                          class="~/img-fluid rounded" style="width:477px;height:477px"/>
                 </div>
@@ -16,12 +17,10 @@
 
             <!-- Product Info -->
             <div class="col-md-6">
-                <h2 class="product-title mb-4">Nordic Chair</h2>
-                <p class="product-price text-muted">$50.00</p>
+                <h2 class="product-title mb-4">@Model.Name</h2>
+                <p class="product-price text-muted">$@Model.Price</p>
                 <p class="product-description mb-4">
-                    This beautifully designed Nordic Chair blends style and comfort
-                    seamlessly. Perfect for your living space or workspace, the
-                    ergonomic design supports extended use with ease.
+                    @Html.Raw(Model.Description)
                 </p>
 
                 <form action="#" class="mb-4">
@@ -43,37 +42,30 @@
                 </form>
 
                 <ul class="list-unstyled">
-                    <li><strong>Category:</strong> Furniture</li>
-                    <li><strong>Material:</strong> High-quality wood and fabric</li>
-                    <li><strong>Dimensions:</strong> 85 x 55 x 90 cm</li>
+                    <li><strong>Category:</strong> @Model.Category!.Name</li>
                 </ul>
             </div>
         </div>
     </div>
 </div>
-<!-- End Product Detail Section -->
-<!-- Start Related Products Section -->
+
 <div class="untree_co-section related-products-section">
     <div class="container">
         <h3 class="mb-5">Related Products</h3>
         <div class="row">
             <!-- Product Card -->
-            <div class="col-12 col-md-4 col-lg-3 mb-5">
-                <a class="product-item" href="#">
-                    <img src="~/images/product-2.png"
-                         class="img-fluid product-thumbnail" style="width:306px;height:306px"/>
-                    <h3 class="product-title">Kruzo Aero Chair</h3>
-                    <strong class="product-price">$78.00</strong>
-                </a>
-            </div>
-            <div class="col-12 col-md-4 col-lg-3 mb-5">
-                <a class="product-item" href="#">
-                    <img src="~/images/product-3.png"
-                         class="img-fluid product-thumbnail" />
-                    <h3 class="product-title">Ergonomic Chair</h3>
-                    <strong class="product-price">$43.00</strong>
-                </a>
-            </div>
+            @foreach (var item in ViewData["relatedproducts"] as List<Product> ?? []){
+                <div class="col-12 col-md-4 col-lg-3 mb-5">
+                    <a class="product-item" asp-action="Details" asp-route-id="@item.Id">
+                        <img src="~/data/products/@item.Image"
+                             class="img-fluid product-thumbnail" style="width:306px;height:306px" />
+                        <h3 class="product-title">@item.Name</h3>
+                        <strong class="product-price">$@item.Price</strong>
+                    </a>
+                </div>
+                }
+            
+            
         </div>
     </div>
 </div>
