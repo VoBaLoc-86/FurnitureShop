@@ -46,7 +46,7 @@
 
             <!-- Sidebar - Brand -->
             <li>
-                <a class="sidebar-brand d-flex align-items-center justify-content-center" asp-action="Index" asp-controller="Home" asp-area="" >
+                <a class="sidebar-brand d-flex align-items-center justify-content-center" asp-action="Index" asp-controller="Home" asp-area="Admin" >
                     <div class="sidebar-brand-icon rotate-n-15">
                         <i class="fa-solid fa-user-crown"></i>
                     </div>
@@ -452,13 +452,10 @@
 
     <!-- Custom scripts for all pages-->
     <script src="~/admin/js/sb-admin-2.min.js"></script>
+    
 
-    <!-- Page level plugins -->
-    @* <script src="~/admin/vendor/chart.js/Chart.min.js"></script> *@
 
-    <!-- Page level custom scripts -->
-    @* <script src="~/admin/js/demo/chart-area-demo.js"></script>
-    <script src="~/admin/js/demo/chart-pie-demo.js"></script> *@
+    
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 

@@ -4215,6 +4215,7 @@ wwwroot\css\style.css
 wwwroot\css\tiny-slider.css
 wwwroot\data\banners\1ba4af5a-c8ab-4cac-8e3b-2883e9f671d8 .png
 wwwroot\data\banners\24f710f3-c307-418e-8c56-f64718d22e62 .png
+wwwroot\data\banners\2ea22b76-f3fd-4cce-a150-9f9e1dbcac85 .jpg
 wwwroot\data\banners\523ee658-0c3d-4302-8cc7-f8d6ddbdf281 .png
 wwwroot\data\banners\568ef5f6-4099-420f-adb1-71e4499b34fa .png
 wwwroot\data\banners\81c051f2-2bfb-4355-8c05-c1bd857d8477 .png
@@ -4230,6 +4231,7 @@ wwwroot\data\features\f13849a2-d873-407a-8d34-540ca3bcb773 .png
 wwwroot\data\products\0f80ccb6-4708-4a0e-ac74-dafb1780055d.jpg
 wwwroot\data\products\11f4186d-2fb7-433e-88c6-31b896147cf6.jpg
 wwwroot\data\products\16911b0e-819f-448c-a45d-9b2ae6513732.jpg
+wwwroot\data\products\23cbe32d-ef5c-4d39-88a8-06acdf365ed2.jpg
 wwwroot\data\products\3c94dac5-0411-452c-97aa-78805db44110.jpg
 wwwroot\data\products\41ac156e-20f9-4ba3-b638-3ac0ee2576fa.jpg
 wwwroot\data\products\4aef6748-34b3-4a66-8ae1-def05b005ad5.jpg

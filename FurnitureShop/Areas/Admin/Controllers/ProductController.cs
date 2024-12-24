@@ -82,60 +82,61 @@ namespace FurnitureShop.Areas.Admin.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([FromForm] ProductDTO request)
+{
+    // Kiểm tra xem ModelState có hợp lệ không trước khi tiếp tục
+    if (!ModelState.IsValid)
+    {
+        // Trả về View với danh sách danh mục nếu ModelState không hợp lệ
+        ViewData["Category_id"] = new SelectList(_context.Categories, "Id", "Name", request.Category_id);
+        return View(request); // Quay lại trang Create và giữ các giá trị đã nhập
+    }
+
+    // Khởi tạo đối tượng product từ request
+    var product = new Product()
+    {
+        Id = request.Id,
+        Name = request.Name,
+        Description = request.Description,
+        Price = request.Price,
+        Stock = request.Stock,
+        Category_id = request.Category_id,
+    };
+
+    // Ghi nhận thông tin người tạo từ session
+    var userInfo = HttpContext.Session.Get<AdminUser>("userInfo");
+    if (userInfo != null)
+    {
+        product.CreatedBy = product.UpdatedBy = userInfo.Username;
+    }
+
+    // Ghi nhận thời gian tạo và cập nhật
+    product.CreatedDate = product.UpdatedDate = DateTime.Now;
+
+    // Xử lý ảnh tải lên
+    string? newImageFileName = null;
+    if (request.Image != null)
+    {
+        var extension = Path.GetExtension(request.Image.FileName);
+        newImageFileName = $"{Guid.NewGuid().ToString()}{extension}";
+        var filePath = Path.Combine(_hostEnv.WebRootPath, "data", "products", newImageFileName);
+        using (var stream = new FileStream(filePath, FileMode.Create))
         {
-            var product = new Product()
-            {
-                Id = request.Id,
-                Name = request.Name,
-                Description = request.Description,
-                Price = request.Price,
-                Stock = request.Stock,
-                Category_id = request.Category_id,
-            };
-
-            if (ModelState.IsValid)
-            {
-                // Ghi nhận thông tin người tạo từ session
-                var userInfo = HttpContext.Session.Get<AdminUser>("userInfo");
-                if (userInfo != null)
-                {
-                    product.CreatedBy = product.UpdatedBy = userInfo.Username;
-                }
-
-                // Ghi nhận thời gian tạo và cập nhật
-                product.CreatedDate = product.UpdatedDate = DateTime.Now;
-
-                // Xử lý ảnh tải lên
-                string? newImageFileName = null;
-                if (request.Image != null)
-                {
-                    var extension = Path.GetExtension(request.Image.FileName);
-                    newImageFileName = $"{Guid.NewGuid().ToString()}{extension}";
-                    var filePath = Path.Combine(_hostEnv.WebRootPath, "data", "products", newImageFileName);
-                    using (var stream = new FileStream(filePath, FileMode.Create))
-                    {
-                        await request.Image.CopyToAsync(stream);
-                    }
-                }
-
-                // Gán tên file ảnh vào sản phẩm nếu có
-                if (newImageFileName != null)
-                {
-                    product.Image = newImageFileName;
-                }
-
-                // Thêm sản phẩm vào cơ sở dữ liệu
-                _context.Add(product);
-                await _context.SaveChangesAsync();
-
-                // Chuyển hướng về trang Index
-                return RedirectToAction(nameof(Index));
-            }
-
-            // Trả về View với danh sách danh mục nếu ModelState không hợp lệ
-            ViewData["Category_id"] = new SelectList(_context.Categories, "Id", "Name", product.Category_id);
-            return View(product);
+            await request.Image.CopyToAsync(stream);
         }
+
+        // Gán tên file ảnh vào sản phẩm nếu có
+        product.Image = newImageFileName;
+    }
+
+    // Thêm sản phẩm vào cơ sở dữ liệu
+    _context.Add(product);
+    await _context.SaveChangesAsync();
+
+    // Chuyển hướng về trang Index
+    return RedirectToAction(nameof(Index));
+}
+
+
 
 
         // GET: Admin/Product/Edit/5
@@ -166,6 +167,7 @@ namespace FurnitureShop.Areas.Admin.Controllers
             {
                 return NotFound();
             }
+
             string Username = "";
             if (ModelState.IsValid)
             {
@@ -174,6 +176,7 @@ namespace FurnitureShop.Areas.Admin.Controllers
                 {
                     Username = userInfo.Username;
                 }
+
                 try
                 {
                     var existingProduct = await _context.Products.FindAsync(id);
@@ -181,6 +184,8 @@ namespace FurnitureShop.Areas.Admin.Controllers
                     {
                         return NotFound();
                     }
+
+                    // Chỉ xử lý ảnh nếu tất cả các trường dữ liệu hợp lệ
                     if (update.Image != null)
                     {
                         string? newImageFileName = null;
@@ -207,14 +212,35 @@ namespace FurnitureShop.Areas.Admin.Controllers
                         // Gán tên file mới cho sản phẩm
                         existingProduct.Image = newImageFileName;
                     }
+
+                    // Kiểm tra và cập nhật các giá trị còn lại
                     existingProduct.Name = update.Name;
                     existingProduct.Description = update.Description;
+
+                    // Kiểm tra giá trị Price và Stock trước khi cập nhật
+                    if (update.Price <= 0)
+                    {
+                        ModelState.AddModelError("Price", "Price must be greater than 0.");
+                    }
+
+                    if (update.Stock < 0)
+                    {
+                        ModelState.AddModelError("Stock", "Stock must be greater than or equal to 0.");
+                    }
+
+                    if (!ModelState.IsValid)
+                    {
+                        // Nếu có lỗi validation, không thay đổi ảnh cũ
+                        ViewData["Category_id"] = new SelectList(_context.Categories, "Id", "Name", update.Category_id);
+                        return View(update);
+                    }
+
+                    // Cập nhật các thông tin hợp lệ
                     existingProduct.Price = update.Price;
                     existingProduct.Stock = update.Stock;
                     existingProduct.Category_id = update.Category_id;
                     existingProduct.UpdatedBy = Username;
                     existingProduct.UpdatedDate = DateTime.Now;
-
 
                     _context.Update(existingProduct);
                     await _context.SaveChangesAsync();
@@ -230,11 +256,14 @@ namespace FurnitureShop.Areas.Admin.Controllers
                         throw;
                     }
                 }
+
                 return RedirectToAction(nameof(Index));
             }
+
             ViewData["Category_id"] = new SelectList(_context.Categories, "Id", "Id", update.Category_id);
             return View(update);
         }
+
 
         // GET: Admin/Product/Delete/5
         public async Task<IActionResult> Delete(int? id)

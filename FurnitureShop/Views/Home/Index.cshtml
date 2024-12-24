@@ -7,6 +7,10 @@
 	var pageService = ViewData["PageService"] as FurnitureShop.Models.Page;
 
 	var bannerHome = ViewData["BannerHome"] as FurnitureShop.Models.Banner;
+	var FacebookLink = ViewData["FacebookLink"] as FurnitureShop.Models.Setting;
+	var InstagramLink = ViewData["InstagramLink"] as FurnitureShop.Models.Setting;
+	var TwitterLink = ViewData["TwitterLink"] as FurnitureShop.Models.Setting;
+	var LinkedInLink = ViewData["LinkedInLink"] as FurnitureShop.Models.Setting;
 
 }
 <!-- Start Hero Section -->
@@ -114,10 +118,10 @@
 				<p>@pageAboutUs.Content</p>
 
 				<ul class="list-unstyled custom-list my-4">
-					<li><a href="#"><span class="fa fa-brands fa-facebook-f"></span></a></li>
-					<li><a href="#"><span class="fa fa-brands fa-twitter"></span></a></li>
-					<li><a href="#"><span class="fa fa-brands fa-instagram"></span></a></li>
-					<li><a href="#"><span class="fa fa-brands fa-linkedin"></span></a></li>
+					<li><a href="@FacebookLink?.Value"><span class="fa fa-brands fa-facebook-f fa-2x"></span></a></li>
+					<li><a href="@TwitterLink?.Value"><span class="fa fa-brands fa-twitter fa-2x"></span></a></li>
+					<li><a href="@InstagramLink?.Value"><span class="fa fa-brands fa-instagram fa-2x"></span></a></li>
+					<li><a href="@LinkedInLink?.Value"><span class="fa fa-brands fa-linkedin fa-2x"></span></a></li>
 				</ul>
 				<p><a asp-action="About" asp-controller="Home" class="btn">Khám phá</a></p>
 			</div>
@@ -138,7 +142,7 @@
 						</div>
 						<div class="pt-3 px-3">
 							<h3 class="h5">@item.Name</h3>
-							<p><a href="#" class="btn btn-outline-primary btn-sm">Read More</a></p>
+							<p><a asp-controller="Shop" asp-action="Details" asp-route-id="@item.Id" class="btn btn-outline-primary btn-sm">Read More</a></p>
 						</div>
 					</div>
 				</div>

@@ -42,6 +42,18 @@ namespace FurnitureShop.Controllers
                                         .Take(3)
                                         .Include(x=>x.User)
                                         .ToList();
+            ViewData["FacebookLink"] = _context.Settings.AsNoTracking()
+                                   .Where(x => x.Name == "FacebookLink")
+                                   .FirstOrDefault();
+            ViewData["InstagramLink"] = _context.Settings.AsNoTracking()
+                                   .Where(x => x.Name == "InstagramLink")
+                                   .FirstOrDefault();
+            ViewData["TwitterLink"] = _context.Settings.AsNoTracking()
+                                   .Where(x => x.Name == "TwitterLink")
+                                   .FirstOrDefault();
+            ViewData["LinkedInLink"] = _context.Settings.AsNoTracking()
+                                   .Where(x => x.Name == "LinkedInLink")
+                                   .FirstOrDefault();
             return View();
         }
 
@@ -54,6 +66,15 @@ namespace FurnitureShop.Controllers
             ViewData["BannerContact"] = _context.Banners.AsNoTracking()
                                         .Where(x => x.Title == "BannerContact")
                                         .FirstOrDefault();
+            ViewData["ContactAddress"] = _context.Settings.AsNoTracking()
+                                    .Where(x => x.Name == "ContactAddress")
+                                    .FirstOrDefault();
+            ViewData["ContactEmail"] = _context.Settings.AsNoTracking()
+                                    .Where(x => x.Name == "ContactEmail")
+                                    .FirstOrDefault();
+            ViewData["ContactPhone"] = _context.Settings.AsNoTracking()
+                                    .Where(x => x.Name == "ContactPhone")
+                                    .FirstOrDefault();
             return View();
         }
 
