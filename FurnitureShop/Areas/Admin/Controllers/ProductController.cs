@@ -82,59 +82,67 @@ namespace FurnitureShop.Areas.Admin.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([FromForm] ProductDTO request)
-{
-    // Kiểm tra xem ModelState có hợp lệ không trước khi tiếp tục
-    if (!ModelState.IsValid)
-    {
-        // Trả về View với danh sách danh mục nếu ModelState không hợp lệ
-        ViewData["Category_id"] = new SelectList(_context.Categories, "Id", "Name", request.Category_id);
-        return View(request); // Quay lại trang Create và giữ các giá trị đã nhập
-    }
-
-    // Khởi tạo đối tượng product từ request
-    var product = new Product()
-    {
-        Id = request.Id,
-        Name = request.Name,
-        Description = request.Description,
-        Price = request.Price,
-        Stock = request.Stock,
-        Category_id = request.Category_id,
-    };
-
-    // Ghi nhận thông tin người tạo từ session
-    var userInfo = HttpContext.Session.Get<AdminUser>("userInfo");
-    if (userInfo != null)
-    {
-        product.CreatedBy = product.UpdatedBy = userInfo.Username;
-    }
-
-    // Ghi nhận thời gian tạo và cập nhật
-    product.CreatedDate = product.UpdatedDate = DateTime.Now;
-
-    // Xử lý ảnh tải lên
-    string? newImageFileName = null;
-    if (request.Image != null)
-    {
-        var extension = Path.GetExtension(request.Image.FileName);
-        newImageFileName = $"{Guid.NewGuid().ToString()}{extension}";
-        var filePath = Path.Combine(_hostEnv.WebRootPath, "data", "products", newImageFileName);
-        using (var stream = new FileStream(filePath, FileMode.Create))
         {
-            await request.Image.CopyToAsync(stream);
+            // Kiểm tra xem ModelState có hợp lệ không trước khi tiếp tục
+            if (!ModelState.IsValid)
+            {
+                ViewData["Category_id"] = new SelectList(_context.Categories, "Id", "Name", request.Category_id);
+                return View(request);
+            }
+
+            // Kiểm tra nếu không có ảnh được tải lên
+            if (request.Image == null)
+            {
+                TempData["ErrorMessage"] = "Hình ảnh là bắt buộc. Vui lòng tải lên một ảnh.";
+                ViewData["Category_id"] = new SelectList(_context.Categories, "Id", "Name", request.Category_id);
+                return View(request);
+            }
+
+            // Khởi tạo đối tượng product từ request
+            var product = new Product()
+            {
+                Id = request.Id,
+                Name = request.Name,
+                Description = request.Description,
+                Price = request.Price,
+                Stock = request.Stock,
+                Category_id = request.Category_id,
+            };
+
+            // Ghi nhận thông tin người tạo từ session
+            var userInfo = HttpContext.Session.Get<AdminUser>("userInfo");
+            if (userInfo != null)
+            {
+                product.CreatedBy = product.UpdatedBy = userInfo.Username;
+            }
+
+            // Ghi nhận thời gian tạo và cập nhật
+            product.CreatedDate = product.UpdatedDate = DateTime.Now;
+
+            // Xử lý ảnh tải lên
+            string? newImageFileName = null;
+            var extension = Path.GetExtension(request.Image.FileName);
+            newImageFileName = $"{Guid.NewGuid().ToString()}{extension}";
+            var filePath = Path.Combine(_hostEnv.WebRootPath, "data", "products", newImageFileName);
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                await request.Image.CopyToAsync(stream);
+            }
+
+            // Gán tên file ảnh vào sản phẩm
+            product.Image = newImageFileName;
+
+            // Thêm sản phẩm vào cơ sở dữ liệu
+            _context.Add(product);
+            await _context.SaveChangesAsync();
+
+            // Chuyển hướng về trang Index
+            return RedirectToAction(nameof(Index));
         }
 
-        // Gán tên file ảnh vào sản phẩm nếu có
-        product.Image = newImageFileName;
-    }
 
-    // Thêm sản phẩm vào cơ sở dữ liệu
-    _context.Add(product);
-    await _context.SaveChangesAsync();
 
-    // Chuyển hướng về trang Index
-    return RedirectToAction(nameof(Index));
-}
+
 
 
 
@@ -152,7 +160,7 @@ namespace FurnitureShop.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            ViewData["Category_id"] = new SelectList(_context.Categories, "Id", "Id", product.Category_id);
+            ViewData["Category_id"] = new SelectList(_context.Categories, "Id", "Name", product.Category_id);
             return View(product);
         }
 
@@ -293,11 +301,20 @@ namespace FurnitureShop.Areas.Admin.Controllers
             if (product != null)
             {
                 _context.Products.Remove(product);
+                await _context.SaveChangesAsync();
+
+                // Thêm thông báo xóa thành công vào TempData
+                TempData["SuccessMessage"] = "Product deleted successfully.";
+            }
+            else
+            {
+                TempData["ErrorMessage"] = "Product not found.";
             }
 
-            await _context.SaveChangesAsync();
+            // Chuyển hướng lại trang Index
             return RedirectToAction(nameof(Index));
         }
+
 
         private bool ProductExists(int id)
         {

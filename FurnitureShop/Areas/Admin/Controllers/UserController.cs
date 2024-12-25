@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FurnitureShop.Models;
-using FurnitureShop.Utils;
 
 namespace FurnitureShop.Areas.Admin.Controllers
 {
@@ -25,19 +24,7 @@ namespace FurnitureShop.Areas.Admin.Controllers
         {
             return View(await _context.Users.ToListAsync());
         }
-        public IActionResult Search(string query)
-        {
-            if (string.IsNullOrEmpty(query))
-            {
-                return View(); // Nếu không có query, chỉ hiển thị danh sách sản phẩm mặc định
-            }
 
-            var user = _context.Users
-                                    .Where(p => p.Name.Contains(query))
-                                    .ToList();
-
-            return View("Index", user); // Trả về view Index với danh sách sản phẩm
-        }
         // GET: Admin/User/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -67,32 +54,16 @@ namespace FurnitureShop.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([FromForm] User user)
+        public async Task<IActionResult> Create([Bind("Id,Name,Email,Password,Address,Phone,CreatedDate,CreatedBy,UpdatedDate,UpdatedBy")] User user)
         {
             if (ModelState.IsValid)
             {
-                // Lấy thông tin người dùng hiện tại từ Session
-                var userInfo = HttpContext.Session.Get<AdminUser>("userInfo");
-                if (userInfo != null)
-                {
-                    user.CreatedBy = user.UpdatedBy = userInfo.Username;
-                }
-
-                // Gán ngày tạo và ngày cập nhật hiện tại
-                user.CreatedDate = user.UpdatedDate = DateTime.Now;
-
-                // Thêm vào cơ sở dữ liệu
                 _context.Add(user);
                 await _context.SaveChangesAsync();
-
-                // Chuyển hướng về trang Index sau khi tạo thành công
                 return RedirectToAction(nameof(Index));
             }
-
-            // Nếu ModelState không hợp lệ, trả về lại View với thông tin hiện tại
             return View(user);
         }
-
 
         // GET: Admin/User/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -115,7 +86,7 @@ namespace FurnitureShop.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [FromForm] User user)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Email,Password,Address,Phone,CreatedDate,CreatedBy,UpdatedDate,UpdatedBy")] User user)
         {
             if (id != user.Id)
             {
@@ -126,52 +97,24 @@ namespace FurnitureShop.Areas.Admin.Controllers
             {
                 try
                 {
-                    // Lấy bản ghi từ cơ sở dữ liệu
-                    var existingUser = await _context.Users.FindAsync(id);
-                    if (existingUser == null)
-                    {
-                        return NotFound();
-                    }
-
-                    // Cập nhật các trường cần thiết
-                    existingUser.Name = user.Name;
-                    existingUser.Email = user.Email;
-                    existingUser.Password = user.Password;
-
-                    // Ghi nhận người chỉnh sửa và thời gian chỉnh sửa
-                    var userInfo = HttpContext.Session.Get<AdminUser>("userInfo");
-                    if (userInfo != null)
-                    {
-                        existingUser.UpdatedBy = userInfo.Username;
-                    }
-                    existingUser.UpdatedDate = DateTime.Now;
-
-                    // Lưu thay đổi vào cơ sở dữ liệu
-                    _context.Update(existingUser);
+                    _context.Update(user);
                     await _context.SaveChangesAsync();
-
-                    // Chuyển hướng về trang Index sau khi lưu thành công
-                    return RedirectToAction(nameof(Index));
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    // Kiểm tra xem bản ghi có tồn tại không
                     if (!UserExists(user.Id))
                     {
                         return NotFound();
                     }
                     else
                     {
-                        // Ném ngoại lệ nếu xảy ra vấn đề đồng bộ
                         throw;
                     }
                 }
+                return RedirectToAction(nameof(Index));
             }
-
-            // Nếu ModelState không hợp lệ, trả về lại View với thông tin hiện tại
             return View(user);
         }
-
 
         // GET: Admin/User/Delete/5
         public async Task<IActionResult> Delete(int? id)

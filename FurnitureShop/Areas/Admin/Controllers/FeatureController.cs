@@ -72,40 +72,41 @@ namespace FurnitureShop.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([FromForm] FeatureDTO request)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(request);
+            }
+
+            string newImageFileName = "default-icon.png"; // Giá trị mặc định
+
+            if (request.Icon != null && request.Icon.Length > 0)
+            {
+                var extension = Path.GetExtension(request.Icon.FileName);
+                newImageFileName = $"{Guid.NewGuid()}{extension}";
+                var filePath = Path.Combine(_hostEnv.WebRootPath, "data", "features", newImageFileName);
+
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await request.Icon.CopyToAsync(stream);
+                }
+            }
+
             var feature = new Feature()
             {
                 Title = request.Title,
                 Subtitle = request.Subtitle,
-                DisplayOrder = request.DisplayOrder
-
+                DisplayOrder = request.DisplayOrder,
+                Icon = newImageFileName, // Gán giá trị đã xử lý
+                CreatedBy = HttpContext.Session.Get<AdminUser>("userInfo")?.Username,
+                UpdatedBy = HttpContext.Session.Get<AdminUser>("userInfo")?.Username
             };
 
+            _context.Add(feature);
+            await _context.SaveChangesAsync();
 
-            if (ModelState.IsValid)
-            {
-                var userInfo = HttpContext.Session.Get<AdminUser>("userInfo");
-                if (userInfo != null)
-                {
-                    feature.CreatedBy = feature.UpdatedBy = userInfo.Username ;
-                }
-                string? newImageFileName = null;
-                if (request.Icon != null)
-                {
-                    var extension = Path.GetExtension(request.Icon.FileName);
-                    newImageFileName = $"{Guid.NewGuid().ToString()} {extension}";
-                    var filePath = Path.Combine(_hostEnv.WebRootPath, "data", "features", newImageFileName);
-                    using (var stream = new FileStream(filePath, FileMode.Create))
-                    {
-                        await request.Icon.CopyToAsync(stream);
-                    }
-                }
-                if (newImageFileName != null) { feature.Icon = newImageFileName; }
-                _context.Add(feature);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(feature);
+            return RedirectToAction(nameof(Index));
         }
+
 
         // GET: Admin/Feature/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -212,7 +213,7 @@ namespace FurnitureShop.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var feature = await _context.Features
+            var feature = await _context.Features!
                 .FirstOrDefaultAsync(m => m.FEA_ID == id);
             if (feature == null)
             {
@@ -227,19 +228,31 @@ namespace FurnitureShop.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var feature = await _context.Features.FindAsync(id);
+            var feature = await _context.Features!.FindAsync(id);
+
+            // Kiểm tra xem Feature có tồn tại hay không
             if (feature != null)
             {
                 _context.Features.Remove(feature);
+                await _context.SaveChangesAsync();
+
+                // Thêm thông báo thành công vào TempData
+                TempData["SuccessMessage"] = "Feature has been successfully deleted!";
+            }
+            else
+            {
+                // Nếu không tìm thấy feature, thêm thông báo lỗi vào TempData
+                TempData["ErrorMessage"] = "Feature not found!";
             }
 
-            await _context.SaveChangesAsync();
+            // Sau khi xóa, chuyển hướng về trang Index
             return RedirectToAction(nameof(Index));
         }
 
+
         private bool FeatureExists(int id)
         {
-            return _context.Features.Any(e => e.FEA_ID == id);
+            return _context.Features!.Any(e => e.FEA_ID == id);
         }
     }
 }

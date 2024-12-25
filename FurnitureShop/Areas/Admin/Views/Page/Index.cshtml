@@ -1,9 +1,8 @@
 ﻿@model IEnumerable<FurnitureShop.Models.Page>
 
 @{
-    ViewData["Title"] = "Page - Content";
+    ViewData["Title"] = "Index";
 }
-
 <div class="app-content-header">
     <!--begin::Container-->
     <div class="container-fluid">
@@ -44,6 +43,9 @@
                                         <th>
                                             @Html.DisplayNameFor(model => model.Content)
                                         </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.DisplayOrder)
+                                        </th>
                                         <th style="width:20px"></th>
                                     </tr>
                                 </thead>
@@ -56,6 +58,9 @@
                                             </td>
                                             <td>
                                                 @Html.DisplayFor(modelItem => item.Content)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.DisplayOrder)
                                             </td>
                                             <td class="text-nowrap">
                                                 <a asp-action="Edit" asp-route-id="@item.Id" class="me-1 link-success"><i class="fa-regular fa-pen-to-square"></i></a> |
@@ -73,7 +78,3 @@
         </div>
     </div>
 </div>
-
-
-
-

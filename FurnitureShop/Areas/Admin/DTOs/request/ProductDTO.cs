@@ -16,6 +16,7 @@ namespace FurnitureShop.Areas.Admin.DTOs.request
         [Required(ErrorMessage = "Số lượng là bắt buộc.")]
         [Range(1, int.MaxValue, ErrorMessage = "Số lượng phải lớn hơn 0.")]
         public int Stock { get; set; }
+        
         public IFormFile? Image { get; set; }
         public int Category_id { get; set; }
     }

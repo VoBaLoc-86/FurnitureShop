@@ -52,7 +52,21 @@
                                         <dd class="col-sm-9">
                                             @Html.DisplayFor(model => model.Content)
                                         </dd>
-
+                                        <dt class="col-sm-3 fw-bold text-secondary">
+                                            @Html.DisplayNameFor(model => model.Image)
+                                        </dt>
+                                        <dd class="col-sm-9">
+                                            <img src="@Url.Content("~/data/pages/" + Model.Image)"
+                                                 alt="Product Image"
+                                                 class="img-thumbnail"
+                                                 style="max-width: 200px;" />
+                                        </dd>
+                                        <dt class="col-sm-3 fw-bold text-secondary">
+                                            @Html.DisplayNameFor(model => model.DisplayOrder)
+                                        </dt>
+                                        <dd class="col-sm-9">
+                                            @Html.DisplayFor(model => model.DisplayOrder)
+                                        </dd>
                                         <dt class="col-sm-3 fw-bold text-secondary">
                                             @Html.DisplayNameFor(model => model.CreatedDate)
                                         </dt>
@@ -94,17 +108,11 @@
                                         <i class="bi bi-arrow-left"></i> Back to List
                                     </a>
                                 </form>
-
-                                
                             </div>
                         </div>
-                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-
-
-

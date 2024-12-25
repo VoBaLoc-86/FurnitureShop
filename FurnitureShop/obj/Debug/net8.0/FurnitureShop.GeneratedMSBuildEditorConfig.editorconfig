@@ -52,26 +52,6 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5Vc2VyXFByb2ZpbGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/GitProject/FurnitureShop/FurnitureShop/Areas/Admin/Views/Banner/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQmFubmVyXENyZWF0ZS5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/GitProject/FurnitureShop/FurnitureShop/Areas/Admin/Views/Banner/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQmFubmVyXERlbGV0ZS5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/GitProject/FurnitureShop/FurnitureShop/Areas/Admin/Views/Banner/Details.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQmFubmVyXERldGFpbHMuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/GitProject/FurnitureShop/FurnitureShop/Areas/Admin/Views/Banner/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQmFubmVyXEVkaXQuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/GitProject/FurnitureShop/FurnitureShop/Areas/Admin/Views/Banner/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQmFubmVyXEluZGV4LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
 [D:/GitProject/FurnitureShop/FurnitureShop/Areas/Admin/Views/Category/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQ2F0ZWdvcnlcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 

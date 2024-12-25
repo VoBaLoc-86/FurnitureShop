@@ -23,9 +23,7 @@ namespace FurnitureShop.Controllers
             ViewData["PageAboutUs"] = _context.Pages.AsNoTracking()
                                          .Where(x => x.Title == "About Us")
                                          .FirstOrDefault();
-            ViewData["BannerHome"] = _context.Banners.AsNoTracking()
-                                        .Where(x => x.Title == "BannerHome")
-                                        .FirstOrDefault();
+
             ViewData["PageShop"] = _context.Pages.AsNoTracking()
                                          .Where(x => x.Title == "Shop")
                                          .FirstOrDefault();
@@ -40,7 +38,7 @@ namespace FurnitureShop.Controllers
                                         .ToList();
             ViewData["HotReviews"] = _context.Reviews.AsNoTracking()
                                         .Take(3)
-                                        .Include(x=>x.User)
+                                        .Include(x => x.User)
                                         .ToList();
             ViewData["FacebookLink"] = _context.Settings.AsNoTracking()
                                    .Where(x => x.Name == "FacebookLink")
@@ -63,9 +61,7 @@ namespace FurnitureShop.Controllers
                              .Where(x => x.Title == "Contact Us")
                              .FirstOrDefault();
 
-            ViewData["BannerContact"] = _context.Banners.AsNoTracking()
-                                        .Where(x => x.Title == "BannerContact")
-                                        .FirstOrDefault();
+
             ViewData["ContactAddress"] = _context.Settings.AsNoTracking()
                                     .Where(x => x.Name == "ContactAddress")
                                     .FirstOrDefault();
@@ -84,9 +80,7 @@ namespace FurnitureShop.Controllers
                              .Where(x => x.Title == "Service")
                              .FirstOrDefault();
 
-            ViewData["BannerService"] = _context.Banners.AsNoTracking()
-                                        .Where(x => x.Title == "BannerService")
-                                        .FirstOrDefault();
+
             ViewData["HotProducts"] = _context.Products.AsNoTracking()
                                         .Take(3)
                                         .ToList();
@@ -104,10 +98,8 @@ namespace FurnitureShop.Controllers
             ViewData["PageAboutUs"] = _context.Pages.AsNoTracking()
                                          .Where(x => x.Title == "About Us")
                                          .FirstOrDefault();
-            
-            ViewData["BannerAboutUs"] = _context.Banners.AsNoTracking()
-                                        .Where(x => x.Title == "BannerAboutUs")
-                                        .FirstOrDefault();
+
+
 
             ViewData["AboutServices"] = _context.Features.AsNoTracking()
                                         .Take(4)

@@ -29,10 +29,10 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <form asp-action="Create" class="container p-4 bg-light rounded shadow">
-                            <!-- Validation Summary -->
+                        <form asp-action="Create" class="container p-4 bg-light rounded shadow" enctype="multipart/form-data">
+                            
                             <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
-
+                            
                             <!-- Title -->
                             <div class="mb-3 row align-items-center">
                                 <label asp-for="Title" class="col-sm-2 col-form-label fw-bold">Title</label>
@@ -50,7 +50,27 @@
                                     <span asp-validation-for="Content" class="text-danger"></span>
                                 </div>
                             </div>
-
+                            <div class="mb-3 row align-items-center">
+                                <label asp-for="Image" class="col-sm-2 col-form-label fw-bold">Image</label>
+                                <div class="col-sm-6">
+                                    <input asp-for="Image" class="form-control" type="file" accept="Image/*">
+                                    <span asp-validation-for="Image" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="mb-3 text-center">
+                                <div class="mx-auto"
+                                     style="width: 300px; height: 200px; overflow: hidden; border-radius: 10px; background-color: #f9f9f9; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                                    <img class="img-fluid" alt="Preview Image" id="imgPreview" style="width: 100%; height: auto; object-fit: cover;">
+                                </div>
+                            </div>
+                            <div class="mb-3 row align-items-center">
+                                <label asp-for="DisplayOrder" class="col-sm-2 col-form-label fw-bold">DisplayOrder</label>
+                                <div class="col-sm-6">
+                                    <input asp-for="DisplayOrder" class="form-control" placeholder="Enter DisplayOrder">
+                                    <span asp-validation-for="DisplayOrder" class="text-danger"></span>
+                                </div>
+                            </div>
+                            
                             <!-- Buttons -->
                             <div class="d-flex justify-content-end gap-3">
                                 <input type="submit" value="Save" class="btn btn-success px-4">
@@ -67,4 +87,23 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        window.onload = () => {
+            document.getElementById("Image").onchange = (e) => {
+                var preview = document.getElementById('imgPreview');
+                var file = e.target.files[0];
+                var reader  = new FileReader();
+
+                reader.onloadend = function () {
+                  preview.src = reader.result;
+                }
+
+                if (file) {
+                  reader.readAsDataURL(file);
+                } else {
+                  preview.src = '';
+                }
+            };
+        }
+    </script>
 }

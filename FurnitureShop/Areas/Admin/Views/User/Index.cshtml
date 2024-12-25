@@ -1,11 +1,8 @@
 ﻿@model IEnumerable<FurnitureShop.Models.User>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "UsersList";
 }
-
-
-
 <main class="app-main">
     <div class="app-content-header">
         <!--begin::Container-->
@@ -55,9 +52,6 @@
                                                 @Html.DisplayNameFor(model => model.Email)
                                             </th>
                                             <th>
-                                                @Html.DisplayNameFor(model => model.Password)
-                                            </th>                                          
-                                            <th>
                                                 @Html.DisplayNameFor(model => model.UpdatedDate)
                                             </th>
                                             <th>
@@ -76,10 +70,6 @@
                                                 <td>
                                                     @Html.DisplayFor(modelItem => item.Email)
                                                 </td>
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.Password)
-                                                </td>
-                                                
                                                 <td>
                                                     @Html.DisplayFor(modelItem => item.UpdatedDate)
                                                 </td>
@@ -103,5 +93,3 @@
         </div>
     </div>
 </main>
-
-

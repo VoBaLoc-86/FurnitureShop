@@ -1,9 +1,8 @@
 ﻿@model FurnitureShop.Models.User
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "UserCreate";
 }
-
 <div class="app-content-header">
     <!--begin::Container-->
     <div class="container-fluid">
@@ -60,7 +59,21 @@
                                     <span asp-validation-for="Password" class="text-danger"></span>
                                 </div>
                             </div>
-
+                            <div class="mb-3 row">
+                                <label asp-for="Address" class="col-sm-2 col-form-label">Address:</label>
+                                <div class="col-sm-10">
+                                    <input asp-for="Address" type="text" class="form-control" placeholder="Enter Address" />
+                                    <span asp-validation-for="Address" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label asp-for="Phone" class="col-sm-2 col-form-label">Phone:</label>
+                                <div class="col-sm-10">
+                                    <input asp-for="Phone" type="text" class="form-control" placeholder="Enter Phone" />
+                                    <span asp-validation-for="Phone" class="text-danger"></span>
+                                </div>
+                            </div>
+                            
                             <!-- Submit Button and Back to List Button -->
                             <div class="d-flex justify-content-between">
                                 <input type="submit" value="Save" class="btn btn-success px-4" />
@@ -74,8 +87,6 @@
         </div>
     </div>
 </div>
-
-
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

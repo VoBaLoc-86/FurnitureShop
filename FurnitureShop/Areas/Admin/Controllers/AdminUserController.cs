@@ -73,18 +73,39 @@ namespace FurnitureShop.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                // Kiểm tra xem Username đã tồn tại trong cơ sở dữ liệu chưa
+                var existingUser = await _context.AdminUsers
+                    .Where(u => u.Username == adminUser.Username)
+                    .FirstOrDefaultAsync();
+
+                if (existingUser != null)
+                {
+                    // Nếu Username đã tồn tại, thêm lỗi vào ModelState
+                    ModelState.AddModelError("Username", "Username đã tồn tại. Vui lòng chọn một Username khác.");
+                    return View(adminUser); // Trả về View với lỗi
+                }
+
+                // Lấy thông tin người dùng hiện tại từ session
                 var userInfo = HttpContext.Session.Get<AdminUser>("userInfo");
                 if (userInfo != null)
                 {
                     adminUser.CreatedBy = userInfo.Username;
                     adminUser.UpdatedBy = userInfo.Username;
                 }
+
+                // Thêm AdminUser vào cơ sở dữ liệu
                 _context.Add(adminUser);
                 await _context.SaveChangesAsync();
+
+                // Chuyển hướng về trang Index sau khi lưu thành công
                 return RedirectToAction(nameof(Index));
             }
+
+            // Nếu ModelState không hợp lệ, trả về View với thông tin hiện tại
             return View(adminUser);
         }
+
+
 
         // GET: Admin/AdminUser/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -125,12 +146,25 @@ namespace FurnitureShop.Areas.Admin.Controllers
                         return NotFound();
                     }
 
+                    // Kiểm tra xem Username mới có trùng với Username của người dùng khác không
+                    var existingUserWithSameUsername = await _context.AdminUsers
+                        .Where(u => u.Username == adminUser.Username && u.USE_ID != adminUser.USE_ID)
+                        .FirstOrDefaultAsync();
+
+                    if (existingUserWithSameUsername != null)
+                    {
+                        // Nếu có, thêm lỗi vào ModelState
+                        ModelState.AddModelError("Username", "Username đã tồn tại. Vui lòng chọn một Username khác.");
+                        return View(adminUser); // Trả về lại view với lỗi
+                    }
+
                     // Cập nhật các trường cần thiết
                     existingAdminUser.Username = adminUser.Username;
                     existingAdminUser.Password = adminUser.Password;
                     existingAdminUser.DisplayName = adminUser.DisplayName;
                     existingAdminUser.Email = adminUser.Email;
                     existingAdminUser.Phone = adminUser.Phone;
+
                     // Ghi nhận người chỉnh sửa và thời gian chỉnh sửa
                     var userInfo = HttpContext.Session.Get<AdminUser>("userInfo");
                     if (userInfo != null)
@@ -141,7 +175,7 @@ namespace FurnitureShop.Areas.Admin.Controllers
 
                     // Lưu thay đổi
                     _context.Update(existingAdminUser);
-                    await _context.SaveChangesAsync();     
+                    await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -156,8 +190,12 @@ namespace FurnitureShop.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+
+            // Nếu ModelState không hợp lệ, trả về lại view với thông tin hiện tại
             return View(adminUser);
         }
+
+
 
         // GET: Admin/AdminUser/Delete/5
         public async Task<IActionResult> Delete(int? id)

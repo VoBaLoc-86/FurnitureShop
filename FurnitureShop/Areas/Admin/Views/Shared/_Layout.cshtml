@@ -115,12 +115,7 @@
                     <span>AdminUser</span>
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" asp-action="Index" asp-controller="Banner">
-                    <i class="fa-solid fa-flag-pennant"></i>
-                    <span>Banners</span>
-                </a>
-            </li>
+            
             
             <li class="nav-item">
                 <a class="nav-link" asp-action="Index" asp-controller="Order">
@@ -171,17 +166,16 @@
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
                     </button>
-
+                    
                     <!-- Topbar Search -->
                     <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search"
-                          asp-area="Admin" asp-controller="Home" asp-action="Search" method="GET">
+                          asp-area="Admin" asp-controller="Home" asp-action="Search" method="GET" id="searchForm">
                         <div class="input-group">
                             <input type="text" name="query" class="form-control bg-light border-0 small"
                                    placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" required>
 
-                            <select name="category" class="form-control">
-                                
-                                <option value="Select a option">--Select--</option>
+                            <select name="category" class="form-control" required>
+                                <option value="SelectCategory" disabled selected>--Select--</option>
                                 <option value="Products">Products</option>
                                 <option value="Categories">Categories</option>
                                 <option value="Reviews">Reviews</option>
@@ -191,8 +185,6 @@
                                 <option value="Orders">Orders</option>
                                 <option value="Settings">Settings</option>
                                 <option value="Pages">Pages</option>
-
-                                <!-- Các danh mục khác -->
                             </select>
 
                             <div class="input-group-append">
@@ -203,7 +195,8 @@
                         </div>
                     </form>
 
-
+                    <!-- Thêm thông báo lỗi nếu người dùng không chọn category -->
+                    <div id="error-message" style="color: red; display: none;">Bạn chưa chọn danh mục.</div>
 
 
                     <!-- Topbar Navbar -->
@@ -452,8 +445,20 @@
 
     <!-- Custom scripts for all pages-->
     <script src="~/admin/js/sb-admin-2.min.js"></script>
-    
+    <!-- Thêm Bootstrap JS (nếu chưa có) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
+    <script>
+        // Kiểm tra khi submit form
+        document.getElementById('searchForm').onsubmit = function (event) {
+            var category = document.querySelector('select[name="category"]').value;
+            if (category === "SelectCategory") {
+                // Nếu chưa chọn category, hiển thị thông báo lỗi và ngừng gửi form
+                document.getElementById('error-message').style.display = 'block';
+                event.preventDefault();  // Ngừng việc gửi form đi
+            }
+        };
+    </script>
 
     
     @await RenderSectionAsync("Scripts", required: false)

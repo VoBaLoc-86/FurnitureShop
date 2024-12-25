@@ -1,8 +1,9 @@
-﻿@model FurnitureShop.Models.Product
+﻿@model FurnitureShop.Areas.Admin.DTOs.request.ProductDTO
 
 @{
     ViewData["Title"] = "Create";
 }
+
 <div class="app-content-header">
     <!--begin::Container-->
     <div class="container-fluid">
@@ -30,8 +31,16 @@
                     </div>
                     <div class="card-body">
                         <form asp-action="Create" enctype="multipart/form-data" class="container p-4 bg-light rounded shadow">
+                            <!-- Validation Summary -->
+                            @if (TempData["ErrorMessage"] != null)
+                            {
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    @TempData["ErrorMessage"]
+                                    <button type="button" class="btn btn-close" data-bs-dismiss="alert" aria-label="Close"><i class="fa-regular fa-circle-xmark"></i></button>
+                                </div>
+                            }
                             <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
-
+                            
                             <div class="mb-3 row">
                                 <label asp-for="Category_id" class="col-sm-3 col-form-label fw-bold">Category</label>
                                 <div class="col-sm-9">

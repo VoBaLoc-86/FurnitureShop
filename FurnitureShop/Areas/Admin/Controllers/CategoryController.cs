@@ -73,17 +73,36 @@ namespace FurnitureShop.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                // Kiểm tra xem Name đã tồn tại trong cơ sở dữ liệu chưa
+                var existingCategory = await _context.Categories
+                    .FirstOrDefaultAsync(c => c.Name == category.Name);
+
+                if (existingCategory != null)
+                {
+                    // Nếu Name đã tồn tại, thêm lỗi vào ModelState
+                    ModelState.AddModelError("Name", "Tên danh mục đã tồn tại. Vui lòng chọn một tên khác.");
+                    return View(category); // Trả về View với thông báo lỗi
+                }
+
+                // Lấy thông tin người dùng hiện tại từ session
                 var userInfo = HttpContext.Session.Get<AdminUser>("userInfo");
                 if (userInfo != null)
                 {
                     category.CreatedBy = category.UpdatedBy = userInfo.Username;
                 }
+
+                // Thêm Category vào cơ sở dữ liệu
                 _context.Add(category);
                 await _context.SaveChangesAsync();
+
+                // Chuyển hướng về trang Index sau khi lưu thành công
                 return RedirectToAction(nameof(Index));
             }
+
+            // Nếu ModelState không hợp lệ, trả về View với thông tin hiện tại
             return View(category);
         }
+
 
         // GET: Admin/Category/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -124,6 +143,18 @@ namespace FurnitureShop.Areas.Admin.Controllers
                         return NotFound();
                     }
 
+                    // Kiểm tra xem Name có trùng với danh mục khác không
+                    var existingCategoryWithSameName = await _context.Categories
+                        .Where(c => c.Name == category.Name && c.Id != category.Id)
+                        .FirstOrDefaultAsync();
+
+                    if (existingCategoryWithSameName != null)
+                    {
+                        // Nếu Name trùng, thêm lỗi vào ModelState
+                        ModelState.AddModelError("Name", "Tên danh mục đã tồn tại. Vui lòng chọn một tên khác.");
+                        return View(category); // Trả về lại view với lỗi
+                    }
+
                     // Cập nhật các trường cần thiết
                     existingCategory.Name = category.Name;
 
@@ -135,7 +166,7 @@ namespace FurnitureShop.Areas.Admin.Controllers
                     }
                     existingCategory.UpdatedDate = DateTime.Now;
 
-                    // Lưu thay đổi
+                    // Lưu thay đổi vào cơ sở dữ liệu
                     _context.Update(existingCategory);
                     await _context.SaveChangesAsync();
 
@@ -151,7 +182,7 @@ namespace FurnitureShop.Areas.Admin.Controllers
                     }
                     else
                     {
-                        // Ném ngoại lệ nếu xảy ra vấn đề đồng bộ mà không thể xử lý
+                        // Ném ngoại lệ nếu xảy ra vấn đề đồng bộ
                         throw;
                     }
                 }
@@ -160,6 +191,7 @@ namespace FurnitureShop.Areas.Admin.Controllers
             // Nếu ModelState không hợp lệ, trả về lại view với thông tin hiện tại
             return View(category);
         }
+
 
         // GET: Admin/Category/Delete/5
         public async Task<IActionResult> Delete(int? id)
@@ -184,15 +216,40 @@ namespace FurnitureShop.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var category = await _context.Categories.FindAsync(id);
-            if (category != null)
+            var category = await _context.Categories
+                                         .Include(c => c.Products) // Load danh sách Products liên quan
+                                         .FirstOrDefaultAsync(c => c.Id == id);
+
+            if (category == null)
             {
-                _context.Categories.Remove(category);
+                TempData["ErrorMessage"] = "Category not found.";
+                return View(category);  // Trả về view Delete của category với thông báo lỗi
             }
 
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            if (category.Products != null && category.Products.Any())
+            {
+                // Thông báo nếu không thể xóa vì có sản phẩm liên quan
+                TempData["ErrorMessage"] = "Cannot delete this category because it has associated products.";
+                return View(category);  // Trả về view Delete của category với thông báo lỗi
+            }
+
+            try
+            {
+                _context.Categories.Remove(category);
+                await _context.SaveChangesAsync();
+                TempData["SuccessMessage"] = "Category deleted successfully."; // Lưu thông báo thành công vào TempData
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = $"Error occurred while deleting category: {ex.Message}";
+            }
+
+            return RedirectToAction(nameof(Index)); // Chuyển hướng về Index sau khi xóa thành công
         }
+
+
+
+
 
         private bool CategoryExists(int id)
         {

@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FurnitureShop.Models;
+using Azure.Core;
+using FurnitureShop.Areas.Admin.DTOs.request;
 using FurnitureShop.Utils;
 
 namespace FurnitureShop.Areas.Admin.Controllers
@@ -14,30 +16,22 @@ namespace FurnitureShop.Areas.Admin.Controllers
     public class PageController : Controller
     {
         private readonly FurnitureShopContext _context;
+        private readonly IWebHostEnvironment _hostEnv;
 
-        public PageController(FurnitureShopContext context)
+        public PageController(IWebHostEnvironment hostEnv, FurnitureShopContext context)
         {
             _context = context;
+            _hostEnv = hostEnv;
         }
+
+        
 
         // GET: Admin/Page
         public async Task<IActionResult> Index()
         {
             return View(await _context.Pages.ToListAsync());
         }
-        public IActionResult Search(string query)
-        {
-            if (string.IsNullOrEmpty(query))
-            {
-                return View(); // Nếu không có query, chỉ hiển thị danh sách sản phẩm mặc định
-            }
 
-            var page = _context.Pages
-                                    .Where(p => p.Title.Contains(query))
-                                    .ToList();
-
-            return View("Index", page); // Trả về view Index với danh sách sản phẩm
-        }
         // GET: Admin/Page/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -67,20 +61,54 @@ namespace FurnitureShop.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([FromForm] Page page)
+        public async Task<IActionResult> Create([FromForm] PageDTO request)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                var userInfo = HttpContext.Session.Get<AdminUser>("userInfo");
-                if (userInfo != null)
-                {
-                    page.CreatedBy = page.UpdatedBy = userInfo.Username;
-                }
-                _context.Add(page);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                
+                return View(request); // Quay lại trang Create và giữ các giá trị đã nhập
             }
-            return View(page);
+
+            // Khởi tạo đối tượng product từ request
+            var page = new Page()
+            {
+                Title = request.Title,
+                Content = request.Content,
+                DisplayOrder = request.DisplayOrder,
+            };
+
+            // Ghi nhận thông tin người tạo từ session
+            var userInfo = HttpContext.Session.Get<AdminUser>("userInfo");
+            if (userInfo != null)
+            {
+                page.CreatedBy = page.UpdatedBy = userInfo.Username;
+            }
+
+            // Ghi nhận thời gian tạo và cập nhật
+            page.CreatedDate = page.UpdatedDate = DateTime.Now;
+
+            // Xử lý ảnh tải lên
+            string? newImageFileName = null;
+            if (request.Image != null)
+            {
+                var extension = Path.GetExtension(request.Image.FileName);
+                newImageFileName = $"{Guid.NewGuid().ToString()}{extension}";
+                var filePath = Path.Combine(_hostEnv.WebRootPath, "data", "pages", newImageFileName);
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await request.Image.CopyToAsync(stream);
+                }
+
+                // Gán tên file ảnh vào sản phẩm nếu có
+                page.Image = newImageFileName;
+            }
+
+            // Thêm sản phẩm vào cơ sở dữ liệu
+            _context.Add(page);
+            await _context.SaveChangesAsync();
+
+            // Chuyển hướng về trang Index
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: Admin/Page/Edit/5
@@ -104,40 +132,73 @@ namespace FurnitureShop.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [FromForm] Page page)
+        public async Task<IActionResult> Edit(int id, [FromForm] PageDTO update)
         {
-            if (id != page.Id)
+            if (id != update.Id)
             {
                 return NotFound();
             }
-
+            string Username = "";
             if (ModelState.IsValid)
             {
-                
+                var userInfo = HttpContext.Session.Get<AdminUser>("userInfo");
+                if (userInfo != null)
+                {
+                    Username = userInfo.Username;
+                }
                 try
                 {
-                    var existingPage= await _context.Pages.FindAsync(id);
+                    var existingPage = await _context.Pages.FindAsync(id);
                     if (existingPage == null)
                     {
                         return NotFound();
                     }
-                    existingPage.Title = page.Title;
-                    existingPage.Content = page.Content;
-                    existingPage.UpdatedDate = DateTime.Now;
 
-                    // Ghi nhận người chỉnh sửa và thời gian chỉnh sửa
-                    var userInfo = HttpContext.Session.Get<AdminUser>("userInfo");
-                    if (userInfo != null)
+                    // Nếu có ảnh mới được chọn, xử lý lưu ảnh mới
+                    if (update.Image != null)
                     {
-                        existingPage.UpdatedBy = userInfo.Username;
+                        string? newImageFileName = null;
+                        var extension = Path.GetExtension(update.Image.FileName);
+                        newImageFileName = $"{Guid.NewGuid()}{extension}";
+                        var filePath = Path.Combine(_hostEnv.WebRootPath, "data", "pages", newImageFileName);
+
+                        // Lưu file mới
+                        using (var stream = new FileStream(filePath, FileMode.Create))
+                        {
+                            await update.Image.CopyToAsync(stream);
+                        }
+
+                        // Xóa ảnh cũ (nếu cần thiết)
+                        if (!string.IsNullOrEmpty(existingPage.Image))
+                        {
+                            var oldFilePath = Path.Combine(_hostEnv.WebRootPath, "data", "pages", existingPage.Image);
+                            if (System.IO.File.Exists(oldFilePath))
+                            {
+                                System.IO.File.Delete(oldFilePath);
+                            }
+                        }
+
+                        // Gán tên file mới cho sản phẩm
+                        existingPage.Image = newImageFileName;
+                    }
+                    else
+                    {
+                        // Nếu không có ảnh mới, giữ lại ảnh cũ
+                        existingPage.Image = existingPage.Image;
                     }
 
+                    // Kiểm tra và cập nhật các giá trị còn lại
+                    existingPage.Title = update.Title;
+                    existingPage.Content = update.Content;
+                    existingPage.DisplayOrder = update.DisplayOrder;
+
+                    // Cập nhật trang
                     _context.Update(existingPage);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!PageExists(page.Id))
+                    if (!PageExists(update.Id))
                     {
                         return NotFound();
                     }
@@ -148,8 +209,9 @@ namespace FurnitureShop.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(page);
+            return View(update);
         }
+
 
         // GET: Admin/Page/Delete/5
         public async Task<IActionResult> Delete(int? id)

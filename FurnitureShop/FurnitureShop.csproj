@@ -19,7 +19,7 @@
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="wwwroot\data\banners\" />
+    <Folder Include="wwwroot\data\pages\" />
     <Folder Include="wwwroot\data\features\" />
     <Folder Include="wwwroot\data\products\" />
   </ItemGroup>

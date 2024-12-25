@@ -203,11 +203,21 @@ namespace FurnitureShop.Areas.Admin.Controllers
             if (review != null)
             {
                 _context.Reviews.Remove(review);
+                await _context.SaveChangesAsync();
+
+                // Thêm thông báo xóa thành công vào TempData
+                TempData["SuccessMessage"] = "Review deleted successfully.";
+            }
+            else
+            {
+                // Thông báo lỗi nếu không tìm thấy review
+                TempData["ErrorMessage"] = "Review not found.";
             }
 
-            await _context.SaveChangesAsync();
+            // Chuyển hướng lại trang Index
             return RedirectToAction(nameof(Index));
         }
+
 
         private bool ReviewExists(int id)
         {

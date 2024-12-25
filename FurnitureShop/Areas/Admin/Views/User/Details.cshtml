@@ -1,9 +1,8 @@
 ﻿@model FurnitureShop.Models.User
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "UserDetails";
 }
-
 <div class="app-content-header">
     <!--begin::Container-->
     <div class="container-fluid">
@@ -59,7 +58,18 @@
                                             <dd class="col-sm-9">
                                                 @Html.DisplayFor(model => model.Password)
                                             </dd>
-
+                                            <dt class="col-sm-3 fw-bold text-secondary">
+                                                @Html.DisplayNameFor(model => model.Address)
+                                            </dt>
+                                            <dd class="col-sm-9">
+                                                @Html.DisplayFor(model => model.Address)
+                                            </dd>
+                                            <dt class="col-sm-3 fw-bold text-secondary">
+                                                @Html.DisplayNameFor(model => model.Phone)
+                                            </dt>
+                                            <dd class="col-sm-9">
+                                                @Html.DisplayFor(model => model.Phone)
+                                            </dd>
                                             <dt class="col-sm-3 fw-bold text-secondary">
                                                 @Html.DisplayNameFor(model => model.CreatedDate)
                                             </dt>
@@ -94,18 +104,21 @@
                                 <div class="mt-4">
                                     <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary">
                                         <i class="bi bi-pencil"></i> Edit
-                                    </a> 
+                                    </a>
                                     <a asp-action="Index" class="btn btn-secondary ms-2">
                                         <i class="bi bi-arrow-left"></i> Back to List
                                     </a>
                                 </div>
                             </div>
                         </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+
+
+
 
 
 

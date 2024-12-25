@@ -6,7 +6,7 @@
 	var review = ViewData["HotReviews"] as FurnitureShop.Models.Review;
 	var pageService = ViewData["PageService"] as FurnitureShop.Models.Page;
 
-	var bannerHome = ViewData["BannerHome"] as FurnitureShop.Models.Banner;
+	
 	var FacebookLink = ViewData["FacebookLink"] as FurnitureShop.Models.Setting;
 	var InstagramLink = ViewData["InstagramLink"] as FurnitureShop.Models.Setting;
 	var TwitterLink = ViewData["TwitterLink"] as FurnitureShop.Models.Setting;
@@ -31,7 +31,7 @@
 			</div>
 			<div class="col-lg-7">
 				<div class="hero-img-wrap">
-					<img src="~/data/banners/@bannerHome.Image" class="img-fluid">
+					<img src="~/data/pages/@pageHome.Image" class="img-fluid">
 				</div>
 			</div>
 		</div>

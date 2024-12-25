@@ -26,23 +26,9 @@ namespace FurnitureShop.Areas.Admin.Controllers
             return View(await furnitureShopContext.ToListAsync());
         }
 
-        public IActionResult Search(string query)
-        {
-            if (string.IsNullOrEmpty(query))
-            {
-                return View(); // Nếu không có query, chỉ hiển thị danh sách sản phẩm mặc định
-            }
-
-            var order = _context.Orders
-                                    .Where(p => p.User!.Name.Contains(query))
-                                    .ToList();
-
-            return View("Index", order); // Trả về view Index với danh sách sản phẩm
-        }
         // GET: Admin/Order/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-           
             if (id == null)
             {
                 return NotFound();
@@ -50,7 +36,6 @@ namespace FurnitureShop.Areas.Admin.Controllers
 
             var order = await _context.Orders
                 .Include(o => o.User)
-                .Include(o => o.Order_Details)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (order == null)
             {
@@ -63,7 +48,7 @@ namespace FurnitureShop.Areas.Admin.Controllers
         // GET: Admin/Order/Create
         public IActionResult Create()
         {
-            ViewData["User_id"] = new SelectList(_context.Users, "Id", "Id");
+            ViewData["User_id"] = new SelectList(_context.Users, "Id", "Address");
             return View();
         }
 
@@ -72,7 +57,7 @@ namespace FurnitureShop.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,User_id,Total_price,Status,CreatedDate,CreatedBy,UpdatedDate,UpdatedBy")] Order order)
+        public async Task<IActionResult> Create([Bind("Id,User_id,Total_price,Status,Shipping_address,Payment_status,CreatedDate,CreatedBy,UpdatedDate,UpdatedBy")] Order order)
         {
             if (ModelState.IsValid)
             {
@@ -80,7 +65,7 @@ namespace FurnitureShop.Areas.Admin.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["User_id"] = new SelectList(_context.Users, "Id", "Id", order.User_id);
+            ViewData["User_id"] = new SelectList(_context.Users, "Id", "Address", order.User_id);
             return View(order);
         }
 
@@ -97,7 +82,7 @@ namespace FurnitureShop.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            ViewData["User_id"] = new SelectList(_context.Users, "Id", "Id", order.User_id);
+            ViewData["User_id"] = new SelectList(_context.Users, "Id", "Address", order.User_id);
             return View(order);
         }
 
@@ -106,7 +91,7 @@ namespace FurnitureShop.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,User_id,Total_price,Status,CreatedDate,CreatedBy,UpdatedDate,UpdatedBy")] Order order)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,User_id,Total_price,Status,Shipping_address,Payment_status,CreatedDate,CreatedBy,UpdatedDate,UpdatedBy")] Order order)
         {
             if (id != order.Id)
             {
@@ -133,7 +118,7 @@ namespace FurnitureShop.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["User_id"] = new SelectList(_context.Users, "Id", "Id", order.User_id);
+            ViewData["User_id"] = new SelectList(_context.Users, "Id", "Address", order.User_id);
             return View(order);
         }
 

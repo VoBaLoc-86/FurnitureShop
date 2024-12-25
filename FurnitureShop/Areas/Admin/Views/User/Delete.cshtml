@@ -1,9 +1,8 @@
 ﻿@model FurnitureShop.Models.User
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "UserDelete";
 }
-
 <div class="app-content-header">
     <!--begin::Container-->
     <div class="container-fluid">
@@ -60,7 +59,18 @@
                                         <dd class="col-sm-9">
                                             @Html.DisplayFor(model => model.Password)
                                         </dd>
-
+                                        <dt class="col-sm-3 fw-bold text-secondary">
+                                            @Html.DisplayNameFor(model => model.Address)
+                                        </dt>
+                                        <dd class="col-sm-9">
+                                            @Html.DisplayFor(model => model.Address)
+                                        </dd>
+                                        <dt class="col-sm-3 fw-bold text-secondary">
+                                            @Html.DisplayNameFor(model => model.Phone)
+                                        </dt>
+                                        <dd class="col-sm-9">
+                                            @Html.DisplayFor(model => model.Phone)
+                                        </dd>
                                         <dt class="col-sm-3 fw-bold text-secondary">
                                             @Html.DisplayNameFor(model => model.CreatedDate)
                                         </dt>
@@ -102,16 +112,11 @@
                                         <i class="bi bi-arrow-left"></i> Back to List
                                     </a>
                                 </form>
-
-                                
                             </div>
                         </div>
-                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-
-

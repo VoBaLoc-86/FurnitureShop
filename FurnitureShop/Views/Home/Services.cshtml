@@ -2,7 +2,7 @@
 	ViewData["Title"] = "Home Page";
 	var pageService = ViewData["PageService"] as FurnitureShop.Models.Page;
 	var pageAboutUs = ViewData["PageAboutUs"] as FurnitureShop.Models.Page;
-	var bannerService = ViewData["BannerService"] as FurnitureShop.Models.Banner;
+	
 }
 <!-- Start Hero Section -->
 <div class="hero">
@@ -17,7 +17,7 @@
 			</div>
 			<div class="col-lg-7">
 				<div class="hero-img-wrap">
-					<img src="~/data/banners/@bannerService.Image" class="img-fluid" >
+					<img src="~/data/pages/@pageService.Image" class="img-fluid" >
 				</div>
 			</div>
 		</div>

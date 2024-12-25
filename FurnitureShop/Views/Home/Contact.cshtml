@@ -1,7 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Contact Page";
     var pageContact = ViewData["PageContact"] as FurnitureShop.Models.Page;
-    var bannerContact = ViewData["BannerContact"] as FurnitureShop.Models.Banner;
+   
     var ContactAddress = ViewData["ContactAddress"] as FurnitureShop.Models.Setting;
     var ContactEmail = ViewData["ContactEmail"] as FurnitureShop.Models.Setting;
     var ContactPhone = ViewData["ContactPhone"] as FurnitureShop.Models.Setting;
@@ -24,7 +24,7 @@
             </div>
             <div class="col-lg-7">
                 <div class="hero-img-wrap">
-                    <img src="~/data/banners/@bannerContact.Image" class="img-fluid">
+                    <img src="~/data/pages/@pageContact.Image" class="img-fluid">
                 </div>
             </div>
         </div>

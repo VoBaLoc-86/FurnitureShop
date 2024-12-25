@@ -38,7 +38,7 @@ namespace FurnitureShop.Controllers
             // Return filtered or default products
             ViewData["Products"] = query.ToList();
             ViewData["PageShop"] = _context.Pages!.AsNoTracking().FirstOrDefault(x => x.Title == "Shop");
-            ViewData["BannerShop"] = _context.Banners!.AsNoTracking().FirstOrDefault(x => x.Title == "BannerShop");
+            
 
             return View();
         }

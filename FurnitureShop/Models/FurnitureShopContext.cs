@@ -16,7 +16,6 @@ namespace FurnitureShop.Models
         public DbSet<Page>? Pages { get; set; }
         public DbSet<Review>? Reviews { get; set; }
         public DbSet<AdminUser>? AdminUsers { get; set; }
-        public DbSet<Banner>? Banners { get; set; }
         public DbSet<Feature>? Features { get; set; }
         public DbSet<Setting>? Settings { get; set; }
     }

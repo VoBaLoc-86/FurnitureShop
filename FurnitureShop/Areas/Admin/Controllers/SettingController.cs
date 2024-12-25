@@ -69,19 +69,36 @@ namespace FurnitureShop.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([FromForm] Setting setting)
         {
-            if (ModelState.IsValid)
+            // Kiểm tra tính hợp lệ của model
+            if (!ModelState.IsValid)
             {
-                var userInfo = HttpContext.Session.Get<AdminUser>("userInfo");
-                if (userInfo != null)
-                {
-                    setting.CreatedBy = setting.UpdatedBy = userInfo.Username;
-                }
-                _context.Add(setting);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return View(setting);
             }
-            return View(setting);
+
+            // Kiểm tra Name đã tồn tại
+            var existingSetting = await _context.Settings.FirstOrDefaultAsync(s => s.Name == setting.Name);
+            if (existingSetting != null)
+            {
+                // Thêm lỗi vào ModelState để hiển thị thông báo lỗi
+                ModelState.AddModelError("Name", "The name already exists. Please choose a different name.");
+                return View(setting); // Trả lại view với thông báo lỗi
+            }
+
+            // Gắn thông tin người tạo/cập nhật
+            var userInfo = HttpContext.Session.Get<AdminUser>("userInfo");
+            if (userInfo != null)
+            {
+                setting.CreatedBy = setting.UpdatedBy = userInfo.Username;
+            }
+
+            // Thêm setting mới vào database
+            _context.Add(setting);
+            await _context.SaveChangesAsync();
+
+            // Chuyển hướng đến Index sau khi lưu thành công
+            return RedirectToAction(nameof(Index));
         }
+
 
         // GET: Admin/Setting/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -106,58 +123,70 @@ namespace FurnitureShop.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [FromForm] Setting setting)
         {
+            // Kiểm tra xem ID có khớp với bản ghi cần chỉnh sửa không
             if (id != setting.SET_ID)
             {
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            // Kiểm tra ModelState
+            if (!ModelState.IsValid)
             {
-                try
-                {
-                    // Lấy bản ghi từ cơ sở dữ liệu
-                    var existingSetting = await _context.Settings.FindAsync(id);
-                    if (existingSetting == null)
-                    {
-                        return NotFound();
-                    }
-
-                    // Cập nhật các trường cần thiết
-                    existingSetting.Name = setting.Name; // Giả sử `Setting` có trường `Value`
-                    existingSetting.Value = setting.Value; // Thêm các trường khác nếu cần
-
-                    // Ghi nhận người chỉnh sửa và thời gian chỉnh sửa
-                    var userInfo = HttpContext.Session.Get<AdminUser>("userInfo");
-                    if (userInfo != null)
-                    {
-                        existingSetting.UpdatedBy = userInfo.Username;
-                    }
-                    existingSetting.UpdatedDate = DateTime.Now;
-
-                    // Lưu thay đổi vào cơ sở dữ liệu
-                    _context.Update(existingSetting);
-                    await _context.SaveChangesAsync();
-
-                    // Chuyển hướng về trang Index sau khi lưu thành công
-                    return RedirectToAction(nameof(Index));
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    // Kiểm tra xem bản ghi có tồn tại không
-                    if (!SettingExists(setting.SET_ID))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        // Ném ngoại lệ nếu xảy ra vấn đề đồng bộ
-                        throw;
-                    }
-                }
+                return View(setting);
             }
 
-            // Nếu ModelState không hợp lệ, trả về lại view với thông tin hiện tại
-            return View(setting);
+            try
+            {
+                // Kiểm tra Name có bị trùng với bản ghi khác không
+                var duplicateSetting = await _context.Settings
+                    .Where(s => s.SET_ID != id && s.Name == setting.Name)
+                    .FirstOrDefaultAsync();
+
+                if (duplicateSetting != null)
+                {
+                    // Thêm lỗi vào ModelState nếu Name đã tồn tại
+                    ModelState.AddModelError("Name", "The name already exists. Please choose a different name.");
+                    return View(setting);
+                }
+
+                // Lấy bản ghi từ cơ sở dữ liệu
+                var existingSetting = await _context.Settings.FindAsync(id);
+                if (existingSetting == null)
+                {
+                    return NotFound();
+                }
+
+                // Cập nhật các trường cần thiết
+                existingSetting.Name = setting.Name;
+                existingSetting.Value = setting.Value;
+
+                // Ghi nhận người chỉnh sửa và thời gian chỉnh sửa
+                var userInfo = HttpContext.Session.Get<AdminUser>("userInfo");
+                if (userInfo != null)
+                {
+                    existingSetting.UpdatedBy = userInfo.Username;
+                }
+                existingSetting.UpdatedDate = DateTime.Now;
+
+                // Lưu thay đổi vào cơ sở dữ liệu
+                _context.Update(existingSetting);
+                await _context.SaveChangesAsync();
+
+                // Chuyển hướng về trang Index sau khi lưu thành công
+                return RedirectToAction(nameof(Index));
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                // Kiểm tra xem bản ghi có tồn tại không
+                if (!SettingExists(setting.SET_ID))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw; // Ném ngoại lệ nếu có lỗi đồng bộ
+                }
+            }
         }
 
 
@@ -185,14 +214,26 @@ namespace FurnitureShop.Areas.Admin.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var setting = await _context.Settings.FindAsync(id);
+
+            // Kiểm tra xem Setting có tồn tại hay không
             if (setting != null)
             {
                 _context.Settings.Remove(setting);
+                await _context.SaveChangesAsync();
+
+                // Thêm thông báo thành công vào TempData
+                TempData["SuccessMessage"] = "Setting has been successfully deleted!";
+            }
+            else
+            {
+                // Nếu không tìm thấy setting, thêm thông báo lỗi vào TempData
+                TempData["ErrorMessage"] = "Setting not found!";
             }
 
-            await _context.SaveChangesAsync();
+            // Sau khi xóa, chuyển hướng về trang Index
             return RedirectToAction(nameof(Index));
         }
+
 
         private bool SettingExists(int id)
         {
