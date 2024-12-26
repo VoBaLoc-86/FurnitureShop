@@ -1,4 +1,7 @@
-using FurnitureShop.Models;
+﻿using FurnitureShop.Models;
+using FurnitureShop.Services;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace FurnitureShop
@@ -9,48 +12,72 @@ namespace FurnitureShop
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
-
+            // Cấu hình DbContext cho SQL Server
             builder.Services.AddDbContext<FurnitureShopContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+            // Thêm các dịch vụ của MVC
             builder.Services.AddControllersWithViews();
 
+            // Cấu hình Session
             builder.Services.AddDistributedMemoryCache();
             builder.Services.AddSession(options =>
             {
-                //options.Cookie.Name = ".AspNetCore.Session";  // Set Name key on browser
-                options.IdleTimeout = TimeSpan.FromHours(1); // Set session timeout
-                options.Cookie.HttpOnly = true;         // Ensures the session cookie is accessible only by the server
-                options.Cookie.IsEssential = true;      // Required for GDPR compliance
+                options.IdleTimeout = TimeSpan.FromHours(1); // Thiết lập thời gian hết hạn session
+                options.Cookie.HttpOnly = true;         // Chỉ server mới có thể truy cập session cookie
+                options.Cookie.IsEssential = true;      // Đảm bảo tuân thủ GDPR
             });
+
+            // Thêm dịch vụ Identity và cấu hình liên quan đến xác thực
+            builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+            {
+                options.SignIn.RequireConfirmedEmail = true; // Yêu cầu xác thực email
+                options.Password.RequireDigit = false;
+                options.Password.RequiredLength = 6;
+                options.Tokens.EmailConfirmationTokenProvider = "emailconfirmation";
+            })
+            .AddEntityFrameworkStores<FurnitureShopContext>()  // Sử dụng Entity Framework để lưu trữ thông tin Identity
+            .AddDefaultTokenProviders();
+
+            // Cấu hình thời hạn cho token xác thực email
+            builder.Services.Configure<DataProtectionTokenProviderOptions>(opt =>
+                opt.TokenLifespan = TimeSpan.FromMinutes(10));
+
+            
+
+            // Cấu hình dịch vụ gửi email
+            builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
+            builder.Services.AddTransient<IEmailSender, EmailSender>();
+
+            // Tạo ứng dụng từ builder
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
+            // Cấu hình Middleware cho HTTP request pipeline
             if (!app.Environment.IsDevelopment())
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
+                app.UseHsts();  // HSTS cho môi trường sản xuất
             }
+            app.UseHttpsRedirection();  // Chuyển hướng HTTP sang HTTPS
+            app.UseStaticFiles();       // Cung cấp các tệp tĩnh
 
-            app.UseHttpsRedirection();
-            app.UseStaticFiles();
+            app.UseRouting();           // Cấu hình routing
+            app.UseSession();           // Sử dụng session
+            app.UseAuthentication();    // Sử dụng xác thực
+            app.UseAuthorization();     // Sử dụng phân quyền
 
-            app.UseRouting();
-
-            app.UseAuthorization();
-            app.UseSession();
+            // Định tuyến cho các controller và areas
             app.MapControllerRoute(
-                  name: "areas",
-                  pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
-                );
+                name: "areas",
+                pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+            );
 
+            // Định tuyến mặc định cho controller
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
 
-
-
+            // Chạy ứng dụng
             app.Run();
         }
     }

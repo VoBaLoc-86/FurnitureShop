@@ -35,7 +35,7 @@ namespace FurnitureShop.Areas.Admin.Controllers
             }
 
             var adminuser = _context.AdminUsers
-                                    .Where(p => p.Username.Contains(query))
+                                    .Where(p => p.Name.Contains(query))
                                     .ToList();
 
             return View("Index", adminuser); // Trả về view Index với danh sách sản phẩm
@@ -75,7 +75,7 @@ namespace FurnitureShop.Areas.Admin.Controllers
             {
                 // Kiểm tra xem Username đã tồn tại trong cơ sở dữ liệu chưa
                 var existingUser = await _context.AdminUsers
-                    .Where(u => u.Username == adminUser.Username)
+                    .Where(u => u.Name == adminUser.Name)
                     .FirstOrDefaultAsync();
 
                 if (existingUser != null)
@@ -89,8 +89,8 @@ namespace FurnitureShop.Areas.Admin.Controllers
                 var userInfo = HttpContext.Session.Get<AdminUser>("userInfo");
                 if (userInfo != null)
                 {
-                    adminUser.CreatedBy = userInfo.Username;
-                    adminUser.UpdatedBy = userInfo.Username;
+                    adminUser.CreatedBy = userInfo.Name;
+                    adminUser.UpdatedBy = userInfo.Name;
                 }
 
                 // Thêm AdminUser vào cơ sở dữ liệu
@@ -148,7 +148,7 @@ namespace FurnitureShop.Areas.Admin.Controllers
 
                     // Kiểm tra xem Username mới có trùng với Username của người dùng khác không
                     var existingUserWithSameUsername = await _context.AdminUsers
-                        .Where(u => u.Username == adminUser.Username && u.USE_ID != adminUser.USE_ID)
+                        .Where(u => u.Name == adminUser.Name && u.USE_ID != adminUser.USE_ID)
                         .FirstOrDefaultAsync();
 
                     if (existingUserWithSameUsername != null)
@@ -159,7 +159,7 @@ namespace FurnitureShop.Areas.Admin.Controllers
                     }
 
                     // Cập nhật các trường cần thiết
-                    existingAdminUser.Username = adminUser.Username;
+                    existingAdminUser.Name = adminUser.Name;
                     existingAdminUser.Password = adminUser.Password;
                     existingAdminUser.DisplayName = adminUser.DisplayName;
                     existingAdminUser.Email = adminUser.Email;
@@ -169,7 +169,7 @@ namespace FurnitureShop.Areas.Admin.Controllers
                     var userInfo = HttpContext.Session.Get<AdminUser>("userInfo");
                     if (userInfo != null)
                     {
-                        existingAdminUser.UpdatedBy = userInfo.Username;
+                        existingAdminUser.UpdatedBy = userInfo.Name;
                     }
                     existingAdminUser.UpdatedDate = DateTime.Now;
 

@@ -80,7 +80,7 @@ namespace FurnitureShop.Areas.Admin.Controllers
                 var userInfo = HttpContext.Session.Get<AdminUser>("userInfo");
                 if (userInfo != null)
                 {
-                    review.CreatedBy = review.UpdatedBy = userInfo.Username;
+                    review.CreatedBy = review.UpdatedBy = userInfo.Name;
                 }
                 _context.Add(review);
                 await _context.SaveChangesAsync();
@@ -143,7 +143,7 @@ namespace FurnitureShop.Areas.Admin.Controllers
                     var userInfo = HttpContext.Session.Get<AdminUser>("userInfo");
                     if (userInfo != null)
                     {
-                        existingReview.UpdatedBy = userInfo.Username;
+                        existingReview.UpdatedBy = userInfo.Name;
                     }
                     existingReview.UpdatedDate = DateTime.Now;
 

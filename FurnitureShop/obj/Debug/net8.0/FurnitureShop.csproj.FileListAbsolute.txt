@@ -1367,3 +1367,12 @@ D:\GitProject\FurnitureShop\FurnitureShop\obj\Debug\net8.0\refint\FurnitureShop.
 D:\GitProject\FurnitureShop\FurnitureShop\obj\Debug\net8.0\FurnitureShop.pdb
 D:\GitProject\FurnitureShop\FurnitureShop\obj\Debug\net8.0\FurnitureShop.genruntimeconfig.cache
 D:\GitProject\FurnitureShop\FurnitureShop\obj\Debug\net8.0\ref\FurnitureShop.dll
+D:\GitProject\FurnitureShop\FurnitureShop\bin\Debug\net8.0\BCrypt.Net-Next.dll
+D:\GitProject\FurnitureShop\FurnitureShop\bin\Debug\net8.0\BouncyCastle.Cryptography.dll
+D:\GitProject\FurnitureShop\FurnitureShop\bin\Debug\net8.0\MailKit.dll
+D:\GitProject\FurnitureShop\FurnitureShop\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+D:\GitProject\FurnitureShop\FurnitureShop\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.UI.dll
+D:\GitProject\FurnitureShop\FurnitureShop\bin\Debug\net8.0\MimeKit.dll
+D:\GitProject\FurnitureShop\FurnitureShop\bin\Debug\net8.0\System.Security.Cryptography.Pkcs.dll
+D:\GitProject\FurnitureShop\FurnitureShop\bin\Debug\net8.0\runtimes\win\lib\net8.0\System.Security.Cryptography.Pkcs.dll
+D:\GitProject\FurnitureShop\FurnitureShop\obj\Debug\net8.0\FurnitureShop.MvcApplicationPartsAssemblyInfo.cs

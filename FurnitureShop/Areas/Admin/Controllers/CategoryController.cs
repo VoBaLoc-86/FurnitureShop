@@ -88,7 +88,7 @@ namespace FurnitureShop.Areas.Admin.Controllers
                 var userInfo = HttpContext.Session.Get<AdminUser>("userInfo");
                 if (userInfo != null)
                 {
-                    category.CreatedBy = category.UpdatedBy = userInfo.Username;
+                    category.CreatedBy = category.UpdatedBy = userInfo.Name;
                 }
 
                 // Thêm Category vào cơ sở dữ liệu
@@ -162,7 +162,7 @@ namespace FurnitureShop.Areas.Admin.Controllers
                     var userInfo = HttpContext.Session.Get<AdminUser>("userInfo");
                     if (userInfo != null)
                     {
-                        existingCategory.UpdatedBy = userInfo.Username;
+                        existingCategory.UpdatedBy = userInfo.Name;
                     }
                     existingCategory.UpdatedDate = DateTime.Now;
 

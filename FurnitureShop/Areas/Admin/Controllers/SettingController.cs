@@ -88,7 +88,7 @@ namespace FurnitureShop.Areas.Admin.Controllers
             var userInfo = HttpContext.Session.Get<AdminUser>("userInfo");
             if (userInfo != null)
             {
-                setting.CreatedBy = setting.UpdatedBy = userInfo.Username;
+                setting.CreatedBy = setting.UpdatedBy = userInfo.Name;
             }
 
             // Thêm setting mới vào database
@@ -164,7 +164,7 @@ namespace FurnitureShop.Areas.Admin.Controllers
                 var userInfo = HttpContext.Session.Get<AdminUser>("userInfo");
                 if (userInfo != null)
                 {
-                    existingSetting.UpdatedBy = userInfo.Username;
+                    existingSetting.UpdatedBy = userInfo.Name;
                 }
                 existingSetting.UpdatedDate = DateTime.Now;
 

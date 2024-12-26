@@ -20,7 +20,7 @@ namespace FurnitureShop.Areas.Admin.Controllers
             var login = Request.Cookies.Get<LoginDTO>("UserCrential");
             if (login != null)
             {
-                var result = await _context.AdminUsers!.AsNoTracking().FirstOrDefaultAsync(x => x.Username == login.UserName && x.Password == login.Password);
+                var result = await _context.AdminUsers!.AsNoTracking().FirstOrDefaultAsync(x => x.Name == login.Name && x.Password == login.Password);
                 if (result != null)
                 {
                     HttpContext.Session.Set<AdminUser>("userInfo", result);
@@ -33,7 +33,7 @@ namespace FurnitureShop.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginDTO login)
         {
-            var result = await _context.AdminUsers!.AsNoTracking().FirstOrDefaultAsync(x => x.Username == login.UserName && x.Password == login.Password);
+            var result = await _context.AdminUsers!.AsNoTracking().FirstOrDefaultAsync(x => x.Name == login.Name && x.Password == login.Password);
             if (result != null)
             {
                 if (login.RememberMe)

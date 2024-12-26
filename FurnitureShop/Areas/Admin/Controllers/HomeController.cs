@@ -29,8 +29,7 @@ namespace FurnitureShop.Areas.Admin.Controllers
 
             return View();
         }
-        [HttpGet]
-        [HttpGet]
+       
         [HttpGet]
         public IActionResult Search(string query, string category)
         {

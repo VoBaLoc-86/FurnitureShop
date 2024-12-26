@@ -1,8 +1,8 @@
-﻿@model FurnitureShop.Models.Product;
+﻿@model FurnitureShop.Models.Product
 @{
     ViewData["Title"] = "Product Detail";
-
 }
+
 <div class="untree_co-section product-detail-section">
     <div class="container">
         <div class="row">
@@ -11,7 +11,7 @@
                 <div class="product-image">
                     <img src="~/data/products/@Model.Image"
                          alt="Product Image"
-                         class="~/img-fluid rounded" style="width:477px;height:477px"/>
+                         class="~/img-fluid rounded" style="width:477px;height:477px" />
                 </div>
             </div>
 
@@ -33,6 +33,7 @@
                                    value="1"
                                    min="1" />
                         </div>
+
                         <div class="col-auto">
                             <button type="submit" class="btn btn-primary">
                                 Add to Cart
@@ -40,7 +41,7 @@
                         </div>
                     </div>
                 </form>
-
+                <p>Số lượng tồn: @Model.Stock</p>
                 <ul class="list-unstyled">
                     <li><strong>Category:</strong> @Model.Category!.Name</li>
                 </ul>
@@ -49,12 +50,46 @@
     </div>
 </div>
 
+<div class="untree_co-section reviews-section">
+    <div class="container">
+        <h3 class="mb-4">Customer Reviews</h3>
+
+        <!-- List Reviews -->
+        @if (Model.Reviews != null && Model.Reviews.Any())
+        {
+            foreach (var review in Model.Reviews)
+            {
+                <div class="review mb-3 p-3 border rounded">
+                    <p><strong>@review.User.Name</strong> - <small>@review.CreatedDate.ToShortDateString()</small></p>
+                    <p>@Html.Raw(review.Comment)</p>
+                </div>
+            }
+        }
+        else
+        {
+            <p>No reviews yet. Be the first to leave a review!</p>
+        }
+
+
+        <!-- Add Review -->
+        <h4 class="mt-5">Add a Review</h4>
+        <form asp-action="AddReview" asp-route-id="@Model.Id" method="post">
+            <div class="mb-3">
+                <label for="reviewContent" class="form-label">Your Review</label>
+                <textarea id="reviewContent" name="Content" class="form-control" rows="4" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit Review</button>
+        </form>
+    </div>
+</div>
+
 <div class="untree_co-section related-products-section">
     <div class="container">
         <h3 class="mb-5">Related Products</h3>
         <div class="row">
             <!-- Product Card -->
-            @foreach (var item in ViewData["relatedproducts"] as List<Product> ?? []){
+            @foreach (var item in ViewData["relatedproducts"] as List<Product> ?? [])
+            {
                 <div class="col-12 col-md-4 col-lg-3 mb-5">
                     <a class="product-item" asp-action="Details" asp-route-id="@item.Id">
                         <img src="~/data/products/@item.Image"
@@ -63,9 +98,7 @@
                         <strong class="product-price">$@item.Price</strong>
                     </a>
                 </div>
-                }
-            
-            
+            }
         </div>
     </div>
 </div>

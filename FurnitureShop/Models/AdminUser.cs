@@ -8,7 +8,7 @@ namespace FurnitureShop.Models
         public int USE_ID { get; set; }
 
         [Required(ErrorMessage = "Username is required.")]
-        public required string Username { get; set; }
+        public required string Name { get; set; }
 
         [Required(ErrorMessage = "Password is required.")]
         [StringLength(100, MinimumLength = 6, ErrorMessage = "Password must be at least 6 characters.")]

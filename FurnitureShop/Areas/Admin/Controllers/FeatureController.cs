@@ -97,8 +97,8 @@ namespace FurnitureShop.Areas.Admin.Controllers
                 Subtitle = request.Subtitle,
                 DisplayOrder = request.DisplayOrder,
                 Icon = newImageFileName, // Gán giá trị đã xử lý
-                CreatedBy = HttpContext.Session.Get<AdminUser>("userInfo")?.Username,
-                UpdatedBy = HttpContext.Session.Get<AdminUser>("userInfo")?.Username
+                CreatedBy = HttpContext.Session.Get<AdminUser>("userInfo")?.Name,
+                UpdatedBy = HttpContext.Session.Get<AdminUser>("userInfo")?.Name
             };
 
             _context.Add(feature);
@@ -141,7 +141,7 @@ namespace FurnitureShop.Areas.Admin.Controllers
                 var userInfo = HttpContext.Session.Get<AdminUser>("userInfo");
                 if (userInfo != null)
                 {
-                    Username = userInfo.Username;
+                    Username = userInfo.Name;
                 }
                 try
                 {

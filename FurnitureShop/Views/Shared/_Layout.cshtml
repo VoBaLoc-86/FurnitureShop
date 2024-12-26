@@ -1,4 +1,16 @@
-﻿
+﻿@using FurnitureShop.Models
+@using System.Text.Json
+
+@{
+	var userInfoString = Context.Session.GetString("userInfo"); // Lấy chuỗi JSON từ session
+	User? userInfo = null; // Đảm bảo User là nullable (User? thay vì User)
+
+	if (!string.IsNullOrEmpty(userInfoString))
+	{
+		userInfo = JsonSerializer.Deserialize<User>(userInfoString); // Chuyển chuỗi JSON thành đối tượng User
+	}
+}
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -6,46 +18,65 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta name="author" content="Untree.co">
 	<link rel="shortcut icon" href="favicon.png">
-
 	<meta name="description" content="" />
 	<meta name="keywords" content="bootstrap, bootstrap4" />
-
 	<!-- Bootstrap CSS -->
 	<link href="~/css/bootstrap.min.css" rel="stylesheet">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 	<link href="~/css/tiny-slider.css" rel="stylesheet">
 	<link href="~/css/style.css" rel="stylesheet">
 	@await RenderSectionAsync("Header", required: false)
-	<title> @ViewData["Title"] Furniture - Website</title>
+	<title>@ViewData["Title"] Furniture - Website</title>
 </head>
-
 <body>
-
 	<!-- Start Header/Navigation -->
-	<nav class="custom-navbar navbar navbar navbar-expand-md navbar-dark bg-dark" arial-label="Furni navigation bar">
-
+	<nav class="custom-navbar navbar navbar-expand-md navbar-dark bg-dark" aria-label="Furni navigation bar">
 		<div class="container">
-			<a class="navbar-brand" asp-action="Index" asp-controller="Home">Furni<span>.</span></a>
-
+			<a class="navbar-brand" asp-action="Index" asp-controller="Home">
+				Furni<span>.</span>
+			</a>
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsFurni" aria-controls="navbarsFurni" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
-
 			<div class="collapse navbar-collapse" id="navbarsFurni">
 				<ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
-					<li>
-						<a class="nav-link" asp-action="Index" asp-controller="Home">Home</a>
-					</li>
+					<li><a class="nav-link" asp-action="Index" asp-controller="Home">Home</a></li>
 					<li><a class="nav-link" asp-action="Index" asp-controller="Shop">Shop</a></li>
 					<li><a class="nav-link" asp-action="About" asp-controller="Home">About us</a></li>
 					<li><a class="nav-link" asp-action="Services" asp-controller="Home">Services</a></li>
 					<li><a class="nav-link" asp-action="Contact" asp-controller="Home">Contact us</a></li>
 				</ul>
-
 				<ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
-					<li><a class="nav-link" href="#"><img src="~/images/user.svg"></a></li>
-					<li><a class="nav-link" asp-action="Index" asp-controller="Cart"><img src="~/images/cart.svg"></a></li>
+					@if (userInfo != null)
+					{
+						<!-- Khi đã đăng nhập -->
+						<li>
+							<a class="nav-link" asp-action="Profile" asp-controller="User">
+								@userInfo.Name
+							</a>
+						</li>
+						<li>
+							<form method="post" asp-action="Logout" asp-controller="Home">
+								<button type="submit" class="btn btn-link nav-link text-decoration-none">
+									Logout
+								</button>
+							</form>
+						</li>
+						<li>
+							<a class="nav-link" asp-action="Index" asp-controller="Cart">
+								<img src="~/images/cart.svg" alt="Cart" class="img-fluid" style="width: 20px;">
+							</a>
+						</li>
+					}
+					else
+					{
+						<!-- Khi chưa đăng nhập -->
+						<li><a class="nav-link" asp-action="Login" asp-controller="Home">Login</a></li>
+						<li><a class="nav-link" asp-action="Register" asp-controller="Home">Register</a></li>
+					}
 				</ul>
+
+
 			</div>
 		</div>
 
@@ -54,6 +85,8 @@
 	<!-- Start Product Section -->
 	@RenderBody()
 	<!-- Start Footer Section -->
+	
+
 	<footer class="footer-section">
 		<div class="container relative">
 

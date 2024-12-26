@@ -50,6 +50,7 @@ namespace FurnitureShop.Controllers
             var product = await _context.Products
                             .AsNoTracking()
                             .Include(p => p.Category)
+                            .Include(p=>p.Reviews).ThenInclude(r => r.User)
                             .FirstOrDefaultAsync(p => p.Id == Id);
             ViewData["categories"] = await _context.Categories
                                     .AsNoTracking()
