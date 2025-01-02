@@ -8,7 +8,7 @@ namespace FurnitureShop.Models
         [Key]
         public int FEA_ID { get; set; }
         
-        public required string Icon { get; set; }
+        public string? Icon { get; set; }
 
         [Required(ErrorMessage = "Title is required.")]
         [StringLength(100, ErrorMessage = "Title must not exceed 100 characters.")]

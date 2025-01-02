@@ -2,7 +2,8 @@
 
 namespace FurnitureShop.Models
 {
-    public class Order_Detail:BaseModel
+    [Table("Order_Details")]
+    public class Order_Detail
     {
         public int Id { get; set; }
         public int Order_id { get; set; }

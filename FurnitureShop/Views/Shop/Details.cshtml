@@ -1,6 +1,7 @@
 ﻿@model FurnitureShop.Models.Product
 @{
     ViewData["Title"] = "Product Detail";
+    var userInfo = Context.Session.GetString("userInfo");
 }
 
 <div class="untree_co-section product-detail-section">
@@ -11,7 +12,7 @@
                 <div class="product-image">
                     <img src="~/data/products/@Model.Image"
                          alt="Product Image"
-                         class="~/img-fluid rounded" style="width:477px;height:477px" />
+                         class="img-fluid rounded" style="width:477px;height:477px" />
                 </div>
             </div>
 
@@ -23,19 +24,26 @@
                     @Html.Raw(Model.Description)
                 </p>
 
-                <form action="#" class="mb-4">
+                @if (string.IsNullOrEmpty(userInfo))
+                {
+                    <p class="alert alert-warning">Please log in to add items to your cart.</p>
+                }
+
+                <form id="addToCartForm" class="mb-4" method="post" action="@Url.Action("AddToCart", "Shop")">
+                    <input type="hidden" name="productId" value="@Model.Id" />
                     <div class="row align-items-center">
                         <div class="col-auto">
                             <label for="quantity" class="form-label">Quantity</label>
                             <input type="number"
                                    id="quantity"
+                                   name="quantity"
                                    class="form-control"
                                    value="1"
-                                   min="1" />
+                                   min="1" @(string.IsNullOrEmpty(userInfo) ? "disabled" : "") />
                         </div>
 
                         <div class="col-auto">
-                            <button type="submit" class="btn btn-primary">
+                            <button type="submit" class="btn btn-primary" @(string.IsNullOrEmpty(userInfo) ? "disabled" : "")>
                                 Add to Cart
                             </button>
                         </div>
@@ -46,59 +54,6 @@
                     <li><strong>Category:</strong> @Model.Category!.Name</li>
                 </ul>
             </div>
-        </div>
-    </div>
-</div>
-
-<div class="untree_co-section reviews-section">
-    <div class="container">
-        <h3 class="mb-4">Customer Reviews</h3>
-
-        <!-- List Reviews -->
-        @if (Model.Reviews != null && Model.Reviews.Any())
-        {
-            foreach (var review in Model.Reviews)
-            {
-                <div class="review mb-3 p-3 border rounded">
-                    <p><strong>@review.User.Name</strong> - <small>@review.CreatedDate.ToShortDateString()</small></p>
-                    <p>@Html.Raw(review.Comment)</p>
-                </div>
-            }
-        }
-        else
-        {
-            <p>No reviews yet. Be the first to leave a review!</p>
-        }
-
-
-        <!-- Add Review -->
-        <h4 class="mt-5">Add a Review</h4>
-        <form asp-action="AddReview" asp-route-id="@Model.Id" method="post">
-            <div class="mb-3">
-                <label for="reviewContent" class="form-label">Your Review</label>
-                <textarea id="reviewContent" name="Content" class="form-control" rows="4" required></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">Submit Review</button>
-        </form>
-    </div>
-</div>
-
-<div class="untree_co-section related-products-section">
-    <div class="container">
-        <h3 class="mb-5">Related Products</h3>
-        <div class="row">
-            <!-- Product Card -->
-            @foreach (var item in ViewData["relatedproducts"] as List<Product> ?? [])
-            {
-                <div class="col-12 col-md-4 col-lg-3 mb-5">
-                    <a class="product-item" asp-action="Details" asp-route-id="@item.Id">
-                        <img src="~/data/products/@item.Image"
-                             class="img-fluid product-thumbnail" style="width:306px;height:306px" />
-                        <h3 class="product-title">@item.Name</h3>
-                        <strong class="product-price">$@item.Price</strong>
-                    </a>
-                </div>
-            }
         </div>
     </div>
 </div>

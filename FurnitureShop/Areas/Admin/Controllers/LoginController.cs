@@ -23,7 +23,7 @@ namespace FurnitureShop.Areas.Admin.Controllers
                 var result = await _context.AdminUsers!.AsNoTracking().FirstOrDefaultAsync(x => x.Name == login.Name && x.Password == login.Password);
                 if (result != null)
                 {
-                    HttpContext.Session.Set<AdminUser>("userInfo", result);
+                    HttpContext.Session.Set<AdminUser>("adminInfo", result);
                     return RedirectToAction("Index", "Home");
                 }
             }
@@ -45,7 +45,7 @@ namespace FurnitureShop.Areas.Admin.Controllers
                         IsEssential = true
                     });
                 }
-                HttpContext.Session.Set<AdminUser>("userInfo", result);
+                HttpContext.Session.Set<AdminUser>("adminInfo", result);
                 return RedirectToAction("Index", "Home");
             }
             else

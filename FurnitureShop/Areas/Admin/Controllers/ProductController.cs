@@ -110,7 +110,7 @@ namespace FurnitureShop.Areas.Admin.Controllers
             };
 
             // Ghi nhận thông tin người tạo từ session
-            var userInfo = HttpContext.Session.Get<AdminUser>("userInfo");
+            var userInfo = HttpContext.Session.Get<AdminUser>("adminInfo");
             if (userInfo != null)
             {
                 product.CreatedBy = product.UpdatedBy = userInfo.Name;
@@ -139,14 +139,6 @@ namespace FurnitureShop.Areas.Admin.Controllers
             // Chuyển hướng về trang Index
             return RedirectToAction(nameof(Index));
         }
-
-
-
-
-
-
-
-
         // GET: Admin/Product/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -179,7 +171,7 @@ namespace FurnitureShop.Areas.Admin.Controllers
             string Username = "";
             if (ModelState.IsValid)
             {
-                var userInfo = HttpContext.Session.Get<AdminUser>("userInfo");
+                var userInfo = HttpContext.Session.Get<AdminUser>("adminInfo");
                 if (userInfo != null)
                 {
                     Username = userInfo.Name;

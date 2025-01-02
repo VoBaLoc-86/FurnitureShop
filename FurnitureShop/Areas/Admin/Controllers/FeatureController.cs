@@ -76,7 +76,11 @@ namespace FurnitureShop.Areas.Admin.Controllers
             {
                 return View(request);
             }
-
+            if (request.Icon == null)
+            {
+                TempData["ErrorMessage"] = "Hình ảnh là bắt buộc. Vui lòng tải lên một ảnh.";
+                return View();
+            }
             string newImageFileName = "default-icon.png"; // Giá trị mặc định
 
             if (request.Icon != null && request.Icon.Length > 0)
@@ -97,8 +101,8 @@ namespace FurnitureShop.Areas.Admin.Controllers
                 Subtitle = request.Subtitle,
                 DisplayOrder = request.DisplayOrder,
                 Icon = newImageFileName, // Gán giá trị đã xử lý
-                CreatedBy = HttpContext.Session.Get<AdminUser>("userInfo")?.Name,
-                UpdatedBy = HttpContext.Session.Get<AdminUser>("userInfo")?.Name
+                CreatedBy = HttpContext.Session.Get<AdminUser>("adminInfo")?.Name,
+                UpdatedBy = HttpContext.Session.Get<AdminUser>("adminInfo")?.Name
             };
 
             _context.Add(feature);
@@ -138,7 +142,7 @@ namespace FurnitureShop.Areas.Admin.Controllers
             string Username = "";
             if (ModelState.IsValid)
             {
-                var userInfo = HttpContext.Session.Get<AdminUser>("userInfo");
+                var userInfo = HttpContext.Session.Get<AdminUser>("adminInfo");
                 if (userInfo != null)
                 {
                     Username = userInfo.Name;

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FurnitureShop.Models;
+using FurnitureShop.Utils;
 
 namespace FurnitureShop.Areas.Admin.Controllers
 {
@@ -20,23 +21,29 @@ namespace FurnitureShop.Areas.Admin.Controllers
         }
 
         // GET: Admin/Order
+        
         public async Task<IActionResult> Index()
         {
-            var furnitureShopContext = _context.Orders.Include(o => o.User);
-            return View(await furnitureShopContext.ToListAsync());
+            var orders = await _context.Orders
+                .Include(o => o.User)
+                .ToListAsync();
+            return View(orders);
         }
 
         // GET: Admin/Order/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null)
+            if (id == null || _context.Orders == null)
             {
                 return NotFound();
             }
 
             var order = await _context.Orders
                 .Include(o => o.User)
+                .Include(o => o.Order_Details)  // Chú ý là `Order_Details` với dấu gạch dưới
+                    .ThenInclude(od => od.Product)
                 .FirstOrDefaultAsync(m => m.Id == id);
+
             if (order == null)
             {
                 return NotFound();
@@ -44,6 +51,8 @@ namespace FurnitureShop.Areas.Admin.Controllers
 
             return View(order);
         }
+
+
 
         // GET: Admin/Order/Create
         public IActionResult Create()
@@ -68,6 +77,9 @@ namespace FurnitureShop.Areas.Admin.Controllers
             ViewData["User_id"] = new SelectList(_context.Users, "Id", "Address", order.User_id);
             return View(order);
         }
+
+
+
 
         // GET: Admin/Order/Edit/5
         public async Task<IActionResult> Edit(int? id)

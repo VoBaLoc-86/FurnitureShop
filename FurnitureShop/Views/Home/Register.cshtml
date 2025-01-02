@@ -1,24 +1,73 @@
 ﻿@model FurnitureShop.Models.User
 
-<form asp-action="Register" method="post" asp-controller="Home">
-    <div>
-        <label asp-for="Name"></label>
-        <input asp-for="Name" class="form-control" />
-        <span asp-validation-for="Name" class="text-danger"></span>
-    </div>
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white text-center">
+                    <h3 class="mb-0">Register</h3>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Register" method="post" asp-controller="Home">
+                        <!-- Tên người dùng -->
+                        <div class="mb-3">
+                            <label asp-for="Name" class="form-label fw-semibold">Full Name</label>
+                            <input asp-for="Name" class="form-control" placeholder="Enter your full name" />
+                            <span asp-validation-for="Name" class="text-danger small"></span>
+                        </div>
 
-    <div>
-        <label asp-for="Email"></label>
-        <input asp-for="Email" class="form-control" />
-        <span asp-validation-for="Email" class="text-danger"></span>
-        <!-- Lỗi nếu email đã tồn tại sẽ hiển thị ở đây -->
-    </div>
+                        <!-- Email -->
+                        <div class="mb-3">
+                            <label asp-for="Email" class="form-label fw-semibold">Email Address</label>
+                            <input asp-for="Email" class="form-control" placeholder="Enter your email" />
+                            <span asp-validation-for="Email" class="text-danger small"></span>
+                        </div>
 
-    <div>
-        <label asp-for="Password"></label>
-        <input asp-for="Password" type="password" class="form-control" />
-        <span asp-validation-for="Password" class="text-danger"></span>
-    </div>
+                        <!-- Mật khẩu -->
+                        <div class="mb-3">
+                            <label asp-for="Password" class="form-label fw-semibold">Password</label>
+                            <input asp-for="Password" type="password" class="form-control" placeholder="Enter your password" />
+                            <span asp-validation-for="Password" class="text-danger small"></span>
+                        </div>
 
-    <button type="submit" class="btn btn-primary">Register</button>
-</form>
+                        <!-- Nút đăng ký -->
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary">Register</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer text-center">
+                    <small>Already have an account? <a href="/Home/Login" class="text-primary">Login here</a></small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Header {
+    <style>
+        .form-label {
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .card {
+            border-radius: 8px;
+        }
+
+        .card-header {
+            border-bottom: 0;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .btn-primary {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+
+            .btn-primary:hover {
+                background-color: #004094;
+                border-color: #004094;
+            }
+    </style>
+};

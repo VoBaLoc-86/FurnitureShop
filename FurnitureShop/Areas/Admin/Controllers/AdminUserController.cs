@@ -86,7 +86,7 @@ namespace FurnitureShop.Areas.Admin.Controllers
                 }
 
                 // Lấy thông tin người dùng hiện tại từ session
-                var userInfo = HttpContext.Session.Get<AdminUser>("userInfo");
+                var userInfo = HttpContext.Session.Get<AdminUser>("adminInfo");
                 if (userInfo != null)
                 {
                     adminUser.CreatedBy = userInfo.Name;
@@ -166,7 +166,7 @@ namespace FurnitureShop.Areas.Admin.Controllers
                     existingAdminUser.Phone = adminUser.Phone;
 
                     // Ghi nhận người chỉnh sửa và thời gian chỉnh sửa
-                    var userInfo = HttpContext.Session.Get<AdminUser>("userInfo");
+                    var userInfo = HttpContext.Session.Get<AdminUser>("adminInfo");
                     if (userInfo != null)
                     {
                         existingAdminUser.UpdatedBy = userInfo.Name;
@@ -238,7 +238,7 @@ namespace FurnitureShop.Areas.Admin.Controllers
         public async Task<IActionResult> Profile()
         {
             // Lấy thông tin user từ session
-            var userInfo = HttpContext.Session.Get<AdminUser>("userInfo");
+            var userInfo = HttpContext.Session.Get<AdminUser>("adminInfo");
             if (userInfo == null)
             {
                 return RedirectToAction("Login", "Auth"); // Redirect đến trang đăng nhập nếu user chưa đăng nhập

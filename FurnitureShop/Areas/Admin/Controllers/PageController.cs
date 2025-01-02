@@ -69,6 +69,11 @@ namespace FurnitureShop.Areas.Admin.Controllers
                 return View(request); // Quay lại trang Create và giữ các giá trị đã nhập
             }
 
+            if (request.Image == null)
+            {
+                TempData["ErrorMessage"] = "Hình ảnh là bắt buộc. Vui lòng tải lên một ảnh.";
+                return View();
+            }
             // Khởi tạo đối tượng product từ request
             var page = new Page()
             {
@@ -78,7 +83,7 @@ namespace FurnitureShop.Areas.Admin.Controllers
             };
 
             // Ghi nhận thông tin người tạo từ session
-            var userInfo = HttpContext.Session.Get<AdminUser>("userInfo");
+            var userInfo = HttpContext.Session.Get<AdminUser>("adminInfo");
             if (userInfo != null)
             {
                 page.CreatedBy = page.UpdatedBy = userInfo.Name;
@@ -141,7 +146,7 @@ namespace FurnitureShop.Areas.Admin.Controllers
             string Username = "";
             if (ModelState.IsValid)
             {
-                var userInfo = HttpContext.Session.Get<AdminUser>("userInfo");
+                var userInfo = HttpContext.Session.Get<AdminUser>("adminInfo");
                 if (userInfo != null)
                 {
                     Username = userInfo.Name;

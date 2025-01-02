@@ -95,7 +95,7 @@ CREATE TABLE [Orders] (
     [Id] INT IDENTITY(1,1) PRIMARY KEY,
     [User_id] INT NOT NULL,
     [Total_price] DECIMAL(10, 2) NOT NULL,
-    [Status] INT NOT NULL,
+    [Status] NVARCHAR NOT NULL,
 	[Shipping_address] NVARCHAR(255) NOT NULL,
 	[Payment_status] NVARCHAR(255) NOT NULL,
     [CreatedDate] DATETIME NOT NULL DEFAULT GETDATE(),
@@ -112,10 +112,6 @@ CREATE TABLE [Order_Details] (
     [Product_id] INT NOT NULL,
     [Quantity] INT NOT NULL,
     [Price] DECIMAL(10, 2) NOT NULL,
-    [CreatedDate] DATETIME NOT NULL DEFAULT GETDATE(),
-    [CreatedBy] NVARCHAR(255) NOT NULL,
-    [UpdatedDate] DATETIME NULL,
-    [UpdatedBy] NVARCHAR(255) NULL,
     FOREIGN KEY ([Order_id]) REFERENCES [Orders]([Id]),
     FOREIGN KEY ([Product_id]) REFERENCES [Products]([Id])
 );

@@ -1,4 +1,5 @@
 ﻿using FurnitureShop.Models;
+using FurnitureShop.Utils;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -61,6 +62,46 @@ namespace FurnitureShop.Controllers
                                             .Where(p => p.Category == product!.Category && p.Id != product.Id)
                                             .ToListAsync();
             return View(product);
+        }
+        public IActionResult AddToCart(int productId, int quantity)
+        {
+            // Lấy thông tin sản phẩm từ cơ sở dữ liệu (Model)
+            var product = _context.Products.FirstOrDefault(p => p.Id == productId);
+
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            // Lấy giỏ hàng từ Session
+            var cart = HttpContext.Session.Get<List<CartItem>>("cart") ?? new List<CartItem>();
+
+            // Kiểm tra xem sản phẩm đã có trong giỏ hàng chưa
+            var existingItem = cart.FirstOrDefault(item => item.Id == productId);
+
+            if (existingItem != null)
+            {
+                // Nếu sản phẩm đã có, cập nhật số lượng
+                existingItem.Quantity += quantity;
+            }
+            else
+            {
+                // Nếu chưa có, thêm sản phẩm vào giỏ hàng
+                cart.Add(new CartItem
+                {
+                    Id = productId,
+                    Name = product.Name,
+                    Price = product.Price,
+                    Quantity = quantity,
+                    Image = product.Image
+                });
+            }
+
+            // Lưu giỏ hàng vào Session
+            HttpContext.Session.Set("cart", cart);
+
+            // Chuyển hướng về trang giỏ hàng hoặc thông báo thành công
+            return RedirectToAction("Index", "Cart");
         }
     }
 }

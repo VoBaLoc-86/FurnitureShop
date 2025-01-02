@@ -7,10 +7,10 @@ namespace FurnitureShop.Models
         public int Id { get; set; }
         public int User_id { get; set; }
         public decimal Total_price { get; set; }
-        public int Status { get; set; }
+        public string? Status { get; set; }
 
         public required string Shipping_address { get; set; }
-
+        public string? Phone { get; set; }
         public required string Payment_status { get; set; }
 
         

@@ -85,7 +85,7 @@ namespace FurnitureShop.Areas.Admin.Controllers
             }
 
             // Gắn thông tin người tạo/cập nhật
-            var userInfo = HttpContext.Session.Get<AdminUser>("userInfo");
+            var userInfo = HttpContext.Session.Get<AdminUser>("adminInfo");
             if (userInfo != null)
             {
                 setting.CreatedBy = setting.UpdatedBy = userInfo.Name;
@@ -161,7 +161,7 @@ namespace FurnitureShop.Areas.Admin.Controllers
                 existingSetting.Value = setting.Value;
 
                 // Ghi nhận người chỉnh sửa và thời gian chỉnh sửa
-                var userInfo = HttpContext.Session.Get<AdminUser>("userInfo");
+                var userInfo = HttpContext.Session.Get<AdminUser>("adminInfo");
                 if (userInfo != null)
                 {
                     existingSetting.UpdatedBy = userInfo.Name;

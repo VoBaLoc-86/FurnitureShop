@@ -1,6 +1,6 @@
 ﻿@using FurnitureShop.Utils;
 @{
-    var userInfo = Context.Session.Get<AdminUser>("userInfo"); // Lấy đối tượng AdminUser từ Session
+    var userInfo = Context.Session.Get<AdminUser>("adminInfo"); // Lấy đối tượng AdminUser từ Session
     if (userInfo == null)
     {
         Context.Response.Redirect("/Admin/Login/Index");

@@ -97,6 +97,22 @@
                     </div>
                 </div>
             </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body d-flex align-items-center">
+                        <div class="icon-circle bg-green me-3">
+                            <i class="bi bi-files"></i>
+                        </div>
+                        <div>
+                            <h5 class="card-title mb-1">
+                                <a asp-action="Index" asp-controller="Page" asp-area="Admin">Total Pages</a>
+                            </h5>
+                            <h3>@((ViewData["Pages"] as IEnumerable<dynamic> ?? Enumerable.Empty<dynamic>()).Count())</h3>
+                            <p class="card-text text-muted">Static pages</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="row mb-4">
             <div class="col-md-4">
@@ -148,24 +164,9 @@
                 </div>
             </div>
             </div>
-        <div class="row mb-4">
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-body d-flex align-items-center">
-                    <div class="icon-circle bg-green me-3">
-                        <i class="bi bi-files"></i>
-                    </div>
-                    <div>
-                        <h5 class="card-title mb-1">
-                                <a asp-action="Index" asp-controller="Page" asp-area="Admin">Total Pages</a>
-                            </h5>
-                            <h3>@((ViewData["Pages"] as IEnumerable<dynamic> ?? Enumerable.Empty<dynamic>()).Count())</h3>
-                        <p class="card-text text-muted">Static pages</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </div>
+        
+        
+        
         <!-- Biểu đồ -->
         </div>
 </div>

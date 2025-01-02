@@ -77,7 +77,7 @@ namespace FurnitureShop.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                var userInfo = HttpContext.Session.Get<AdminUser>("userInfo");
+                var userInfo = HttpContext.Session.Get<AdminUser>("adminInfo");
                 if (userInfo != null)
                 {
                     review.CreatedBy = review.UpdatedBy = userInfo.Name;
@@ -140,7 +140,7 @@ namespace FurnitureShop.Areas.Admin.Controllers
 
 
                     // Ghi nhận người chỉnh sửa và thời gian chỉnh sửa
-                    var userInfo = HttpContext.Session.Get<AdminUser>("userInfo");
+                    var userInfo = HttpContext.Session.Get<AdminUser>("adminInfo");
                     if (userInfo != null)
                     {
                         existingReview.UpdatedBy = userInfo.Name;
