@@ -134,6 +134,84 @@ namespace FurnitureShop.Areas.Admin.Controllers
             return View(order);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> UpdateOrderStatus(int id, string status, string paymentStatus)
+        {
+            var order = await _context.Orders
+                .Include(o => o.Order_Details) // Bao gồm Order_Details
+                .ThenInclude(od => od.Product)
+                .Include(o => o.User) // Bao gồm User nếu cần
+                .FirstOrDefaultAsync(o => o.Id == id);
+
+            if (order == null)
+            {
+                return NotFound();
+            }
+            var originalStatus = order.Status;
+            if (originalStatus == "Completed" && status != "Completed")
+            { // Chỉ thay đổi trạng thái thanh toán
+               order.Payment_status = paymentStatus;
+               _context.Update(order); 
+                await _context.SaveChangesAsync(); 
+                return RedirectToAction(nameof(Details), new { id = order.Id }); 
+            }
+            order.Status = status;
+            order.Payment_status = paymentStatus;
+
+
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(order);
+                    await _context.SaveChangesAsync();
+
+                    if (originalStatus != "Completed" && status == "Completed")
+                    {
+                        foreach (var orderDetail in order.Order_Details)
+                        {
+                            // Tìm sản phẩm tương ứng với orderDetail
+                            var product = await _context.Products.FindAsync(orderDetail.Product_id);
+
+                            // Kiểm tra nếu sản phẩm tồn tại
+                            if (product != null)
+                            {
+                                // Giảm số lượng sản phẩm theo số lượng trong đơn hàng
+                                product.Stock -= orderDetail.Quantity;
+
+                                // Đảm bảo số lượng sản phẩm không âm
+                                if (product.Stock < 0)
+                                {
+                                    product.Stock = 0;
+                                }
+
+                                // Cập nhật sản phẩm trong cơ sở dữ liệu
+                                _context.Update(product);
+                            }
+                        }
+                        await _context.SaveChangesAsync();
+                    }
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!OrderExists(order.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Details), new { id = order.Id }); // Chuyển hướng lại trang chi tiết đơn hàng
+            }
+
+            return RedirectToAction(nameof(Details), new { id = order.Id }); // Chuyển hướng lại trang chi tiết đơn hàng
+        }
+
+
         // GET: Admin/Order/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -158,9 +236,11 @@ namespace FurnitureShop.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var order = await _context.Orders.FindAsync(id);
+            var order = await _context.Orders.Include(o => o.Order_Details)
+                                    .FirstOrDefaultAsync(m => m.Id == id);
             if (order != null)
             {
+                _context.OrderDetails.RemoveRange(order.Order_Details);
                 _context.Orders.Remove(order);
             }
 
@@ -172,5 +252,7 @@ namespace FurnitureShop.Areas.Admin.Controllers
         {
             return _context.Orders.Any(e => e.Id == id);
         }
+
+        
     }
 }

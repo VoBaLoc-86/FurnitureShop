@@ -4,29 +4,48 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Order Management</h1>
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>Order ID</th>
-            <th>User</th>
-            <th>Total Price</th>
-            <th>Status</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var order in Model)
-        {
-            <tr>
-                <td>@order.Id</td>
-                <td>@order.User?.Name</td>
-                <td>@order.Total_price</td>
-                <td>@order.Status</td>
-                <td>
-                    <a asp-action="Details" asp-controller="Order" asp-route-id="@order.Id" class="btn btn-info">Details</a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+<div class="container mt-5">
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h1 class="card-title">@ViewData["Title"]</h1>
+        </div>
+        <div class="card-body">
+            <table class="table table-striped table-bordered table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Order ID</th>
+                        <th>User</th>
+                        <th>Total Price</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var order in Model)
+                    {
+                        <tr>
+                            <td>@order.Id</td>
+                            <td>@order.User?.Name</td>
+                            <td>@order.Total_price</td>
+                            <td>@order.Status</td>
+                            <td>
+                                <a asp-action="Details" asp-controller="Order" asp-route-id="@order.Id" class="btn btn-info btn-sm">Details</a>
+                                <form asp-action="Delete"
+                                      asp-controller="Order"
+                                      asp-route-id="@order.Id"
+                                      method="post"
+                                      class="d-inline">
+                                    <button type="submit"
+                                            class="btn btn-danger btn-sm"
+                                            onclick="return confirm('Are you sure you want to delete this order?');">
+                                        Delete
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

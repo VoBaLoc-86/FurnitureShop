@@ -1,4 +1,4 @@
-﻿
+﻿@using FurnitureShop.Utils;
 @{
 	ViewData["Title"] = "Shop Page";
 	var pageShop = ViewData["PageShop"] as FurnitureShop.Models.Page;
@@ -58,7 +58,7 @@
             @foreach (var item in ViewData["Products"] as List<Product> ?? [])
             {
                 <div class="col-12 col-md-4 col-lg-3 mb-5">
-                    <a class="product-item" asp-action="Details" asp-route-id="@item.Id">
+                    <a class="product-item" asp-action="Details" asp-route-productName="@CreateNameUrl.CreateProductUrl(item.Name)">
                         <img src="~/data/products/@item.Image" class="img-fluid product-thumbnail" style="width:306px;height:306px">
                         <h3 class="product-title">@item.Name</h3>
                         <strong class="product-price">$@item.Price</strong>

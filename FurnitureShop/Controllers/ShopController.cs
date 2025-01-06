@@ -46,27 +46,40 @@ namespace FurnitureShop.Controllers
 
 
 
-        public async Task<IActionResult> Details(long Id)
+        public async Task<IActionResult> Details(string productName)
         {
-            var product = await _context.Products
-                            .AsNoTracking()
-                            .Include(p => p.Category)
-                            .Include(p=>p.Reviews).ThenInclude(r => r.User)
-                            .FirstOrDefaultAsync(p => p.Id == Id);
+            // Tải toàn bộ sản phẩm từ cơ sở dữ liệu
+            var products = await _context.Products
+                             .AsNoTracking()
+                             .Include(p => p.Category)
+                             .Include(p => p.Reviews).ThenInclude(r => r.User)
+                             .ToListAsync();
+
+            // Tìm sản phẩm bằng URL thân thiện
+            var product = products.FirstOrDefault(p => CreateNameUrl.CreateProductUrl(p.Name) == productName);
+
+            if (product == null)
+            {
+                return NotFound();
+            }
+
             ViewData["categories"] = await _context.Categories
                                     .AsNoTracking()
                                     .Include(c => c.Products)
                                     .ToListAsync();
-            ViewData["relatedproducts"] = await _context.Products
-                                            .Include(p => p.Category)
+            ViewData["relatedproducts"] = products
                                             .Where(p => p.Category == product!.Category && p.Id != product.Id)
-                                            .ToListAsync();
+                                            .ToList();
+
             return View(product);
         }
-        public IActionResult AddToCart(int productId, int quantity)
+        public IActionResult AddToCart(string productName, int quantity)
         {
-            // Lấy thông tin sản phẩm từ cơ sở dữ liệu (Model)
-            var product = _context.Products.FirstOrDefault(p => p.Id == productId);
+            // Tải toàn bộ sản phẩm từ cơ sở dữ liệu
+            var products = _context.Products.ToList();
+
+            // Tìm sản phẩm bằng URL thân thiện
+            var product = products.FirstOrDefault(p => CreateNameUrl.CreateProductUrl(p.Name) == productName);
 
             if (product == null)
             {
@@ -77,7 +90,7 @@ namespace FurnitureShop.Controllers
             var cart = HttpContext.Session.Get<List<CartItem>>("cart") ?? new List<CartItem>();
 
             // Kiểm tra xem sản phẩm đã có trong giỏ hàng chưa
-            var existingItem = cart.FirstOrDefault(item => item.Id == productId);
+            var existingItem = cart.FirstOrDefault(item => item.Id == product.Id);
 
             if (existingItem != null)
             {
@@ -89,7 +102,7 @@ namespace FurnitureShop.Controllers
                 // Nếu chưa có, thêm sản phẩm vào giỏ hàng
                 cart.Add(new CartItem
                 {
-                    Id = productId,
+                    Id = product.Id,
                     Name = product.Name,
                     Price = product.Price,
                     Quantity = quantity,
@@ -103,5 +116,6 @@ namespace FurnitureShop.Controllers
             // Chuyển hướng về trang giỏ hàng hoặc thông báo thành công
             return RedirectToAction("Index", "Cart");
         }
+
     }
 }

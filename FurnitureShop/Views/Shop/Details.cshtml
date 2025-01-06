@@ -1,6 +1,8 @@
 ﻿@model FurnitureShop.Models.Product
 @{
-    ViewData["Title"] = "Product Detail";
+    // Gán tên sản phẩm cho tiêu đề trang
+    ViewData["Title"] = Model.Name;
+
     var userInfo = Context.Session.GetString("userInfo");
 }
 
@@ -30,7 +32,9 @@
                 }
 
                 <form id="addToCartForm" class="mb-4" method="post" action="@Url.Action("AddToCart", "Shop")">
-                    <input type="hidden" name="productId" value="@Model.Id" />
+                    <!-- Truyền productName thay vì productId -->
+                    <input type="hidden" name="productName" value="@FurnitureShop.Utils.CreateNameUrl.CreateProductUrl(Model.Name)" />
+
                     <div class="row align-items-center">
                         <div class="col-auto">
                             <label for="quantity" class="form-label">Quantity</label>

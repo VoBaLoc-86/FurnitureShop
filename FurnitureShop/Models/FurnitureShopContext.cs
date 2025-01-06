@@ -18,5 +18,7 @@ namespace FurnitureShop.Models
         public DbSet<AdminUser>? AdminUsers { get; set; }
         public DbSet<Feature>? Features { get; set; }
         public DbSet<Setting>? Settings { get; set; }
+
+
     }
 }
