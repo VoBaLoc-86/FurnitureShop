@@ -8,6 +8,21 @@
 
 <div class="untree_co-section product-detail-section">
     <div class="container">
+        @if (TempData["Error"] != null)
+        {
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                @TempData["Error"]
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
+
+        @if (TempData["Success"] != null)
+        {
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                @TempData["Success"]
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
         <div class="row">
             <!-- Product Image -->
             <div class="col-md-6">
@@ -59,5 +74,90 @@
                 </ul>
             </div>
         </div>
+        <!-- Review Section -->
+        <div class="reviews-section mt-5">
+            <h3 class="mb-4">Customer Reviews</h3>
+
+            <!-- Hiển thị danh sách đánh giá -->
+            @if (Model.Reviews != null && Model.Reviews.Any())
+            {
+                foreach (var review in Model.Reviews)
+                {
+                    <div class="review mb-3">
+                        <h5 class="mb-1">@review.User!.Name</h5>
+                        <p class="text-muted small">@review.CreatedDate.ToString("dd/MM/yyyy")</p>
+                        <p>@Html.Raw(review.Comment)</p>
+                    </div>
+                }
+            }
+            else
+            {
+                <p class="text-muted">No reviews yet. Be the first to leave a review!</p>
+            }
+
+            <!-- Form thêm đánh giá -->
+            @if (!string.IsNullOrEmpty(userInfo))
+            {
+                <form method="post" asp-action="AddReview" asp-controller="Shop">
+                    <input type="hidden" name="productId" value="@Model.Id" />
+
+                    <!-- Input for Rating -->
+                    <div class="mb-3">
+                        <label for="rating" class="form-label">Rating</label>
+                        <select id="rating" name="rating" class="form-select" required>
+                            <option value="" disabled selected>Choose a rating</option>
+                            <option value="1">1 - Very Poor</option>
+                            <option value="2">2 - Poor</option>
+                            <option value="3">3 - Average</option>
+                            <option value="4">4 - Good</option>
+                            <option value="5">5 - Excellent</option>
+                        </select>
+                    </div>
+
+                    <!-- Input for Review Content -->
+                    <div class="mb-3">
+                        <label for="reviewContent" class="form-label">Your Review</label>
+                        <textarea id="reviewContent" name="content" class="form-control" rows="3" required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Submit Review</button>
+                </form>
+
+            }
+            else
+            {
+                <p class="alert alert-warning">Please log in to leave a review.</p>
+            }
+        </div>
+        <!-- Related Products Section -->
+        <div class="related-products-section mt-5">
+            <h3 class="mb-4">Related Products</h3>
+            <div class="row">
+                @if (ViewData["relatedproducts"] is List<FurnitureShop.Models.Product> relatedProducts)
+                {
+                    foreach (var relatedProduct in relatedProducts)
+                    {
+                        <div class="col-md-3" style="width:306px;height:380px">
+                            <div class="card">
+                                <img src="~/data/products/@relatedProduct.Image"
+                                     alt="Product Image"
+                                     class="card-img-top"
+                                     style="width:100%; height:200px; object-fit:cover;" />
+                                <div class="card-body">
+                                    <h5 class="card-title">@relatedProduct.Name</h5>
+                                    <p class="card-text">$@relatedProduct.Price</p>
+                                    <a href="@Url.Action("Details", "Shop", new { productName = FurnitureShop.Utils.CreateNameUrl.CreateProductUrl(relatedProduct.Name) })" class="btn btn-sm btn-outline-primary">
+                                        View Details
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
     </div>
+    
+    
+
 </div>

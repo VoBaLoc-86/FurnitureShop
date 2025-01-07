@@ -22,13 +22,13 @@
     </div>
 </div>
 <!-- End Hero Section -->
-@if (TempData["SuccessMessage"] != null)
+@* @if (TempData["SuccessMessage"] != null)
 {
     <div class="alert alert-success alert-dismissible fade show" role="alert">
         <i class="bi bi-check-circle-fill"></i> @TempData["SuccessMessage"]
         <button type="button" class="btn btn-close" data-bs-dismiss="alert" aria-label="Close"><i class="fa-regular fa-circle-xmark"></i></button>
     </div>
-}
+} *@
 
 <div class="untree_co-section">
     <div class="container">
@@ -42,7 +42,7 @@
                 </span>
                 <h2 class="display-3 text-black">Thank you!</h2>
                 <p class="lead mb-5">You order was successfuly completed.</p>
-                <p><a href="shop.html" class="btn btn-sm btn-outline-black">Back to shop</a></p>
+                <p><a asp-action="Index" asp-controller="Home" class="btn btn-sm btn-outline-black">Back to shop</a></p>
             </div>
         </div>
     </div>

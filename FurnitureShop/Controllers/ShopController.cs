@@ -68,8 +68,9 @@ namespace FurnitureShop.Controllers
                                     .Include(c => c.Products)
                                     .ToListAsync();
             ViewData["relatedproducts"] = products
-                                            .Where(p => p.Category == product!.Category && p.Id != product.Id)
-                                            .ToList();
+    .Where(p => p.Category_id == product!.Category_id && CreateNameUrl.CreateProductUrl(p.Name) != productName)
+    .ToList();
+
 
             return View(product);
         }
@@ -116,6 +117,74 @@ namespace FurnitureShop.Controllers
             // Chuyển hướng về trang giỏ hàng hoặc thông báo thành công
             return RedirectToAction("Index", "Cart");
         }
+        [HttpPost]
+        public async Task<IActionResult> AddReview(int productId, string content, int rating)
+        {
+            // Lấy thông tin người dùng từ session (toàn bộ đối tượng User)
+            var user = HttpContext.Session.Get<User>("userInfo");
+
+            if (user == null)
+            {
+                TempData["Error"] = "You must be logged in to leave a review.";
+
+                // Lấy sản phẩm để chuyển đổi sang URL thân thiện
+                var product = await _context.Products
+                    .AsNoTracking()
+                    .FirstOrDefaultAsync(p => p.Id == productId);
+
+                if (product == null)
+                {
+                    return NotFound();
+                }
+
+                var productName = CreateNameUrl.CreateProductUrl(product.Name);
+                return RedirectToAction("Details", new { productName });
+            }
+
+            // Kiểm tra xem người dùng đã mua sản phẩm trong đơn hàng thành công hay chưa
+            var hasPurchased = await _context.Orders
+                .Where(o => o.User_id == user.Id && o.Status == "Completed")
+                .AnyAsync(o => o.Order_Details.Any(od => od.Product_id == productId));
+
+            if (!hasPurchased)
+            {
+                TempData["Error"] = "You can only review products you have purchased in a successful order.";
+                return RedirectToAction("Details", new { productName = CreateNameUrl.CreateProductUrl((await _context.Products.FindAsync(productId))?.Name ?? "") });
+            }
+
+            // Tạo mới đối tượng Review
+            var review = new Review
+            {
+                Product_id = productId,
+                User_id = user.Id,       // Lấy ID từ đối tượng User
+                Comment = content,
+                Rating = rating,         // Lưu rating từ form
+                CreatedDate = DateTime.Now,
+                CreatedBy = user.Name,   // Lấy tên từ đối tượng User
+            };
+
+            // Thêm review vào cơ sở dữ liệu
+            _context.Reviews.Add(review);
+            await _context.SaveChangesAsync();
+
+            TempData["Success"] = "Your review has been submitted successfully.";
+
+            // Lấy sản phẩm để tạo URL thân thiện và chuyển hướng
+            var redirectProduct = await _context.Products
+                .AsNoTracking()
+                .FirstOrDefaultAsync(p => p.Id == productId);
+
+            if (redirectProduct == null)
+            {
+                return NotFound();
+            }
+
+            var redirectProductName = CreateNameUrl.CreateProductUrl(redirectProduct.Name);
+            return RedirectToAction("Details", new { productName = redirectProductName });
+        }
+
+
+
 
     }
 }
