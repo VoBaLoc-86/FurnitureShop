@@ -3,34 +3,23 @@
 @{
     ViewData["Title"] = "Edit";
 }
+
 <div class="app-content-header">
-    <!--begin::Container-->
     <div class="container-fluid">
-        <!--begin::Row-->
-        <div class="row">
-        </div> <!--end::Row-->
+        <div class="row"></div> <!--end::Row-->
     </div> <!--end::Container-->
-</div> <!--end::App Content Header--> <!--begin::App Content-->
+</div> <!--end::App Content Header-->
+
 <div class="app-content">
-    <!--begin::Container-->
     <div class="container-fluid">
-        <!--begin::Row-->
         <div class="row">
             <div class="col-12">
-                <!-- Default box -->
                 <div class="card card-success card-outline">
                     <div class="card-header">
-                        <div class="row">
-                            <div class="col-md">
-                                <h3>Page-Content</h3><small>Edit</small>
-                            </div>
-                            <div class="col-md-auto">
-                            </div>
-                        </div>
+                        <h3>Page-Content</h3><small>Edit</small>
                     </div>
                     <div class="card-body">
                         <form asp-action="Edit" class="container p-4 bg-light rounded shadow" style="max-width: 600px;" enctype="multipart/form-data">
-                            <!-- Validation Summary -->
                             <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
 
                             <!-- Hidden Field for ID -->
@@ -42,6 +31,11 @@
                                 <div class="col-sm-10">
                                     <input asp-for="Title" class="form-control" placeholder="Enter title" />
                                     <span asp-validation-for="Title" class="text-danger"></span>
+                                    @* Hiển thị thông báo lỗi từ TempData *@
+                                    @if (TempData["ErrorMessage"] != null)
+                                    {
+                                        <span class="text-danger">@TempData["ErrorMessage"]</span>
+                                    }
                                 </div>
                             </div>
 
@@ -53,17 +47,23 @@
                                     <span asp-validation-for="Content" class="text-danger"></span>
                                 </div>
                             </div>
+
+                            <!-- Image Field -->
                             <div class="mb-3 row">
                                 <label asp-for="Image" class="col-sm-2 col-form-label">Image:</label>
                                 <div class="col-sm-10">
-                                    <input asp-for="Image" class="form-control" type="file" accept="Image/*"/>
+                                    <input asp-for="Image" class="form-control" type="file" accept="image/*" />
                                     <span asp-validation-for="Image" class="text-danger"></span>
                                 </div>
                             </div>
+
+                            <!-- Image Preview -->
                             <div class="d-flex justify-content-center align-items-center mx-auto mb-4"
                                  style="width: 300px; height: 200px; overflow: hidden; border-radius: 10px; background-color: #f9f9f9; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
                                 <img class="img-fluid" alt="Preview Image" id="imgPreview" style="width: 100%; height: auto; object-fit: cover;">
                             </div>
+
+                            <!-- Display Order Field -->
                             <div class="mb-3 row">
                                 <label asp-for="DisplayOrder" class="col-sm-2 col-form-label">DisplayOrder:</label>
                                 <div class="col-sm-10">
@@ -71,14 +71,12 @@
                                     <span asp-validation-for="DisplayOrder" class="text-danger"></span>
                                 </div>
                             </div>
-                            
-                            <!-- Action Buttons -->
+
                             <div class="d-flex justify-content-between">
                                 <input type="submit" value="Save" class="btn btn-success px-4" />
                                 <a id="btnAdd" role="button" class="btn btn-secondary px-4" asp-action="Index">Back to List</a>
                             </div>
                         </form>
-
                     </div>
                 </div>
             </div>
@@ -87,23 +85,26 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
     <script>
         window.onload = () => {
             // Hiển thị ảnh preview khi chọn ảnh
             document.getElementById("Image").onchange = (e) => {
                 var preview = document.getElementById('imgPreview');
                 var file = e.target.files[0];
-                var reader  = new FileReader();
+                var reader = new FileReader();
 
                 reader.onloadend = function () {
-                  preview.src = reader.result;
+                    preview.src = reader.result;
                 }
 
                 if (file) {
-                  reader.readAsDataURL(file);
+                    reader.readAsDataURL(file);
                 } else {
-                  preview.src = ''; // Xóa ảnh preview nếu không có ảnh
+                    preview.src = ''; // Xóa ảnh preview nếu không có ảnh
                 }
             };
 

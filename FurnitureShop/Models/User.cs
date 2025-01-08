@@ -7,6 +7,7 @@ namespace FurnitureShop.Models
         [Key]
         public int Id { get; set; }
         public required string Name { get; set; }
+        [Required(ErrorMessage = "Email is required.")]
         [EmailAddress(ErrorMessage = "Không đúng định dạng Email.")]
         public string? Email { get; set; }
 

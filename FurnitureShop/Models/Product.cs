@@ -11,7 +11,7 @@ namespace FurnitureShop.Models
         [StringLength(40, MinimumLength = 4, ErrorMessage = "Name must be between 4 and 40 characters.")]
         [RegularExpression(@"^[a-zA-ZÀ-ỹà-ỹ\s0-9]*$", ErrorMessage = "Name must contain only letters, numbers, and spaces.")]
         public string? Name { get; set; }
-
+        [Required(ErrorMessage = "Description là bắt buộc.")]
         public string? Description { get; set; } = null;
         [Required(ErrorMessage = "Giá sản phẩm là bắt buộc.")]
         [Range(1, 1000000, ErrorMessage = "Giá sản phẩm phải lớn hơn 0 và nhỏ hơn 1 triệu.")]

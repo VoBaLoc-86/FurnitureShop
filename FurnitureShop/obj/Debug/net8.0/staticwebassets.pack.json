@@ -16865,6 +16865,10 @@
       "PackagePath": "staticwebassets\\css\\tiny-slider.css"
     },
     {
+      "Id": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\wwwroot\\data\\features\\070ee9e1-6985-4503-8ed0-6bd3cc3f087a.jpg",
+      "PackagePath": "staticwebassets\\data\\features\\070ee9e1-6985-4503-8ed0-6bd3cc3f087a.jpg"
+    },
+    {
       "Id": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\wwwroot\\data\\features\\17beb2d2-57a2-49e8-8265-ed3f151ccfda .png",
       "PackagePath": "staticwebassets\\data\\features\\17beb2d2-57a2-49e8-8265-ed3f151ccfda .png"
     },
@@ -16925,8 +16929,28 @@
       "PackagePath": "staticwebassets\\data\\pages\\b7bddece-0acb-4645-b3de-d9541ac5e7ca.png"
     },
     {
+      "Id": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\wwwroot\\data\\pages\\b9af9097-9bcd-4ace-8d25-6de947c69ada.jpg",
+      "PackagePath": "staticwebassets\\data\\pages\\b9af9097-9bcd-4ace-8d25-6de947c69ada.jpg"
+    },
+    {
+      "Id": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\wwwroot\\data\\pages\\bc2079b7-1cdc-4b94-b400-7583427ff4f9.jpg",
+      "PackagePath": "staticwebassets\\data\\pages\\bc2079b7-1cdc-4b94-b400-7583427ff4f9.jpg"
+    },
+    {
       "Id": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\wwwroot\\data\\pages\\c13c497a-20b3-431d-a81f-6e5c999b7a09.png",
       "PackagePath": "staticwebassets\\data\\pages\\c13c497a-20b3-431d-a81f-6e5c999b7a09.png"
+    },
+    {
+      "Id": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\wwwroot\\data\\pages\\c8946f85-d370-4123-89eb-1a639695a80f.png",
+      "PackagePath": "staticwebassets\\data\\pages\\c8946f85-d370-4123-89eb-1a639695a80f.png"
+    },
+    {
+      "Id": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\wwwroot\\data\\pages\\ce274834-0a9c-4438-9093-8d5696fc2436.png",
+      "PackagePath": "staticwebassets\\data\\pages\\ce274834-0a9c-4438-9093-8d5696fc2436.png"
+    },
+    {
+      "Id": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\wwwroot\\data\\pages\\e49c839a-9175-4d64-9c37-212fb74e2913.png",
+      "PackagePath": "staticwebassets\\data\\pages\\e49c839a-9175-4d64-9c37-212fb74e2913.png"
     },
     {
       "Id": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\wwwroot\\data\\products\\0f80ccb6-4708-4a0e-ac74-dafb1780055d.jpg",
@@ -16943,6 +16967,10 @@
     {
       "Id": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\wwwroot\\data\\products\\23cbe32d-ef5c-4d39-88a8-06acdf365ed2.jpg",
       "PackagePath": "staticwebassets\\data\\products\\23cbe32d-ef5c-4d39-88a8-06acdf365ed2.jpg"
+    },
+    {
+      "Id": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\wwwroot\\data\\products\\35f9b53a-7d1b-4f30-8848-7a9d37c8696c.jpg",
+      "PackagePath": "staticwebassets\\data\\products\\35f9b53a-7d1b-4f30-8848-7a9d37c8696c.jpg"
     },
     {
       "Id": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\wwwroot\\data\\products\\3c94dac5-0411-452c-97aa-78805db44110.jpg",
@@ -16975,6 +17003,10 @@
     {
       "Id": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\wwwroot\\data\\products\\6fef159a-7cde-4cfa-b5cc-cfab7dfbdd9b.png",
       "PackagePath": "staticwebassets\\data\\products\\6fef159a-7cde-4cfa-b5cc-cfab7dfbdd9b.png"
+    },
+    {
+      "Id": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\wwwroot\\data\\products\\81a30523-01ec-4d61-90e6-9aa2efb5cda5.jpg",
+      "PackagePath": "staticwebassets\\data\\products\\81a30523-01ec-4d61-90e6-9aa2efb5cda5.jpg"
     },
     {
       "Id": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\wwwroot\\data\\products\\90184b40-19d2-453b-8bf4-f6e2f374d32d.jpg",

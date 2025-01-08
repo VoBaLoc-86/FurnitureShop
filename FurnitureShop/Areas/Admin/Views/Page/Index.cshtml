@@ -1,7 +1,14 @@
 ﻿@model IEnumerable<FurnitureShop.Models.Page>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "PageList";
+}
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <i class="bi bi-check-circle-fill"></i> @TempData["SuccessMessage"]
+        <button type="button" class="btn btn-close" data-bs-dismiss="alert" aria-label="Close"><i class="fa-regular fa-circle-xmark"></i></button>
+    </div>
 }
 <div class="app-content-header">
     <!--begin::Container-->

@@ -16,11 +16,16 @@ public class CartController : Controller
         // Lấy giỏ hàng từ session
         var cart = HttpContext.Session.Get<List<CartItem>>("cart") ?? new List<CartItem>();
 
-        // Truyền giỏ hàng vào View bằng ViewData
+        // Lấy danh sách sản phẩm từ cơ sở dữ liệu (hoặc nguồn dữ liệu của bạn)
+        var products = _context.Products.ToList(); // Giả sử bạn đang sử dụng Entity Framework để lấy dữ liệu sản phẩm
+
+        // Truyền giỏ hàng và danh sách sản phẩm vào View bằng ViewData
         ViewData["CartItems"] = cart;
+        ViewData["Products"] = products; // Thêm thông tin sản phẩm vào ViewData
 
         return View();
     }
+
     [HttpPost]
     public IActionResult UpdateCart([FromBody] CartViewModel model)
     {

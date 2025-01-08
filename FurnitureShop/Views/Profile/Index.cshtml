@@ -1,0 +1,142 @@
+﻿@model FurnitureShop.Models.User
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        @TempData["Message"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+<div class="container mt-4">
+    <!-- Thông tin người dùng -->
+    <div class="card mb-4">
+        <div class="card-header">
+            <h2>Thông tin người dùng</h2>
+        </div>
+        <div class="card-body">
+            <p><strong>Họ tên:</strong> @Model.Name</p>
+            <p><strong>Email:</strong> @Model.Email</p>
+            <p><strong>Địa chỉ:</strong> @(Model.Address ?? "Chưa cập nhật")</p>
+            <p><strong>Số điện thoại:</strong> @(Model.Phone ?? "Chưa cập nhật")</p>
+
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editNameModal">Chỉnh sửa thông tin</button>
+            <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#editPasswordModal">Đổi mật khẩu</button>
+        </div>
+    </div>
+
+    <!-- Danh sách đơn hàng -->
+    <h3>Danh sách đơn hàng</h3>
+    @if (Model.Orders != null && Model.Orders.Any())
+    {
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Mã đơn hàng</th>
+                    <th>Ngày đặt</th>
+                    <th>Trạng thái</th>
+                    <th>Tổng tiền</th>
+                    <th>Chi tiết</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var order in Model.Orders)
+                {
+                    <tr>
+                        <td>@order.Id</td>
+                        <td>@order.CreatedDate.ToString("dd/MM/yyyy")</td>
+                        <td>@order.Status</td>
+                        <td>@order.Total_price.ToString("C")</td>
+                        <td>
+                            <ul>
+                                @if (order.Order_Details != null)
+                                {
+                                    @foreach (var detail in order.Order_Details)
+                                    {
+                                        <li>
+                                            <strong>@detail.Product?.Name</strong> -
+                                            @detail.Quantity x @detail.Price.ToString("C")
+                                        </li>
+                                    }
+                                }
+                            </ul>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>Bạn chưa có đơn hàng nào.</p>
+    }
+</div>
+
+<!-- Modal Edit User Info -->
+<div class="modal fade" id="editNameModal" tabindex="-1" aria-labelledby="editNameModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editNameModalLabel">Chỉnh sửa thông tin người dùng</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="post" action="@Url.Action("UpdateUserInfo", "Profile")">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Họ tên</label>
+                        <input type="text" class="form-control" id="name" name="newName" value="@Model.Name" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="address" class="form-label">Địa chỉ</label>
+                        <input type="text" class="form-control" id="address" name="newAddress" value="@Model.Address" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">Số điện thoại</label>
+                        <input type="text" class="form-control" id="phone" name="newPhone" value="@Model.Phone" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="currentPassword" class="form-label">Mật khẩu hiện tại</label>
+                        <input type="password" class="form-control" id="currentPassword" name="currentPassword" required />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
+                </div>
+            </form>
+
+
+        </div>
+    </div>
+</div>
+
+<!-- Modal Edit Password -->
+<div class="modal fade" id="editPasswordModal" tabindex="-1" role="dialog" aria-labelledby="editPasswordModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editPasswordModalLabel">Đổi mật khẩu</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="post" action="@Url.Action("UpdateUserInfo", "Profile")">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="currentPassword" class="form-label">Mật khẩu hiện tại</label>
+                        <input type="password" class="form-control" id="currentPassword" name="currentPassword" required />
+                    </div>
+                    <div class="mb-3">
+                        <label for="newPassword" class="form-label">Mật khẩu mới</label>
+                        <input type="password" class="form-control" id="newPassword" name="newPassword" required />
+                    </div>
+                    <div class="mb-3">
+                        <label for="confirmPassword" class="form-label">Xác nhận mật khẩu mới</label>
+                        <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>

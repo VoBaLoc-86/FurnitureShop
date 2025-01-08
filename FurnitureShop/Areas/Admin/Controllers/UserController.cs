@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FurnitureShop.Models;
+using FurnitureShop.Utils;
 
 namespace FurnitureShop.Areas.Admin.Controllers
 {
@@ -54,10 +55,19 @@ namespace FurnitureShop.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Email,Password,Address,Phone,CreatedDate,CreatedBy,UpdatedDate,UpdatedBy")] User user)
+        public async Task<IActionResult> Create([FromForm] User user)
         {
             if (ModelState.IsValid)
             {
+                var adminuser = HttpContext.Session.Get<AdminUser>("adminInfo");
+                if (adminuser != null)
+                {
+                    user.CreatedBy = adminuser.Name;
+                    user.CreatedDate = DateTime.Now;
+                    user.UpdatedBy = adminuser.Name;
+                    user.UpdatedDate = DateTime.Now;
+                }
+                user.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
                 _context.Add(user);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -86,7 +96,7 @@ namespace FurnitureShop.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Email,Password,Address,Phone,CreatedDate,CreatedBy,UpdatedDate,UpdatedBy")] User user)
+        public async Task<IActionResult> Edit(int id, [FromForm] User user)
         {
             if (id != user.Id)
             {
@@ -95,10 +105,32 @@ namespace FurnitureShop.Areas.Admin.Controllers
 
             if (ModelState.IsValid)
             {
+                
                 try
                 {
-                    _context.Update(user);
+                    var existingUser = await _context.Users.FindAsync(id);
+                    if (existingUser == null)
+                    {
+                        return NotFound();
+                    }
+
+                    existingUser.Name = user.Name;
+                    existingUser.Address = user.Address;
+                    existingUser.Phone = user.Phone;
+                    existingUser.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
+
+                    var adminuser = HttpContext.Session.Get<AdminUser>("adminInfo");
+                    if (adminuser != null)
+                    {
+                        existingUser.CreatedBy = adminuser.Name;
+                        existingUser.UpdatedBy = adminuser.Name;
+                        existingUser.UpdatedDate = DateTime.Now;
+                    }
+
+                    _context.Update(existingUser);
                     await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                    
                 }
                 catch (DbUpdateConcurrencyException)
                 {

@@ -50,20 +50,27 @@
 					@if (userInfo != null)
 					{
 						<!-- Khi đã đăng nhập -->
-						<li>
-							<a class="nav-link" asp-action="Profile" asp-controller="User">
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle d-flex align-items-center" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+								<i class="fas fa-user-circle me-2"></i>
 								@userInfo.Name
 							</a>
-						</li>
-						<li>
-							<form method="post" asp-action="Logout" asp-controller="Home">
-								<button type="submit" class="btn btn-outline-primary btn-lg btn-block">
-									<i class="fas fa-sign-out-alt"></i>
-									Logout
-								</button>
-							</form>
+							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<li><a class="dropdown-item" asp-action="Index" asp-controller="Profile">View Profile</a></li>
+								<li>
+									<form method="post" asp-action="Logout" asp-controller="Home">
+										<button type="submit" class="btn btn-danger btn-lg btn-block d-flex align-items-center justify-content-center shadow-sm border-0 rounded-pill">
+											<i class="fas fa-sign-out-alt mr-2"></i>
+											<span class="font-weight-bold">Logout</span>
+										</button>
+									</form>
 
+
+								</li>
+							</ul>
 						</li>
+
+						
 						<li>
 							<a class="nav-link" asp-action="Index" asp-controller="Cart">
 								<img src="~/images/cart.svg" alt="Cart" class="img-fluid" style="width: 20px;">

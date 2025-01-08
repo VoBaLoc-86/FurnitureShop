@@ -148,18 +148,57 @@ namespace FurnitureShop.Areas.Admin.Controllers
             {
                 return NotFound();
             }
+
             var originalStatus = order.Status;
-            if (originalStatus == "Completed" && status != "Completed")
-            { // Chỉ thay đổi trạng thái thanh toán
-               order.Payment_status = paymentStatus;
-               _context.Update(order); 
-                await _context.SaveChangesAsync(); 
-                return RedirectToAction(nameof(Details), new { id = order.Id }); 
+
+            // Nếu đơn hàng đang ở trạng thái "Processing" và trạng thái mới là khác "Processing"
+            if (originalStatus == "Processing" && status != "Processing")
+            {
+                foreach (var orderDetail in order.Order_Details)
+                {
+                    var product = await _context.Products.FindAsync(orderDetail.Product_id);
+
+                    if (product != null)
+                    {
+                        // Hoàn lại stock nếu trạng thái chuyển từ "Processing" sang "Cancelled"
+                        if (status == "Cancelled")
+                        {
+                            product.Stock += orderDetail.Quantity;
+                        }
+
+                        // Cập nhật sản phẩm
+                        _context.Update(product);
+                    }
+                }
             }
+
+            // Nếu đơn hàng chuyển từ trạng thái khác sang "Processing"
+            if (status == "Processing" && originalStatus != "Processing")
+            {
+                foreach (var orderDetail in order.Order_Details)
+                {
+                    var product = await _context.Products.FindAsync(orderDetail.Product_id);
+
+                    if (product != null)
+                    {
+                        // Trừ số lượng sản phẩm khi chuyển sang "Processing"
+                        product.Stock -= orderDetail.Quantity;
+
+                        // Đảm bảo số lượng sản phẩm không âm
+                        if (product.Stock < 0)
+                        {
+                            product.Stock = 0;
+                        }
+
+                        // Cập nhật sản phẩm
+                        _context.Update(product);
+                    }
+                }
+            }
+
+            // Cập nhật trạng thái đơn hàng
             order.Status = status;
             order.Payment_status = paymentStatus;
-
-
 
             if (ModelState.IsValid)
             {
@@ -167,32 +206,6 @@ namespace FurnitureShop.Areas.Admin.Controllers
                 {
                     _context.Update(order);
                     await _context.SaveChangesAsync();
-
-                    if (originalStatus != "Completed" && status == "Completed")
-                    {
-                        foreach (var orderDetail in order.Order_Details)
-                        {
-                            // Tìm sản phẩm tương ứng với orderDetail
-                            var product = await _context.Products.FindAsync(orderDetail.Product_id);
-
-                            // Kiểm tra nếu sản phẩm tồn tại
-                            if (product != null)
-                            {
-                                // Giảm số lượng sản phẩm theo số lượng trong đơn hàng
-                                product.Stock -= orderDetail.Quantity;
-
-                                // Đảm bảo số lượng sản phẩm không âm
-                                if (product.Stock < 0)
-                                {
-                                    product.Stock = 0;
-                                }
-
-                                // Cập nhật sản phẩm trong cơ sở dữ liệu
-                                _context.Update(product);
-                            }
-                        }
-                        await _context.SaveChangesAsync();
-                    }
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -205,11 +218,11 @@ namespace FurnitureShop.Areas.Admin.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Details), new { id = order.Id }); // Chuyển hướng lại trang chi tiết đơn hàng
             }
 
-            return RedirectToAction(nameof(Details), new { id = order.Id }); // Chuyển hướng lại trang chi tiết đơn hàng
+            return RedirectToAction(nameof(Details), new { id = order.Id });
         }
+
 
 
         // GET: Admin/Order/Delete/5

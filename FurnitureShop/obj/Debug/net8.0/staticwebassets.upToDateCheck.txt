@@ -4213,6 +4213,7 @@ wwwroot\admin\vendor\jquery-easing\jquery.easing.min.js
 wwwroot\css\bootstrap.min.css
 wwwroot\css\style.css
 wwwroot\css\tiny-slider.css
+wwwroot\data\features\070ee9e1-6985-4503-8ed0-6bd3cc3f087a.jpg
 wwwroot\data\features\17beb2d2-57a2-49e8-8265-ed3f151ccfda .png
 wwwroot\data\features\269dca60-5344-4a9c-9a77-30294536745d .svg
 wwwroot\data\features\316adf5e-a4d2-47ce-968c-9c9d3acbb482 .png
@@ -4228,11 +4229,17 @@ wwwroot\data\pages\8cf7a4ca-61cc-450a-a197-180ac0d296e7.png
 wwwroot\data\pages\908ddcec-3b5c-4126-8a22-363c44197707.png
 wwwroot\data\pages\b4c5e766-16bf-4dd1-9bca-47ad6028e597.jpg
 wwwroot\data\pages\b7bddece-0acb-4645-b3de-d9541ac5e7ca.png
+wwwroot\data\pages\b9af9097-9bcd-4ace-8d25-6de947c69ada.jpg
+wwwroot\data\pages\bc2079b7-1cdc-4b94-b400-7583427ff4f9.jpg
 wwwroot\data\pages\c13c497a-20b3-431d-a81f-6e5c999b7a09.png
+wwwroot\data\pages\c8946f85-d370-4123-89eb-1a639695a80f.png
+wwwroot\data\pages\ce274834-0a9c-4438-9093-8d5696fc2436.png
+wwwroot\data\pages\e49c839a-9175-4d64-9c37-212fb74e2913.png
 wwwroot\data\products\0f80ccb6-4708-4a0e-ac74-dafb1780055d.jpg
 wwwroot\data\products\11f4186d-2fb7-433e-88c6-31b896147cf6.jpg
 wwwroot\data\products\16911b0e-819f-448c-a45d-9b2ae6513732.jpg
 wwwroot\data\products\23cbe32d-ef5c-4d39-88a8-06acdf365ed2.jpg
+wwwroot\data\products\35f9b53a-7d1b-4f30-8848-7a9d37c8696c.jpg
 wwwroot\data\products\3c94dac5-0411-452c-97aa-78805db44110.jpg
 wwwroot\data\products\41ac156e-20f9-4ba3-b638-3ac0ee2576fa.jpg
 wwwroot\data\products\48acec9a-0105-432c-8a8c-f1c0f3570a3b.jpg
@@ -4241,6 +4248,7 @@ wwwroot\data\products\53668843-4719-4584-b5c7-60a3dd95f6c6.png
 wwwroot\data\products\54d945eb-8726-4433-8471-784454ac010c.jpg
 wwwroot\data\products\63793ac7-5d4c-4ba7-87f3-e7161f795b36.jpg
 wwwroot\data\products\6fef159a-7cde-4cfa-b5cc-cfab7dfbdd9b.png
+wwwroot\data\products\81a30523-01ec-4d61-90e6-9aa2efb5cda5.jpg
 wwwroot\data\products\90184b40-19d2-453b-8bf4-f6e2f374d32d.jpg
 wwwroot\data\products\978966c7-010c-4430-ba64-6999a1383eef.jpg
 wwwroot\data\products\9816b858-3464-472d-aab5-da25d266f223.jpg

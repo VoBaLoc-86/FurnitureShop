@@ -9,6 +9,7 @@ using FurnitureShop.Models;
 using Azure.Core;
 using FurnitureShop.Areas.Admin.DTOs.request;
 using FurnitureShop.Utils;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace FurnitureShop.Areas.Admin.Controllers
 {
@@ -65,7 +66,6 @@ namespace FurnitureShop.Areas.Admin.Controllers
         {
             if (!ModelState.IsValid)
             {
-                
                 return View(request); // Quay lại trang Create và giữ các giá trị đã nhập
             }
 
@@ -74,7 +74,17 @@ namespace FurnitureShop.Areas.Admin.Controllers
                 TempData["ErrorMessage"] = "Hình ảnh là bắt buộc. Vui lòng tải lên một ảnh.";
                 return View();
             }
-            // Khởi tạo đối tượng product từ request
+
+            // Kiểm tra nếu title đã tồn tại
+            var existingPage = await _context.Pages
+                                              .FirstOrDefaultAsync(p => p.Title.ToLower() == request.Title.ToLower());
+            if (existingPage != null)
+            {
+                TempData["ErrorMessage"] = "Title đã tồn tại. Vui lòng nhập tên khác.";
+                return View(request); // Quay lại trang Create và giữ các giá trị đã nhập
+            }
+
+            // Khởi tạo đối tượng page từ request
             var page = new Page()
             {
                 Title = request.Title,
@@ -108,13 +118,16 @@ namespace FurnitureShop.Areas.Admin.Controllers
                 page.Image = newImageFileName;
             }
 
-            // Thêm sản phẩm vào cơ sở dữ liệu
+            // Thêm page vào cơ sở dữ liệu
             _context.Add(page);
             await _context.SaveChangesAsync();
 
             // Chuyển hướng về trang Index
             return RedirectToAction(nameof(Index));
         }
+
+
+
 
         // GET: Admin/Page/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -143,14 +156,9 @@ namespace FurnitureShop.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            string Username = "";
+
             if (ModelState.IsValid)
             {
-                var userInfo = HttpContext.Session.Get<AdminUser>("adminInfo");
-                if (userInfo != null)
-                {
-                    Username = userInfo.Name;
-                }
                 try
                 {
                     var existingPage = await _context.Pages.FindAsync(id);
@@ -159,21 +167,37 @@ namespace FurnitureShop.Areas.Admin.Controllers
                         return NotFound();
                     }
 
-                    // Nếu có ảnh mới được chọn, xử lý lưu ảnh mới
+                    // Kiểm tra nếu Title đã tồn tại
+                    var duplicatePage = await _context.Pages
+                        .Where(p => p.Id != id && p.Title.ToLower() == update.Title.ToLower())
+                        .FirstOrDefaultAsync();
+
+                    if (duplicatePage != null)
+                    {
+                        ModelState.AddModelError("Title", "Title đã tồn tại. Vui lòng nhập tên khác.");
+                        // Chuyển đổi từ PageDTO sang Page trước khi trả về view
+                        var model = new Page
+                        {
+                            Id = update.Id,
+                            Title = update.Title,
+                            Content = update.Content,
+                            DisplayOrder = update.DisplayOrder,
+                            Image = existingPage.Image // Giữ nguyên ảnh hiện tại
+                        };
+                        return View(model);
+                    }
+
+                    // Xử lý cập nhật nếu không có lỗi
                     if (update.Image != null)
                     {
-                        string? newImageFileName = null;
-                        var extension = Path.GetExtension(update.Image.FileName);
-                        newImageFileName = $"{Guid.NewGuid()}{extension}";
+                        string newImageFileName = $"{Guid.NewGuid()}{Path.GetExtension(update.Image.FileName)}";
                         var filePath = Path.Combine(_hostEnv.WebRootPath, "data", "pages", newImageFileName);
 
-                        // Lưu file mới
                         using (var stream = new FileStream(filePath, FileMode.Create))
                         {
                             await update.Image.CopyToAsync(stream);
                         }
 
-                        // Xóa ảnh cũ (nếu cần thiết)
                         if (!string.IsNullOrEmpty(existingPage.Image))
                         {
                             var oldFilePath = Path.Combine(_hostEnv.WebRootPath, "data", "pages", existingPage.Image);
@@ -183,23 +207,17 @@ namespace FurnitureShop.Areas.Admin.Controllers
                             }
                         }
 
-                        // Gán tên file mới cho sản phẩm
                         existingPage.Image = newImageFileName;
                     }
-                    else
-                    {
-                        // Nếu không có ảnh mới, giữ lại ảnh cũ
-                        existingPage.Image = existingPage.Image;
-                    }
 
-                    // Kiểm tra và cập nhật các giá trị còn lại
                     existingPage.Title = update.Title;
                     existingPage.Content = update.Content;
                     existingPage.DisplayOrder = update.DisplayOrder;
 
-                    // Cập nhật trang
                     _context.Update(existingPage);
                     await _context.SaveChangesAsync();
+
+                    return RedirectToAction(nameof(Index));
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -212,10 +230,24 @@ namespace FurnitureShop.Areas.Admin.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
             }
-            return View(update);
+
+            // Chuyển đổi từ PageDTO sang Page nếu ModelState không hợp lệ
+            var modelFallback = new Page
+            {
+                Id = update.Id,
+                Title = update.Title,
+                Content = update.Content,
+                DisplayOrder = update.DisplayOrder,
+                Image = update.Image?.FileName // Giữ thông tin ảnh mới (nếu có)
+            };
+            return View(modelFallback);
         }
+
+
+
+
+
 
 
         // GET: Admin/Page/Delete/5
@@ -244,6 +276,7 @@ namespace FurnitureShop.Areas.Admin.Controllers
             var page = await _context.Pages.FindAsync(id);
             if (page != null)
             {
+                TempData["SuccessMessage"] = "Page deleted successfully."; // Lưu thông báo thành công vào TempData
                 _context.Pages.Remove(page);
             }
 

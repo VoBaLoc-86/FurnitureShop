@@ -2,6 +2,7 @@
 @{
     ViewData["Title"] = "Cart Page";
     var cart = ViewData["CartItems"] as List<CartItem> ?? new List<CartItem>();
+    var products = ViewData["Products"] as List<Product> ?? new List<Product>(); // Truyền dữ liệu sản phẩm từ Controller
 }
 
 <div class="untree_co-section before-footer-section">
@@ -29,9 +30,6 @@
         </div>
         <div class="row">
             <div class="col-md-6">
-                <button class="btn btn-black btn-sm btn-block" id="updateCartButton">Update Cart</button>
-            </div>
-            <div class="col-md-6">
                 <a class="btn btn-outline-black btn-sm btn-block" asp-action="Checkout" asp-controller="Cart">Continue Shopping</a>
             </div>
         </div>
@@ -44,13 +42,18 @@
         </div>
     </div>
 </div>
+
 <script>
     // Giỏ hàng từ ViewData (truyền qua Razor)
     var cart = @Html.Raw(Json.Serialize(ViewData["CartItems"]));
 
+    // Dữ liệu sản phẩm từ ViewData
+    var products = @Html.Raw(Json.Serialize(ViewData["Products"])); // Sản phẩm và số lượng tồn kho
+
     var cartItemsContainer = document.getElementById('cartItems');
     var totalAmountElement = document.getElementById('totalAmount');
 
+    // Hàm cập nhật hiển thị giỏ hàng
     function updateCartDisplay() {
         cartItemsContainer.innerHTML = '';
         let totalAmount = 0;
@@ -61,16 +64,16 @@
 
             var row = document.createElement('tr');
             row.innerHTML = `
-    <td class="product-thumbnail"><img src="/data/products/${item.image}" alt="Image" class="img-fluid"></td>
-    <td class="product-name"><h2 class="h5 text-black">${item.name}</h2></td>
-    <td>${item.price}</td>
-    <td>
-        <div class="input-group mb-3 d-flex align-items-center quantity-container" style="max-width: 120px;">
-            <input type="number" class="form-control text-center quantity-amount" value="${item.quantity}" min="1" id="quantity-${item.id}" onchange="updateQuantityFromInput(${item.id})">
-        </div>
-    </td>
-    <td>${itemTotal.toFixed(2)}</td>
-    <td><button class="btn btn-black btn-sm" onclick="removeFromCart(${item.id})">X</button></td>
+                <td class="product-thumbnail"><img src="/data/products/${item.image}" alt="Image" class="img-fluid"></td>
+                <td class="product-name"><h2 class="h5 text-black">${item.name}</h2></td>
+                <td>${item.price}</td>
+                <td>
+                    <div class="input-group mb-3 d-flex align-items-center quantity-container" style="max-width: 120px;">
+                        <input type="number" class="form-control text-center quantity-amount" value="${item.quantity}" min="1" id="quantity-${item.id}" onchange="updateQuantityFromInput(${item.id})">
+                    </div>
+                </td>
+                <td>${itemTotal.toFixed(2)}</td>
+                <td><button class="btn btn-black btn-sm" onclick="removeFromCart(${item.id})">X</button></td>
             `;
             cartItemsContainer.appendChild(row);
         });
@@ -78,9 +81,18 @@
         totalAmountElement.innerText = totalAmount.toFixed(2);
     }
 
+    // Hàm cập nhật số lượng từ input và kiểm tra số lượng tồn kho
     function updateQuantityFromInput(itemId) {
-        // Lấy số lượng mới từ input
         var newQuantity = document.getElementById(`quantity-${itemId}`).value;
+
+        // Kiểm tra số lượng tồn kho
+        var product = products.find(p => p.id === itemId); // Lấy thông tin sản phẩm từ mảng products
+        if (product && parseInt(newQuantity) > product.stock) {
+            alert('Quantity exceeds available stock!');
+            // Cập nhật lại input để số lượng không vượt quá tồn kho
+            document.getElementById(`quantity-${itemId}`).value = product.stock;
+            newQuantity = product.stock;  // Đặt số lượng mới bằng số lượng tồn kho
+        }
 
         // Cập nhật số lượng trong giỏ hàng
         var item = cart.find(item => item.id === itemId);
@@ -88,44 +100,19 @@
             item.quantity = parseInt(newQuantity);
         }
 
-        // Gửi giỏ hàng đã cập nhật về lại server (cập nhật Session)
-        updateCartInSession(cart);
-
         // Cập nhật lại giao diện giỏ hàng
         updateCartDisplay();
     }
 
+    // Hàm xóa sản phẩm khỏi giỏ hàng
     function removeFromCart(itemId) {
         // Xóa sản phẩm khỏi giỏ hàng
         cart = cart.filter(item => item.id !== itemId);
 
-        // Gửi giỏ hàng đã cập nhật về lại server (cập nhật Session)
-        updateCartInSession(cart);
-
         // Cập nhật lại giao diện giỏ hàng
         updateCartDisplay();
-    }
-
-    // Gửi giỏ hàng về server để cập nhật Session
-    function updateCartInSession(cart) {
-        // Gửi giỏ hàng về lại server qua Ajax (POST)
-        fetch('/Cart/UpdateCart', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ cartItems: cart }),
-        }).then(response => {
-            if (response.ok) {
-                console.log('Cart updated successfully');
-            }
-        }).catch(error => {
-            console.error('Error updating cart:', error);
-        });
     }
 
     // Hiển thị giỏ hàng lần đầu
     updateCartDisplay();
 </script>
-
-

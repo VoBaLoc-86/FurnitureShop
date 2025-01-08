@@ -87,6 +87,13 @@ namespace FurnitureShop.Controllers
                 return NotFound();
             }
 
+            // Kiểm tra nếu số lượng yêu cầu vượt quá số lượng tồn kho
+            if (quantity > product.Stock)
+            {
+                TempData["Error"] = "The quantity exceeds available stock.";
+                return RedirectToAction("Details", new { productName });
+            }
+
             // Lấy giỏ hàng từ Session
             var cart = HttpContext.Session.Get<List<CartItem>>("cart") ?? new List<CartItem>();
 
@@ -95,6 +102,13 @@ namespace FurnitureShop.Controllers
 
             if (existingItem != null)
             {
+                // Kiểm tra nếu số lượng yêu cầu cộng thêm vào giỏ hàng vượt quá số lượng tồn kho
+                if (existingItem.Quantity + quantity > product.Stock)
+                {
+                    TempData["Error"] = "The quantity in the cart exceeds available stock.";
+                    return RedirectToAction("Details", new { productName });
+                }
+
                 // Nếu sản phẩm đã có, cập nhật số lượng
                 existingItem.Quantity += quantity;
             }
@@ -115,8 +129,10 @@ namespace FurnitureShop.Controllers
             HttpContext.Session.Set("cart", cart);
 
             // Chuyển hướng về trang giỏ hàng hoặc thông báo thành công
+            TempData["Success"] = "Product added to cart successfully.";
             return RedirectToAction("Index", "Cart");
         }
+
         [HttpPost]
         public async Task<IActionResult> AddReview(int productId, string content, int rating)
         {

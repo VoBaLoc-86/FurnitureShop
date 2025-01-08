@@ -20,10 +20,10 @@
                         </div>
 
                         <!-- Hiển thị lỗi (nếu có) -->
-                        @if (!string.IsNullOrEmpty(ViewBag.Error))
+                        @if (TempData["Message"] != null)
                         {
                             <div class="alert alert-danger" role="alert">
-                                @ViewBag.Error
+                                @TempData["Message"]
                             </div>
                         }
 
