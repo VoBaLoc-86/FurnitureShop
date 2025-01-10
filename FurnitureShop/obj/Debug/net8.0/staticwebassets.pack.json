@@ -16885,6 +16885,10 @@
       "PackagePath": "staticwebassets\\data\\features\\53cc40d8-abe7-4311-a505-159d6dc98a2b.png"
     },
     {
+      "Id": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\wwwroot\\data\\features\\7e0f1481-7510-49db-b3db-eb40c2640954.png",
+      "PackagePath": "staticwebassets\\data\\features\\7e0f1481-7510-49db-b3db-eb40c2640954.png"
+    },
+    {
       "Id": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\wwwroot\\data\\features\\8335f130-0e85-4ffd-be6c-477e3b4880bf .svg",
       "PackagePath": "staticwebassets\\data\\features\\8335f130-0e85-4ffd-be6c-477e3b4880bf .svg"
     },
@@ -16939,6 +16943,10 @@
     {
       "Id": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\wwwroot\\data\\pages\\c13c497a-20b3-431d-a81f-6e5c999b7a09.png",
       "PackagePath": "staticwebassets\\data\\pages\\c13c497a-20b3-431d-a81f-6e5c999b7a09.png"
+    },
+    {
+      "Id": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\wwwroot\\data\\pages\\c7e0f0c1-7902-4289-9f48-a7b36553fbf4.jpg",
+      "PackagePath": "staticwebassets\\data\\pages\\c7e0f0c1-7902-4289-9f48-a7b36553fbf4.jpg"
     },
     {
       "Id": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\wwwroot\\data\\pages\\c8946f85-d370-4123-89eb-1a639695a80f.png",
@@ -17005,6 +17013,10 @@
       "PackagePath": "staticwebassets\\data\\products\\6fef159a-7cde-4cfa-b5cc-cfab7dfbdd9b.png"
     },
     {
+      "Id": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\wwwroot\\data\\products\\73276888-ef0d-4b63-ad0c-d4a0ffb453e4.jpg",
+      "PackagePath": "staticwebassets\\data\\products\\73276888-ef0d-4b63-ad0c-d4a0ffb453e4.jpg"
+    },
+    {
       "Id": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\wwwroot\\data\\products\\81a30523-01ec-4d61-90e6-9aa2efb5cda5.jpg",
       "PackagePath": "staticwebassets\\data\\products\\81a30523-01ec-4d61-90e6-9aa2efb5cda5.jpg"
     },
@@ -17023,6 +17035,10 @@
     {
       "Id": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\wwwroot\\data\\products\\9dda882f-0da5-489a-8bc0-0f86079628e6.jpg",
       "PackagePath": "staticwebassets\\data\\products\\9dda882f-0da5-489a-8bc0-0f86079628e6.jpg"
+    },
+    {
+      "Id": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\wwwroot\\data\\products\\a0bda281-13a7-44e2-b487-97e7f0c810b4.png",
+      "PackagePath": "staticwebassets\\data\\products\\a0bda281-13a7-44e2-b487-97e7f0c810b4.png"
     },
     {
       "Id": "D:\\GitProject\\FurnitureShop\\FurnitureShop\\wwwroot\\data\\products\\b6f83084-a0c5-4dc0-978e-f3ae868a0623.jpg",

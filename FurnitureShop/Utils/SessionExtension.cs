@@ -1,5 +1,4 @@
 ﻿using System.Text.Json;
-
 namespace FurnitureShop.Utils
 {
     public static class SessionExtension

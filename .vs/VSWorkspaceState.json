@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\FurnitureShop"
+    "\\FurnitureShop",
+    "\\FurnitureShop\\Controllers"
   ],
-  "SelectedNode": "\\FurnitureShop\\appsettings.json",
+  "SelectedNode": "\\FurnitureShop\\Controllers\\ShopController.cs",
   "PreviewInSolutionExplorer": false
 }

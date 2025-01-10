@@ -125,7 +125,7 @@ public class CartController : Controller
             HttpContext.Session.Remove("cart");
 
             TempData["SuccessMessage"] = "Order created successfully!";
-            return RedirectToAction("Thankyou","Cart");
+            return RedirectToAction("Thankyou", "Cart");
         }
 
         TempData["ErrorMessage"] = "There was an error in your order!";
