@@ -3,6 +3,13 @@
 @{
     ViewData["Title"] = "UsersList";
 }
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <i class="bi bi-exclamation-triangle-fill"></i> @TempData["ErrorMessage"]
+        <button type="button" class="btn btn-close" data-bs-dismiss="alert" aria-label="Close"><i class="fa-regular fa-circle-xmark"></i></button>
+    </div>
+}
 <main class="app-main">
     <div class="app-content-header">
         <!--begin::Container-->

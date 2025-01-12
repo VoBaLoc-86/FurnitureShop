@@ -2,8 +2,10 @@
   "ExpandedNodes": [
     "",
     "\\FurnitureShop",
-    "\\FurnitureShop\\Controllers"
+    "\\FurnitureShop\\Controllers",
+    "\\FurnitureShop\\Views",
+    "\\FurnitureShop\\Views\\Cart"
   ],
-  "SelectedNode": "\\FurnitureShop\\Controllers\\ShopController.cs",
+  "SelectedNode": "\\FurnitureShop\\Views\\Cart\\Index.cshtml",
   "PreviewInSolutionExplorer": false
 }

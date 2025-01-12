@@ -99,7 +99,7 @@ namespace FurnitureShop.Controllers
                                         .ToList();
 
             ViewData["AllServices"] = _context.Features.AsNoTracking()
-                                        .ToList();
+                                        .Take(8).ToList();
             ViewData["ServiceReviews"] = _context.Reviews.AsNoTracking()
                                         .Take(3)
                                         .Include(x => x.User)

@@ -174,12 +174,20 @@ namespace FurnitureShop.Areas.Admin.Controllers
             var user = await _context.Users.FindAsync(id);
             if (user != null)
             {
+                var hasOrders = await _context.Orders.AnyAsync(o => o.User_id == id);
+                if (hasOrders)
+                {
+                    TempData["ErrorMessage"] = "Cannot delete user. The user has associated orders.";
+                    return RedirectToAction(nameof(Index));
+                }
+
                 _context.Users.Remove(user);
+                await _context.SaveChangesAsync();
             }
 
-            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+
 
         private bool UserExists(int id)
         {

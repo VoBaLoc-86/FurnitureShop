@@ -264,8 +264,6 @@ namespace FurnitureShop.Areas.Admin.Controllers
         private bool OrderExists(int id)
         {
             return _context.Orders.Any(e => e.Id == id);
-        }
-
-        
+        }      
     }
 }

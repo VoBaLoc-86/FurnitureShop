@@ -69,7 +69,9 @@
                 <td>${item.price}</td>
                 <td>
                     <div class="input-group mb-3 d-flex align-items-center quantity-container" style="max-width: 120px;">
+                        <button class="btn btn-outline-black btn-sm" onclick="decreaseQuantity(${item.id})">-</button>
                         <input type="number" class="form-control text-center quantity-amount" value="${item.quantity}" min="1" id="quantity-${item.id}" onchange="updateQuantityFromInput(${item.id})">
+                        <button class="btn btn-outline-black btn-sm" onclick="increaseQuantity(${item.id})">+</button>
                     </div>
                 </td>
                 <td>${itemTotal.toFixed(2)}</td>
@@ -79,6 +81,31 @@
         });
 
         totalAmountElement.innerText = totalAmount.toFixed(2);
+    }
+
+    // Hàm tăng số lượng sản phẩm
+    function increaseQuantity(itemId) {
+        var item = cart.find(item => item.id === itemId);
+        if (item) {
+            var product = products.find(p => p.id === itemId);
+            if (product && item.quantity < product.stock) {
+                item.quantity += 1;
+            } else {
+                alert('Quantity exceeds available stock!');
+            }
+        }
+        updateCartDisplay();
+        updateSessionCart();
+    }
+
+    // Hàm giảm số lượng sản phẩm
+    function decreaseQuantity(itemId) {
+        var item = cart.find(item => item.id === itemId);
+        if (item && item.quantity > 1) {
+            item.quantity -= 1;
+        }
+        updateCartDisplay();
+        updateSessionCart();
     }
 
     // Hàm cập nhật số lượng từ input và kiểm tra số lượng tồn kho
@@ -102,6 +129,7 @@
 
         // Cập nhật lại giao diện giỏ hàng
         updateCartDisplay();
+        updateSessionCart();
     }
 
     // Hàm xóa sản phẩm khỏi giỏ hàng
@@ -111,8 +139,28 @@
 
         // Cập nhật lại giao diện giỏ hàng
         updateCartDisplay();
+        updateSessionCart();
+    }
+
+    // Hàm cập nhật giỏ hàng trong session
+    function updateSessionCart() {
+        fetch('/Cart/UpdateCart', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ CartItems: cart })
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Cart updated in session:', data);
+        })
+        .catch(error => {
+            console.error('Error updating cart in session:', error);
+        });
     }
 
     // Hiển thị giỏ hàng lần đầu
     updateCartDisplay();
 </script>
+
