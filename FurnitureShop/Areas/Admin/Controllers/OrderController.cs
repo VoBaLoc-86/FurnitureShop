@@ -151,6 +151,20 @@ namespace FurnitureShop.Areas.Admin.Controllers
 
             var originalStatus = order.Status;
 
+            // Không cho phép chỉnh sửa trạng thái nếu đơn hàng đã là "Cancelled" hoặc "Complete"
+            if (originalStatus == "Cancelled" || originalStatus == "Completed")
+            {
+                TempData["Message"] = $"Không thể thay đổi trạng thái đơn hàng đã là '{originalStatus}'.";
+                return RedirectToAction(nameof(Details), new { id = order.Id });
+            }
+
+            // Không cho phép chuyển trạng thái từ "Processing" sang "Pending"
+            if (originalStatus == "Processing" && status == "Pending")
+            {
+                TempData["Message"] = "Không thể chuyển trạng thái đơn hàng từ 'Processing' sang 'Pending'.";
+                return RedirectToAction(nameof(Details), new { id = order.Id });
+            }
+
             // Nếu đơn hàng đang ở trạng thái "Processing" và trạng thái mới là khác "Processing"
             if (originalStatus == "Processing" && status != "Processing")
             {
@@ -200,6 +214,13 @@ namespace FurnitureShop.Areas.Admin.Controllers
             order.Status = status;
             order.Payment_status = paymentStatus;
 
+            if (status == "Complete")
+            {
+                // Không cho phép chỉnh sửa thêm nếu đơn hàng đã hoàn thành
+                TempData["Message"] = $"Trạng thái đơn hàng đã được đặt là 'Complete'. Không thể thay đổi thêm.";
+                return RedirectToAction(nameof(Details), new { id = order.Id });
+            }
+
             if (ModelState.IsValid)
             {
                 try
@@ -222,6 +243,9 @@ namespace FurnitureShop.Areas.Admin.Controllers
 
             return RedirectToAction(nameof(Details), new { id = order.Id });
         }
+
+
+
 
 
 

@@ -4258,6 +4258,8 @@ wwwroot\data\products\9816b858-3464-472d-aab5-da25d266f223.jpg
 wwwroot\data\products\9dda882f-0da5-489a-8bc0-0f86079628e6.jpg
 wwwroot\data\products\a0bda281-13a7-44e2-b487-97e7f0c810b4.png
 wwwroot\data\products\b6f83084-a0c5-4dc0-978e-f3ae868a0623.jpg
+wwwroot\data\products\e12f33ad-c306-494d-811d-06d881bfa24f.jpg
+wwwroot\data\products\e25f3206-a084-4da3-a0ed-2e5082d8e4d3.jpg
 wwwroot\data\products\e5ddd4d2-fee0-4ceb-8281-362fd6782935.jpg
 wwwroot\data\products\eb471c41-2728-4e47-9980-83c97d05f210.jpg
 wwwroot\data\products\f758c6a2-2b89-4147-84b8-8bac0b274d2e.jpg

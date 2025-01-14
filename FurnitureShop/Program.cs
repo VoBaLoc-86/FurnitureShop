@@ -43,11 +43,15 @@ namespace FurnitureShop
             builder.Services.Configure<DataProtectionTokenProviderOptions>(opt =>
                 opt.TokenLifespan = TimeSpan.FromMinutes(10));
 
-            
-
             // Cấu hình dịch vụ gửi email
             builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
             builder.Services.AddTransient<IEmailSender, EmailSender>();
+
+            // Cấu hình VNPaySettings
+            builder.Services.Configure<VNPaySettings>(builder.Configuration.GetSection("VNPay"));
+
+            // Thêm IHttpClientFactory cho reCAPTCHA
+            builder.Services.AddHttpClient();
 
             // Tạo ứng dụng từ builder
             var app = builder.Build();
@@ -69,8 +73,13 @@ namespace FurnitureShop
             // Định tuyến cho các controller và areas
             app.MapControllerRoute(
                 name: "areas",
-                pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
-            );
+                pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
+            // Định tuyến tùy chỉnh cho URL thân thiện
+            app.MapControllerRoute(
+                name: "friendlyRoute",
+                pattern: "Shop/Details/{name}-{id}",
+                defaults: new { controller = "Shop", action = "Details" });
 
             // Định tuyến mặc định cho controller
             app.MapControllerRoute(

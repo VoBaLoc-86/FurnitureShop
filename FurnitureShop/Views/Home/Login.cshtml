@@ -6,7 +6,7 @@
                     <h3 class="mb-0">Login</h3>
                 </div>
                 <div class="card-body">
-                    <form asp-action="Login" method="post">
+                    <form id="loginForm" asp-action="Login" method="post" onsubmit="return validateRecaptcha()">
                         <!-- Email -->
                         <div class="mb-3">
                             <label for="email" class="form-label fw-semibold">Email Address</label>
@@ -17,6 +17,23 @@
                         <div class="mb-3">
                             <label for="password" class="form-label fw-semibold">Password</label>
                             <input type="password" name="password" id="password" class="form-control" placeholder="Enter your password" required />
+                            <div class="text-end mt-2">
+                                <a href="/Home/ForgotPassword" class="text-primary">Forgot password?</a>
+                            </div>
+                        </div>
+
+                        <!-- Remember Me -->
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="RememberMe" value="true" id="RememberMe">
+                            <label class="form-check-label fw-semibold" for="RememberMe">
+                                Remember Me
+                            </label>
+                        </div>
+
+                        <!-- reCAPTCHA -->
+                        <div class="mb-3">
+                            <div class="g-recaptcha" data-sitekey="6Ldd7rYqAAAAAOiZJ7dawmYwSzXY5Va0KnXvLqzm"></div>
+                            <span id="recaptchaError" class="text-danger small"></span>
                         </div>
 
                         <!-- Hiển thị lỗi (nếu có) -->
@@ -40,7 +57,8 @@
         </div>
     </div>
 </div>
-@section Header{
+
+@section Header {
     <style>
         .form-label {
             font-weight: 600;
@@ -72,4 +90,16 @@
             font-size: 14px;
         }
     </style>
-};
+    <!-- Thêm script reCAPTCHA -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script>
+        function validateRecaptcha() {
+            var response = grecaptcha.getResponse();
+            if (response.length === 0) {
+                document.getElementById('recaptchaError').innerText = 'Please verify that you are not a robot.';
+                return false;
+            }
+            return true;
+        }
+    </script>
+}

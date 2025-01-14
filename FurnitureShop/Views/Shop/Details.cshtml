@@ -46,9 +46,9 @@
                     <p class="alert alert-warning">Please log in to add items to your cart.</p>
                 }
 
-                <form id="addToCartForm" class="mb-4" method="post" action="@Url.Action("AddToCart", "Shop")">
-                    <!-- Truyền productName thay vì productId -->
-                    <input type="hidden" name="productName" value="@FurnitureShop.Utils.CreateNameUrl.CreateProductUrl(Model.Name)" />
+                <form id="addToCartForm" class="mb-4" method="post" asp-action="AddToCart" asp-controller="Shop">
+                    <input type="hidden" name="name" value="@FurnitureShop.Utils.CreateNameUrl.CreateProductUrl(Model.Name)" />
+                    <input type="hidden" name="id" value="@Model.Id" />
 
                     <div class="row align-items-center">
                         <div class="col-auto">
@@ -76,23 +76,35 @@
         </div>
         <!-- Review Section -->
         <div class="reviews-section mt-5">
-            <h3 class="mb-4">Customer Reviews</h3>
+            <h3 class="mb-4 text-center">Customer Reviews</h3>
 
             <!-- Hiển thị danh sách đánh giá -->
             @if (Model.Reviews != null && Model.Reviews.Any())
             {
-                foreach (var review in Model.Reviews)
+                @foreach (var review in Model.Reviews)
                 {
-                    <div class="review mb-3">
-                        <h5 class="mb-1">@review.User!.Name</h5>
-                        <p class="text-muted small">@review.CreatedDate.ToString("dd/MM/yyyy")</p>
-                        <p>@Html.Raw(review.Comment)</p>
+                    <div class="review mb-4 p-3 border rounded shadow-sm">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h5 class="mb-1">@review.User!.Name</h5>
+                            <p class="text-muted small">@review.CreatedDate.ToString("dd/MM/yyyy")</p>
+                        </div>
+                        <div class="rating mb-2">
+                            @for (int i = 0; i < review.Rating; i++)
+                            {
+                                <span class="bi bi-star-fill text-warning"></span>
+                            }
+                            @for (int i = review.Rating; i < 5; i++)
+                            {
+                                <span class="bi bi-star text-warning"></span>
+                            }
+                        </div>
+                        <p class="review-comment">@Html.Raw(review.Comment)</p>
                     </div>
                 }
             }
             else
             {
-                <p class="text-muted">No reviews yet. Be the first to leave a review!</p>
+                <p class="text-muted text-center">No reviews yet. Be the first to leave a review!</p>
             }
 
             <!-- Form thêm đánh giá -->
@@ -120,33 +132,34 @@
                         <textarea id="reviewContent" name="content" class="form-control" rows="3" required></textarea>
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Submit Review</button>
+                    <button type="submit" class="btn btn-primary w-100">Submit Review</button>
                 </form>
-
             }
             else
             {
-                <p class="alert alert-warning">Please log in to leave a review.</p>
+                <p class="alert alert-warning text-center">Please log in to leave a review.</p>
             }
         </div>
         <!-- Related Products Section -->
         <div class="related-products-section mt-5">
-            <h3 class="mb-4">Related Products</h3>
-            <div class="row">
+            <h3 class="mb-4 text-center">Related Products</h3>
+            <div class="row g-4">
+                <!-- Thêm khoảng cách giữa các cột -->
                 @if (ViewData["relatedproducts"] is List<FurnitureShop.Models.Product> relatedProducts)
                 {
                     foreach (var relatedProduct in relatedProducts)
                     {
-                        <div class="col-md-3" style="width:306px;height:380px">
-                            <div class="card">
+                        <div class="col-sm-6 col-md-4 mb-4">
+                            <!-- Cập nhật cột cho 3 sản phẩm -->
+                            <div class="card h-100 shadow-sm border-0">
                                 <img src="~/data/products/@relatedProduct.Image"
                                      alt="Product Image"
                                      class="card-img-top"
-                                     style="width:100%; height:200px; object-fit:cover;" />
-                                <div class="card-body">
-                                    <h5 class="card-title">@relatedProduct.Name</h5>
-                                    <p class="card-text">$@relatedProduct.Price</p>
-                                    <a href="@Url.Action("Details", "Shop", new { productName = FurnitureShop.Utils.CreateNameUrl.CreateProductUrl(relatedProduct.Name) })" class="btn btn-sm btn-outline-primary">
+                                     style="width:100%; height:250px; object-fit:cover;" />
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="card-title text-truncate" style="font-size: 1.1rem;">@relatedProduct.Name</h5>
+                                    <p class="card-text text-muted" style="font-size: 1rem;">$@relatedProduct.Price</p>
+                                    <a asp-action="Details" asp-controller="Shop" asp-route-name="@FurnitureShop.Utils.CreateNameUrl.CreateProductUrl(relatedProduct.Name)" asp-route-id="@relatedProduct.Id" class="btn btn-sm btn-outline-primary mt-auto">
                                         View Details
                                     </a>
                                 </div>
@@ -156,8 +169,130 @@
                 }
             </div>
         </div>
-    </div>
-    
-    
 
+
+    </div>
 </div>
+
+@section Header{
+    <style>
+        .reviews-section {
+            background-color: #f8f9fa;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .review {
+            background-color: #fff;
+        }
+
+            .review h5 {
+                font-size: 1.2rem;
+                font-weight: bold;
+            }
+
+        .review-comment {
+            font-size: 1rem;
+            color: #555;
+        }
+
+        .rating span {
+            font-size: 1.2rem;
+        }
+
+        .form-label {
+            font-weight: bold;
+        }
+
+        .form-select, .form-control {
+            border-radius: 8px;
+            padding: 0.8rem;
+            font-size: 1rem;
+        }
+
+        .alert-warning {
+            background-color: #fff3cd;
+            color: #856404;
+            padding: 1rem;
+            border-radius: 5px;
+        }
+
+        button.btn {
+            padding: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .related-products-section {
+            background-color: #f8f9fa;
+            padding: 3rem 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+            .related-products-section h3 {
+                font-size: 2rem;
+                font-weight: 700;
+                margin-bottom: 1.5rem;
+                color: #333;
+                text-align: center;
+            }
+
+        .card {
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease-in-out;
+        }
+
+            .card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .card-text {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-body {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
+
+        .btn-outline-primary {
+            font-size: 0.9rem;
+            font-weight: 500;
+            border-radius: 20px;
+        }
+
+        .card-img-top {
+            border-radius: 10px;
+        }
+
+        .row-cols-1 {
+            display: grid;
+        }
+
+        .row-cols-md-3 {
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem; /* Khoảng cách giữa các sản phẩm */
+        }
+
+        .col {
+            padding: 0;
+        }
+
+        .card-body .btn {
+            font-size: 0.9rem;
+        }
+    </style>
+}

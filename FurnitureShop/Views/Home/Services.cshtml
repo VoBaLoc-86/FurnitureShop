@@ -64,7 +64,9 @@
 			<!-- Start Column 2 -->
 			@foreach(var item in ViewData["HotProducts"] as List<Product> ?? []){
 				<div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
-					<a class="product-item" asp-controller="Shop" asp-action="Details" asp-route-productName="@CreateNameUrl.CreateProductUrl(item.Name)">
+					<a class="product-item" asp-controller="Shop" asp-action="Details"
+					   asp-route-name="@FurnitureShop.Utils.CreateNameUrl.CreateProductUrl(item.Name)" asp-route-id="@item.Id"
+					>
 						<img src="~/data/products/@item.Image" class="img-fluid product-thumbnail" style="width:306px;height:306px">
 						<h3 class="product-title">@item.Name</h3>
 						<strong class="product-price">$@item.Price</strong>

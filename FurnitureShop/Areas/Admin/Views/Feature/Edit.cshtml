@@ -66,7 +66,7 @@
                             <!-- Display Order -->
                             <div class="mb-3">
                                 <label asp-for="DisplayOrder" class="form-label fw-bold">Display Order:</label>
-                                <input asp-for="DisplayOrder" class="form-control" placeholder="Enter display order" />
+                                <input asp-for="DisplayOrder" class="form-control" placeholder="Enter display order" oninput="limitInputLength(this, 3)" />
                                 <span asp-validation-for="DisplayOrder" class="text-danger"></span>
                             </div>
 
@@ -114,5 +114,13 @@
                 document.getElementById('imgPreview').src = currentIcon;
             }
         }
+    </script>
+
+    <script>
+
+        function limitInputLength(element, maxLength)
+            {
+                element.value = element.value.replace(/[^0-9.]/g, '').substring(0, maxLength);
+            }
     </script>
 }

@@ -23,9 +23,20 @@ namespace FurnitureShop.Areas.Admin.Controllers
         // GET: Admin/Category
         public async Task<IActionResult> Index()
         {
+            var categories = await _context.Categories.ToListAsync();
+            var categoryProductInfo = new Dictionary<int, bool>();
 
-            return View(await _context.Categories.ToListAsync());
+            foreach (var category in categories)
+            {
+                categoryProductInfo[category.Id] = await HasProducts(category.Id);
+            }
+
+            ViewData["CategoryProductInfo"] = categoryProductInfo;
+
+            return View(categories);
         }
+
+
 
         public IActionResult Search(string query)
         {
@@ -247,6 +258,14 @@ namespace FurnitureShop.Areas.Admin.Controllers
             return RedirectToAction(nameof(Index)); // Chuyển hướng về Index sau khi xóa thành công
         }
 
+        public async Task<bool> HasProducts(int categoryId)
+        {
+            var category = await _context.Categories
+                                          .Include(c => c.Products)
+                                          .FirstOrDefaultAsync(c => c.Id == categoryId);
+
+            return category != null && category.Products.Any();
+        }
 
 
 

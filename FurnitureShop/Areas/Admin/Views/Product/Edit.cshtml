@@ -58,7 +58,7 @@
                             <div class="mb-3 row">
                                 <label asp-for="Price" class="col-sm-2 col-form-label">Price:</label>
                                 <div class="col-sm-10">
-                                    <input asp-for="Price" class="form-control" placeholder="Enter product price">
+                                    <input asp-for="Price" class="form-control" placeholder="Enter product price" oninput="limitInputLength(this, 7)">
                                     <span asp-validation-for="Price" class="text-danger"></span>
                                 </div>
                             </div>
@@ -67,7 +67,7 @@
                             <div class="mb-3 row">
                                 <label asp-for="Stock" class="col-sm-2 col-form-label">Stock:</label>
                                 <div class="col-sm-10">
-                                    <input asp-for="Stock" class="form-control" placeholder="Enter stock quantity">
+                                    <input asp-for="Stock" class="form-control" placeholder="Enter stock quantity" oninput="limitInputLength(this, 5)">
                                     <span asp-validation-for="Stock" class="text-danger"></span>
                                 </div>
                             </div>
@@ -174,5 +174,13 @@
                 document.getElementById('imgPreview').src = currentIcon;
             }
         }
+    </script>
+
+    <script>
+
+        function limitInputLength(element, maxLength)
+            {
+                element.value = element.value.replace(/[^0-9.]/g, '').substring(0, maxLength);
+            }
     </script>
 }

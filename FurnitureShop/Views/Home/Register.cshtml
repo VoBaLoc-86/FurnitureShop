@@ -8,7 +8,7 @@
                     <h3 class="mb-0">Register</h3>
                 </div>
                 <div class="card-body">
-                    <form asp-action="Register" method="post" asp-controller="Home">
+                    <form id="registerForm" asp-action="Register" method="post" asp-controller="Home" onsubmit="return validateRecaptcha()">
                         <!-- Tên người dùng -->
                         <div class="mb-3">
                             <label asp-for="Name" class="form-label fw-semibold">Full Name</label>
@@ -30,6 +30,12 @@
                             <span asp-validation-for="Password" class="text-danger small"></span>
                         </div>
 
+                        <!-- reCAPTCHA -->
+                        <div class="mb-3">
+                            <div class="g-recaptcha" data-sitekey="6Ldd7rYqAAAAAOiZJ7dawmYwSzXY5Va0KnXvLqzm"></div>
+                            <span id="recaptchaError" class="text-danger small"></span>
+                        </div>
+
                         <!-- Nút đăng ký -->
                         <div class="d-grid">
                             <button type="submit" class="btn btn-primary">Register</button>
@@ -43,6 +49,7 @@
         </div>
     </div>
 </div>
+
 @section Header {
     <style>
         .form-label {
@@ -70,4 +77,16 @@
                 border-color: #004094;
             }
     </style>
-};
+    <!-- Thêm script reCAPTCHA -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script>
+        function validateRecaptcha() {
+            var response = grecaptcha.getResponse();
+            if (response.length === 0) {
+                document.getElementById('recaptchaError').innerText = 'Please verify that you are not a robot.';
+                return false;
+            }
+            return true;
+        }
+    </script>
+}

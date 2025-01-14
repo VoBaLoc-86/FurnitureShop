@@ -1,15 +1,41 @@
 ﻿@using FurnitureShop.Models
 @using System.Text.Json
-
+@using FurnitureShop.Utils;
+@using Microsoft.EntityFrameworkCore
+@inject FurnitureShop.Models.FurnitureShopContext _context
 @{
-	var userInfoString = Context.Session.GetString("userInfo"); // Lấy chuỗi JSON từ session
-	User? userInfo = null; // Đảm bảo User là nullable (User? thay vì User)
+	var userInfo = Context.Session.Get<User>("userInfo");
 
-	if (!string.IsNullOrEmpty(userInfoString))
+	if (userInfo == null)
 	{
-		userInfo = JsonSerializer.Deserialize<User>(userInfoString); // Chuyển chuỗi JSON thành đối tượng User
+		var userEmailCookie = Context.Request.Cookies["UserCredential"];
+
+		// Kiểm tra cookie có giá trị hay không
+		if (!string.IsNullOrEmpty(userEmailCookie))
+		{
+			try
+			{
+				// Kiểm tra trong cơ sở dữ liệu nếu cookie hợp lệ
+				var user = _context.Users!.FirstOrDefault(x => x.Email == userEmailCookie);
+
+				if (user != null)
+				{
+					// Lưu thông tin người dùng vào session
+					Context.Session.Set("userInfo", user);
+					userInfo = user;
+				}
+			}
+			catch (Exception ex)
+			{
+				// Log lỗi nếu có
+				Console.WriteLine($"Error: {ex.Message}");
+			}
+		}
 	}
 }
+
+
+
 
 <!doctype html>
 <html lang="en">
@@ -25,6 +51,10 @@
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 	<link href="~/css/tiny-slider.css" rel="stylesheet">
 	<link href="~/css/style.css" rel="stylesheet">
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css">
+	
+
 	@await RenderSectionAsync("Header", required: false)
 	<title>@ViewData["Title"] Furniture - Website</title>
 </head>

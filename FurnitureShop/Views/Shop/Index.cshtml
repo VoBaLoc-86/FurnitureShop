@@ -1,74 +1,163 @@
-﻿@using FurnitureShop.Utils;
+﻿@using FurnitureShop.Models
+@using FurnitureShop.Utils
 @{
-	ViewData["Title"] = "Shop Page";
-	var pageShop = ViewData["PageShop"] as FurnitureShop.Models.Page;
-	
+    ViewData["Title"] = "Shop Page";
+    var pageShop = ViewData["PageShop"] as FurnitureShop.Models.Page;
+    var pagination = ViewData["Pagination"] as PaginationHelper<Product>;
 }
-<!-- Start Hero Section -->
 <div class="hero">
-	<div class="container">
-		<div class="row justify-content-between">
-			<div class="col-lg-5">
-				<div class="intro-excerpt">
-					<h1>@pageShop.Title</h1>
-					<p class="mb-4">
-						@pageShop.Content
-					</p>
-					
-				</div>
-			</div>
-			<div class="col-lg-7">
-				<div class="hero-img-wrap">
-					<img src="~/data/pages/@pageShop.Image" class="img-fluid">
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-<!-- End Hero Section -->
-
-
-
-<div class="untree_co-section product-section before-footer-section">
     <div class="container">
-        <!-- Search and Filter Form -->
-        <form method="get" asp-action="Index" class="mb-4">
-            <div class="row">
-                <!-- Search Bar -->
-                <div class="col-md-6">
-                    <input type="text" name="search" class="form-control" placeholder="Search by product name" value="@ViewData["SearchQuery"]" />
-                </div>
-                <!-- Price Range Filter -->
-                <div class="col-md-3">
-                    <input type="number" name="minPrice" class="form-control" placeholder="Min Price" value="@ViewData["MinPrice"]" />
-                </div>
-                <div class="col-md-3">
-                    <input type="number" name="maxPrice" class="form-control" placeholder="Max Price" value="@ViewData["MaxPrice"]" />
+        <div class="row justify-content-between">
+            <div class="col-lg-5">
+                <div class="intro-excerpt">
+                    <h1>@pageShop!.Title</h1>
+                    <p class="mb-4">
+                        @pageShop.Content
+                    </p>
+                    <p>
+                        <a asp-action="Index" asp-controller="Shop" class="btn btn-secondary me-2">Shop Now</a>
+
+                    </p>
                 </div>
             </div>
-            <div class="row mt-3">
-                <div class="col-md-12 text-end">
-                    <button type="submit" class="btn btn-primary">Search</button>
+            <div class="col-lg-7">
+                <div class="hero-img-wrap">
+                    <img src="~/data/pages/@pageShop.Image" class="img-fluid">
                 </div>
             </div>
-        </form>
-
-        <!-- Product List -->
-        <div class="row">
-            @foreach (var item in ViewData["Products"] as List<Product> ?? [])
-            {
-                <div class="col-12 col-md-4 col-lg-3 mb-5">
-                    <a class="product-item" asp-action="Details" asp-route-productName="@CreateNameUrl.CreateProductUrl(item.Name)">
-                        <img src="~/data/products/@item.Image" class="img-fluid product-thumbnail" style="width:306px;height:306px">
-                        <h3 class="product-title">@item.Name</h3>
-                        <strong class="product-price">$@item.Price</strong>
-
-                        <span class="icon-cross">
-                            <img src="~/images/cross.svg" class="img-fluid">
-                        </span>
-                    </a>
-                </div>
-            }
         </div>
     </div>
 </div>
+<!-- Product Section -->
+<div class="container my-5">
+    <!-- Search and Filter Form -->
+    <form method="get" id="searchForm" asp-action="Index" class="mb-4">
+        <div class="row g-3">
+            <div class="col-md-6">
+                <input type="text" name="search" class="form-control" placeholder="Search by product name" value="@ViewData["SearchQuery"]">
+            </div>
+            <div class="col-md-3">
+                <input type="number" name="minPrice" class="form-control" placeholder="Min Price" value="@ViewData["MinPrice"]">
+            </div>
+            <div class="col-md-3">
+                <input type="number" name="maxPrice" class="form-control" placeholder="Max Price" value="@ViewData["MaxPrice"]">
+            </div>
+        </div>
+        <div class="row g-3 mt-3 align-items-center">
+            <div class="col-md-6 d-flex">
+                <button type="button" id="sortButton" class="btn btn-outline-secondary" onclick="toggleSortOrder()">
+                    <i id="sortIcon" class="bi @(ViewData["SortOrder"] as string == "asc" ? "bi-sort-numeric-up" : "bi-sort-numeric-down")"></i>
+                    Sort by Price
+                </button>
+            </div>
+            <div class="col-md-6 text-end">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+        </div>
+    </form>
+
+    <!-- Product Grid -->
+    <div class="row">
+        @foreach (var item in pagination.Items)
+        {
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+                <a asp-action="Details" asp-controller="Shop" asp-route-name="@FurnitureShop.Utils.CreateNameUrl.CreateProductUrl(item.Name)" asp-route-id="@item.Id"
+                   class="card text-decoration-none h-100">
+                    <img src="~/data/products/@item.Image" class="card-img-top img-fluid" alt="@item.Name" style="height: 200px; object-fit: cover;">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">@item.Name</h5>
+                        <p class="card-text">$@item.Price</p>
+                    </div>
+                </a>
+            </div>
+        }
+    </div>
+
+    <!-- Pagination -->
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+            <!-- Nút "Previous" -->
+            @if (pagination.CurrentPage > 1)
+            {
+                <li class="page-item">
+                    <a class="page-link text-primary" asp-action="Index" asp-route-page="@(pagination.CurrentPage - 1)">
+                        <i class="bi bi-chevron-left"></i> Previous
+                    </a>
+                </li>
+            }
+            else
+            {
+                <li class="page-item disabled">
+                    <span class="page-link">
+                        <i class="bi bi-chevron-left"></i> Previous
+                    </span>
+                </li>
+            }
+
+            <!-- Các trang -->
+            @for (var i = 1; i <= pagination.TotalPages; i++)
+            {
+                <li class="page-item @(i == pagination.CurrentPage ? "active" : "")">
+                    <a class="page-link @(i == pagination.CurrentPage ? "text-white bg-primary border-primary" : "text-primary")"
+                       asp-action="Index" asp-route-page="@i">
+                        @i
+                    </a>
+                </li>
+            }
+
+            <!-- Nút "Next" -->
+            @if (pagination.CurrentPage < pagination.TotalPages)
+            {
+                <li class="page-item">
+                    <a class="page-link text-primary" asp-action="Index" asp-route-page="@(pagination.CurrentPage + 1)">
+                        Next <i class="bi bi-chevron-right"></i>
+                    </a>
+                </li>
+            }
+            else
+            {
+                <li class="page-item disabled">
+                    <span class="page-link">
+                        Next <i class="bi bi-chevron-right"></i>
+                    </span>
+                </li>
+            }
+        </ul>
+    </nav>
+
+</div>
+@section Header{
+<style>
+    .pagination .page-item.active .page-link {
+        background-color: #0056b3;
+        border-color: #0056b3;
+    }
+
+    .pagination .page-link:hover {
+        color: #004094;
+        text-decoration: none;
+    }
+</style>
+}
+<script>
+    function toggleSortOrder() {
+        const sortIcon = document.getElementById('sortIcon');
+        const sortOrderInput = document.createElement('input');
+        sortOrderInput.type = 'hidden';
+        sortOrderInput.name = 'sortOrder';
+
+        if (sortIcon.classList.contains('bi-sort-numeric-up')) {
+            sortOrderInput.value = 'desc';
+            sortIcon.classList.remove('bi-sort-numeric-up');
+            sortIcon.classList.add('bi-sort-numeric-down');
+        } else {
+            sortOrderInput.value = 'asc';
+            sortIcon.classList.remove('bi-sort-numeric-down');
+            sortIcon.classList.add('bi-sort-numeric-up');
+        }
+
+        const searchForm = document.getElementById('searchForm');
+        searchForm.appendChild(sortOrderInput);
+        searchForm.submit();
+    }
+</script>

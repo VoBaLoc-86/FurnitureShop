@@ -22,5 +22,6 @@ namespace FurnitureShop.Models
         public string? EmailConfirmationToken { get; set; }
         public virtual ICollection<Order>? Orders { get; set; }
         public virtual ICollection<Review>? Reviews { get; set; }
+        public string? ResetToken { get; internal set; }
     }
 }

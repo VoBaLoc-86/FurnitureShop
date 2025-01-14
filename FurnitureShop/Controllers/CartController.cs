@@ -1,14 +1,24 @@
-﻿using FurnitureShop.Models;
+﻿using FurnitureShop.Areas.VNPayAPI.Util;
+using FurnitureShop.Models;
+using FurnitureShop.Services;
 using FurnitureShop.Utils;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
+using System.Text;
+using System.Web;
 
 public class CartController : Controller
 {
     private readonly FurnitureShopContext _context;
+    private readonly VNPaySettings _vnpaySettings;
 
-    public CartController(FurnitureShopContext context)
+    private readonly IEmailSender _emailSender; 
+    
+    public CartController(FurnitureShopContext context, IOptions<VNPaySettings> vnpaySettings, IEmailSender emailSender)
     {
         _context = context;
+        _vnpaySettings = vnpaySettings.Value;
+        _emailSender = emailSender;
     }
 
     public IActionResult Index()
@@ -34,6 +44,7 @@ public class CartController : Controller
 
         return Ok();
     }
+
     public IActionResult Checkout()
     {
         var userInfo = HttpContext.Session.Get<User>("userInfo");
@@ -61,14 +72,43 @@ public class CartController : Controller
 
         ViewData["TotalAmount"] = totalAmount;
 
+        // Thiết lập OrderId trong ViewData để sử dụng cho thanh toán
+        if (ViewData["OrderId"] == null)
+        {
+            ViewData["OrderId"] = 0; // Giá trị mặc định
+        }
+
         return View();
     }
-
 
     public IActionResult Thankyou()
     {
         return View();
     }
+    private string GenerateOrderDetailsHtml(List<CartItem> cart, decimal totalPrice)
+    {
+        var html = new StringBuilder();
+        html.Append("<h1>Xác nhận đơn hàng</h1>");
+        html.Append("<p>Cảm ơn bạn đã đặt hàng! Dưới đây là thông tin chi tiết:</p>");
+        html.Append("<table style='width:100%; border: 1px solid black; border-collapse: collapse;'>");
+        html.Append("<tr><th style='border: 1px solid black; padding: 8px;'>Tên sản phẩm</th><th style='border: 1px solid black; padding: 8px;'>Số lượng</th><th style='border: 1px solid black; padding: 8px;'>Giá</th></tr>");
+
+        foreach (var item in cart)
+        {
+            html.Append("<tr>");
+            html.AppendFormat("<td style='border: 1px solid black; padding: 8px;'>{0}</td>", item.Name);
+            html.AppendFormat("<td style='border: 1px solid black; padding: 8px;'>{0}</td>", item.Quantity);
+            html.AppendFormat("<td style='border: 1px solid black; padding: 8px;'>{0:C}</td>", item.Price);
+            html.Append("</tr>");
+        }
+
+        html.AppendFormat("<tr><td colspan='2' style='border: 1px solid black; padding: 8px;'><strong>Tổng tiền</strong></td><td style='border: 1px solid black; padding: 8px;'><strong>{0:C}</strong></td></tr>", totalPrice);
+        html.Append("</table>");
+
+        return html.ToString();
+    }
+
+
 
     [HttpPost]
     [ValidateAntiForgeryToken]
@@ -81,7 +121,7 @@ public class CartController : Controller
 
             if (cart.Count == 0)
             {
-                TempData["ErrorMessage"] = "Your cart is empty!";
+                TempData["ErrorMessage"] = "Giỏ hàng của bạn trống!";
                 return RedirectToAction("Index", "Home");
             }
 
@@ -110,7 +150,7 @@ public class CartController : Controller
             // Thêm chi tiết đơn hàng vào bảng Order_Details
             foreach (var item in cart)
             {
-                var orderDetail = new Order_Detail // Sửa lại tên lớp ở đây
+                var orderDetail = new Order_Detail
                 {
                     Order_id = order.Id,
                     Product_id = item.Id,
@@ -124,12 +164,23 @@ public class CartController : Controller
             // Xóa giỏ hàng khỏi session sau khi tạo đơn hàng
             HttpContext.Session.Remove("cart");
 
-            TempData["SuccessMessage"] = "Order created successfully!";
-            return RedirectToAction("Thankyou", "Cart");
+            // Thiết lập OrderId trong ViewData để sử dụng cho thanh toán
+            ViewData["OrderId"] = order.Id;
+
+            // Gửi email xác nhận đơn hàng dưới dạng HTML
+            var orderDetailsHtml = GenerateOrderDetailsHtml(cart, order.Total_price);
+            await _emailSender.SendEmailAsync(
+                userInfo.Email,
+                "Xác nhận đơn hàng",
+                orderDetailsHtml
+            );
+
+            // Chuyển hướng đến trang thanh toán để hiển thị nút thanh toán
+            return RedirectToAction("Thankyou","Cart");
         }
 
-        TempData["ErrorMessage"] = "There was an error in your order!";
-        return RedirectToAction("Checkout");
+        return View();
     }
+
 
 }

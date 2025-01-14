@@ -4,12 +4,13 @@
     var userInfo = Context.Session.Get<User>("userInfo");
     if (userInfo == null)
     {
-        Context.Response.Redirect("/");
+        Context.Response.Redirect("/"); // Redirect nếu chưa đăng nhập
     }
 
     // Lấy giỏ hàng từ Session
     var cartItems = ViewData["CartItems"] as List<CartItem> ?? new List<CartItem>();
     var totalAmount = ViewData["TotalAmount"] as decimal? ?? 0;
+    var orderId = ViewData["OrderId"] != null ? ViewData["OrderId"].ToString() : string.Empty;
 }
 <div class="hero">
     <div class="container">
@@ -40,20 +41,26 @@
                             <label for="phone_number" class="text-black">Phone <span class="text-danger">*</span></label>
                             <input type="text" class="form-control" id="phone_number" name="phone_number" placeholder="Enter your phone number" required>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group mt-2">
                             <button class="btn btn-black btn-lg py-3 btn-block" type="submit">Submit</button>
                         </div>
+                        <h4 class="mt-2">Total: <span id="invoiceTotal">@totalAmount</span> VND</h4> <!-- Hiển thị tổng số tiền -->
                     </div>
                 </div>
             </form>
 
-            <!-- Bảng tổng tiền hóa đơn -->
+            <!-- Nút thanh toán qua VNPAY -->
             <div class="col-md-6">
-                <h2 class="h3 mb-3 text-black">Invoice</h2>
+                <h2 class="h3 mb-3 text-black">Tiện ích</h2>
                 <div class="p-3 p-lg-5 border bg-white">
-                    <h4>Total: <span id="invoiceTotal">@totalAmount</span> USD</h4>
+                    
+                    <!-- Nút thanh toán qua VNPAY -->
+                    <a href="@Url.Action("Payment", "Home", new { area = "VNPayAPI", amount = totalAmount, infor = "Thông tin đơn hàng", orderRef = orderId })" class="btn btn-primary btn-lg py-3 btn-block" role="button">
+                        Thanh toán qua VNPAY
+                    </a>
                 </div>
             </div>
+
         </div>
     </div>
 </div>
