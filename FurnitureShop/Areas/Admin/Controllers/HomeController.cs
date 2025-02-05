@@ -64,6 +64,8 @@ namespace FurnitureShop.Areas.Admin.Controllers
                     return RedirectToAction("Search", "AdminUser", new { query = query });
                 case "Orders":
                     return RedirectToAction("Search", "Order", new { query = query });
+                case "Features":
+                    return RedirectToAction("Search", "Feature", new { query = query });
                 case "Settings":
                     return RedirectToAction("Search", "Setting", new { query = query });
                 case "Pages":

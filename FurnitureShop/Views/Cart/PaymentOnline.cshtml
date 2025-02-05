@@ -1,0 +1,80 @@
+﻿@using FurnitureShop.Utils
+@{
+    ViewData["Title"] = "Checkout Page";
+    var userInfo = Context.Session.Get<User>("userInfo");
+    if (userInfo == null)
+    {
+        Context.Response.Redirect("/"); // Redirect nếu chưa đăng nhập
+    }
+
+    // Lấy giỏ hàng từ Session
+    var cartItems = ViewData["CartItems"] as List<CartItem> ?? new List<CartItem>();
+    var totalAmount = ViewData["TotalAmount"] as decimal? ?? 0;
+}
+<div class="hero">
+    <div class="container">
+        <div class="row justify-content-between">
+            <div class="col-lg-5">
+                <div class="intro-excerpt">
+                    <h1>Checkout</h1>
+                </div>
+            </div>
+            <div class="col-lg-7"></div>
+        </div>
+    </div>
+</div>
+
+<div class="untree_co-section">
+    <div class="container">
+        <div class="row">
+            <!-- Form nhập Shipping Address và Phone -->
+            <form id="checkoutForm" onsubmit="return validateForm()" method="post" asp-action="CreateOrderPaymentOnline" asp-controller="Cart">
+                <div class="col-md-6 mb-5 mb-md-0">
+                    <h2 class="h3 mb-3 text-black">Shipping Details</h2>
+                    <div class="p-3 p-lg-5 border bg-white">
+                        <div class="form-group">
+                            <label for="shipping_address" class="text-black">Shipping Address <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="shipping_address" name="shipping_address" placeholder="Enter your address" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone_number" class="text-black">Phone <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="phone_number" name="phone_number" placeholder="Enter your phone number" required>
+                        </div>
+                        <div class="form-group mt-2">
+                            <button class="btn btn-primary btn-lg py-3 btn-block" type="submit">Thanh toán qua VNPAY</button>
+                        </div>
+
+                        <h4 class="mt-2">Total: <span id="invoiceTotal">@totalAmount</span> USD</h4> <!-- Hiển thị tổng số tiền -->
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Hàm xác thực biểu mẫu
+    function validateForm() {
+        var shippingAddress = document.getElementById('shipping_address').value;
+        var phoneNumber = document.getElementById('phone_number').value;
+
+        // Kiểm tra địa chỉ
+        if (shippingAddress.trim() === "") {
+            alert("Shipping address is required.");
+            return false;
+        } else if (shippingAddress.length < 8) {
+            alert("Shipping address must be at least 8 characters long.");
+            return false;
+        }
+
+        // Kiểm tra số điện thoại
+        var phonePattern = /^\d{7,}$/;
+        if (!phonePattern.test(phoneNumber)) {
+            alert("Please enter a valid phone number.");
+            return false;
+        }
+
+        // Nếu tất cả hợp lệ, cho phép gửi form
+        return true;
+    }
+</script>

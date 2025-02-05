@@ -83,6 +83,7 @@ namespace FurnitureShop.Areas.VNPayAPI.Controllers
                 {
                     if (vnp_ResponseCode == "00")
                     {
+
                         // Thanh toán thành công
                         // Cập nhật trạng thái đơn hàng trong hệ thống (nếu cần)
                         return Redirect("/Cart/Thankyou");

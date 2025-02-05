@@ -79,10 +79,7 @@
                                             <td class="text-nowrap">
                                                 <a asp-action="Edit" asp-route-id="@item.Id" class="me-1 link-success"><i class="fa-regular fa-pen-to-square"></i></a> |
                                                 <a asp-action="Details" asp-route-id="@item.Id" class="me-1 link-info"><i class="fa-regular fa-circle-info"></i></a> |
-                                                @if (!(ViewData["CategoryProductInfo"] as Dictionary<int, bool>)[item.Id])
-                                                {
                                                     <a asp-action="Delete" asp-route-id="@item.Id" class="link-danger"><i class="fa-regular fa-trash-xmark"></i></a>
-                                                }
                                             </td>
                                         </tr>
                                     }

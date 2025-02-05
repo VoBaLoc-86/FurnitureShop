@@ -75,7 +75,7 @@ public class CartController : Controller
         // Thiết lập OrderId trong ViewData để sử dụng cho thanh toán
         if (ViewData["OrderId"] == null)
         {
-            ViewData["OrderId"] = 0; // Giá trị mặc định
+            ViewData["OrderId"] = Guid.NewGuid().ToString(); // Giá trị mặc định
         }
 
         return View();
@@ -166,6 +166,7 @@ public class CartController : Controller
 
             // Thiết lập OrderId trong ViewData để sử dụng cho thanh toán
             ViewData["OrderId"] = order.Id;
+            ViewData["TotalAmount"] = order.Total_price;
 
             // Gửi email xác nhận đơn hàng dưới dạng HTML
             var orderDetailsHtml = GenerateOrderDetailsHtml(cart, order.Total_price);
@@ -176,11 +177,119 @@ public class CartController : Controller
             );
 
             // Chuyển hướng đến trang thanh toán để hiển thị nút thanh toán
-            return RedirectToAction("Thankyou","Cart");
+            return RedirectToAction("Thankyou", "Cart");
         }
 
         return View();
     }
+    public IActionResult PaymentOnline()
+    {
+        var userInfo = HttpContext.Session.Get<User>("userInfo");
+
+        if (userInfo == null)
+        {
+            // Nếu người dùng chưa đăng nhập, chuyển hướng về trang chủ
+            return RedirectToAction("Index", "Home");
+        }
+
+        // Lấy giỏ hàng từ Session
+        var cart = HttpContext.Session.Get<List<CartItem>>("cart");
+        if (cart == null || cart.Count == 0)
+        {
+            // Nếu giỏ hàng rỗng, chuyển hướng về trang giỏ hàng
+            TempData["ErrorMessage"] = "Your cart is empty. Please add items to your cart before proceeding.";
+            return RedirectToAction("Index", "Cart");
+        }
+
+        // Lưu giỏ hàng vào ViewData để sử dụng trong view
+        ViewData["CartItems"] = cart;
+
+        // Tính tổng tiền
+        var totalAmount = cart.Sum(item => item.Price * item.Quantity);
+
+        ViewData["TotalAmount"] = totalAmount;
+
+        // Thiết lập OrderId trong ViewData để sử dụng cho thanh toán
+        if (ViewData["OrderId"] == null)
+        {
+            ViewData["OrderId"] = Guid.NewGuid().ToString(); // Giá trị mặc định
+        }
+
+        return View();
+    }
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> CreateOrderPaymentOnline(string shipping_address, string phone_number)
+    {
+        if (ModelState.IsValid)
+        {
+            // Lấy giỏ hàng từ session
+            var cart = HttpContext.Session.Get<List<CartItem>>("cart") ?? new List<CartItem>();
+
+            if (cart.Count == 0)
+            {
+                TempData["ErrorMessage"] = "Giỏ hàng của bạn trống!";
+                return RedirectToAction("Index", "Home");
+            }
+
+            // Lấy thông tin người dùng từ session
+            var userInfo = HttpContext.Session.Get<User>("userInfo");
+
+            // Tạo đơn hàng mới
+            var order = new Order
+            {
+                User_id = userInfo.Id,
+                Total_price = cart.Sum(item => item.Price * item.Quantity),
+                Status = "Completed",
+                Shipping_address = shipping_address,
+                Payment_status = "Paid",
+                Phone = phone_number,
+                CreatedDate = DateTime.Now,
+                CreatedBy = userInfo?.Name,
+                UpdatedDate = DateTime.Now,
+                UpdatedBy = userInfo?.Name
+            };
+
+            // Thêm đơn hàng vào cơ sở dữ liệu
+            _context.Add(order);
+            await _context.SaveChangesAsync();
+
+            // Thêm chi tiết đơn hàng vào bảng Order_Details
+            foreach (var item in cart)
+            {
+                var orderDetail = new Order_Detail
+                {
+                    Order_id = order.Id,
+                    Product_id = item.Id,
+                    Quantity = item.Quantity,
+                    Price = item.Price
+                };
+                _context.Add(orderDetail);
+            }
+            await _context.SaveChangesAsync();
+
+            // Xóa giỏ hàng khỏi session sau khi tạo đơn hàng
+            HttpContext.Session.Remove("cart");
+
+            // Thiết lập OrderId trong ViewData để sử dụng cho thanh toán
+            ViewData["OrderId"] = order.Id;
+            ViewData["TotalAmount"] = order.Total_price;
+
+            // Gửi email xác nhận đơn hàng dưới dạng HTML
+            var orderDetailsHtml = GenerateOrderDetailsHtml(cart, order.Total_price);
+            await _emailSender.SendEmailAsync(
+                userInfo.Email,
+                "Xác nhận đơn hàng",
+                orderDetailsHtml
+            );
+
+            // Chuyển hướng đến trang thanh toán qua VNPAY
+            return RedirectToAction("Payment", "Home", new { area = "VNPayAPI", amount = (double)order.Total_price, infor = order.Id, orderRef = order.Id });
+        }
+
+        return View();
+    }
+
 
 
 }

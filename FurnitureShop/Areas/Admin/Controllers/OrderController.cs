@@ -214,12 +214,7 @@ namespace FurnitureShop.Areas.Admin.Controllers
             order.Status = status;
             order.Payment_status = paymentStatus;
 
-            if (status == "Complete")
-            {
-                // Không cho phép chỉnh sửa thêm nếu đơn hàng đã hoàn thành
-                TempData["Message"] = $"Trạng thái đơn hàng đã được đặt là 'Complete'. Không thể thay đổi thêm.";
-                return RedirectToAction(nameof(Details), new { id = order.Id });
-            }
+            
 
             if (ModelState.IsValid)
             {

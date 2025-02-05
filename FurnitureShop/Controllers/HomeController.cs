@@ -23,7 +23,7 @@ namespace FurnitureShop.Controllers
         private readonly FurnitureShopContext _context;
         private readonly IEmailSender _emailSender;
         private readonly IHttpClientFactory _httpClientFactory; 
-        private readonly string _recaptchaSecret = "6Ldd7rYqAAAAAPTLP-KjvOZUxoF0wEt-N4OMLZGX";
+        private readonly string _recaptchaSecret = "6LeFscwqAAAAAKocUAYqUg2AuYhppBCHfDIldKGB";
         public HomeController(IEmailSender emailSender, ILogger<HomeController> logger, FurnitureShopContext context,IHttpClientFactory httpClientFactory)
         {
             _emailSender = emailSender;

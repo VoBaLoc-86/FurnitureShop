@@ -14,7 +14,7 @@ namespace FurnitureShop
 
             // Cấu hình DbContext cho SQL Server
             builder.Services.AddDbContext<FurnitureShopContext>(options =>
-                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
             // Thêm các dịch vụ của MVC
             builder.Services.AddControllersWithViews();
@@ -41,7 +41,7 @@ namespace FurnitureShop
 
             // Cấu hình thời hạn cho token xác thực email
             builder.Services.Configure<DataProtectionTokenProviderOptions>(opt =>
-                opt.TokenLifespan = TimeSpan.FromMinutes(10));
+                opt.TokenLifespan = TimeSpan.FromSeconds(10));
 
             // Cấu hình dịch vụ gửi email
             builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));

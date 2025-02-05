@@ -78,7 +78,7 @@ namespace FurnitureShop.Areas.Admin.Controllers
             }
             if (request.Icon == null)
             {
-                TempData["ErrorMessage"] = "Hình ảnh là bắt buộc. Vui lòng tải lên một ảnh.";
+                TempData["ErrorMessage"] = "Icon là bắt buộc. Vui lòng tải lên một ảnh.";
                 return View();
             }
             string newImageFileName = "default-icon.png"; // Giá trị mặc định

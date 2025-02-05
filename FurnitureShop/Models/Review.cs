@@ -9,8 +9,11 @@ namespace FurnitureShop.Models
         public int Product_id { get; set; }
         public int User_id { get; set; }
         public int Rating { get; set; }
+        [Required(ErrorMessage = "Comment is required.")]
         [MinLength(3, ErrorMessage = "Comment phải có ít nhất 3 kí tự.")]
-        public string? Comment { get; set; }
+        [MaxLength(200, ErrorMessage = "Comment không được vượt quá 200 kí tự.")]
+        public required string Comment { get; set; }
+
 
         [ForeignKey("Product_id")]
         public virtual Product? Product {  get; set; }

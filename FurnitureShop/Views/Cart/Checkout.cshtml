@@ -44,9 +44,10 @@
                         <div class="form-group mt-2">
                             <button class="btn btn-black btn-lg py-3 btn-block" type="submit">Submit</button>
                         </div>
-                        <h4 class="mt-2">Total: <span id="invoiceTotal">@totalAmount</span> VND</h4> <!-- Hiển thị tổng số tiền -->
+                        <h4 class="mt-2">Total: <span id="invoiceTotal">@totalAmount</span> USD</h4> <!-- Hiển thị tổng số tiền -->
                     </div>
                 </div>
+
             </form>
 
             <!-- Nút thanh toán qua VNPAY -->
@@ -55,7 +56,7 @@
                 <div class="p-3 p-lg-5 border bg-white">
                     
                     <!-- Nút thanh toán qua VNPAY -->
-                    <a href="@Url.Action("Payment", "Home", new { area = "VNPayAPI", amount = totalAmount, infor = "Thông tin đơn hàng", orderRef = orderId })" class="btn btn-primary btn-lg py-3 btn-block" role="button">
+                    <a asp-action="PaymentOnline" asp-controller="Cart" class="btn btn-primary btn-lg py-3 btn-block" role="button">
                         Thanh toán qua VNPAY
                     </a>
                 </div>
